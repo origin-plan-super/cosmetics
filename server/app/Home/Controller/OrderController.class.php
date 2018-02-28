@@ -91,15 +91,11 @@ class OrderController extends Controller{
         
         //购物车id是个数组
         $bag_id=$post['bag_id'];
-        $bag_id=['84e41c1ff16193ab97c951533f2ecc58','999372773355bedcaedcb80af74ab5b7'];
+        // $bag_id=['84e41c1ff16193ab97c951533f2ecc58','999372773355bedcaedcb80af74ab5b7'];
         
         if(!$bag_id){
             $res['res']=-3;
-            
-            //=========判断end=========
-            //=========输出json=========
             echo json_encode($res);
-            //=========输出json=========
             die;
         }
         
