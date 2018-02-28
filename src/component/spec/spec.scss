@@ -1,0 +1,60 @@
+.spec-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: solid 1px #e6e6e6;
+    margin-bottom: 20px;
+    .spec-item {
+        padding: 10px 0;
+        border-bottom: dashed 1px #ddd;
+        .spec-title {
+            font-size: 0;
+            .title {
+                font-weight: bold;
+                font-size: 14px;
+                margin-right: 10px;
+            }
+            .el-button {
+                font-size: 14px;
+                margin: 0 10px;
+            }
+        }
+        .spec-prop-list {
+            display: block;
+            position: relative;
+            .spec-prop-item {
+                display: inline-block;
+                width: 150px;
+                cursor: pointer;
+                padding: 20px;
+                vertical-align: top;
+                .el-checkbox {
+                    width: 20%;
+                    display: block;
+                    float: left;
+                }
+                .spec-prop-item-title {
+                    float: left;
+                    font-size: 14px;
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+
+.spec-list-edit {
+    .spec-list-edit-prop {
+        padding-bottom: 10px;
+        padding-left: 150px;
+        .spec-list-edit-prop-item {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.param-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: solid 1px #e6e6e6;
+}

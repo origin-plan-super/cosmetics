@@ -1,0 +1,174 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+pre {
+    font-family: '微软雅黑';
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: solid 4px #ddd;
+    margin: 20px;
+    padding: 20px;
+    font-size: 12px;
+}
+
+
+/*全局样式*/
+
+h1 {
+    font-weight: 400;
+    font-size: 28px;
+    color: #1f2f3d;
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 400;
+    color: #1f2f3d;
+}
+
+h3 {
+    font-weight: 400;
+    color: #1f2f3d;
+    font-size: 22px;
+}
+
+.h {
+    margin: 55px 0 20px;
+}
+
+p {
+    font-size: 14px;
+    color: #5e6d82;
+    line-height: 1.5em;
+}
+
+
+/*自定义工具类*/
+
+
+/*一个带有内边距的块，用户布局*/
+
+.frame {
+    display: block;
+    padding: 10px;
+    .frame-lg {
+        padding: 20px;
+    }
+    .frame-sm {
+        padding: 10px;
+    }
+    .frame-xs {
+        padding: 5px;
+    }
+}
+
+
+/*浮动类*/
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+
+/*文本大小类*/
+
+.text-size-lg {
+    font-size: 1.5em;
+}
+
+.text-size-default {
+    font-size: 14px;
+}
+
+.text-size-xm {
+    font-size: 0.8em;
+}
+
+.text-size-xs {
+    font-size: 0.5em;
+}
+
+
+/*分割线类*/
+
+.line {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0 9px 0;
+    border: solid 0px;
+    border-bottom: solid 1px #dcdfe6;
+    &.line-defalut {
+        border-color: #dcdfe6;
+    }
+    &.line-danger {
+        border-color: #F56C6C;
+    }
+    &.line-dashed {
+        border-style: dashed;
+    }
+}
+
+
+/*让一个块只有一半*/
+
+.cube-half {
+    width: 50%;
+}
+
+
+/*文字颜色类*/
+
+.text-danger {
+    color: #F56C6C;
+}
+
+.text-error {
+    color: #F56C6C;
+}
+
+.text-warning {
+    color: #E6A23C;
+}
+
+.text-success {
+    color: #67C23A;
+}
+
+.text-info {
+    color: #909399;
+}
+
+
+/*自定义工具类  === end ===*/
+
+
+/*修改原有原始类*/
+
+.el-menu-item .fa {
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.el-submenu .fa {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.hide {
+    display: none;
+}
+
+
+/*修改原有原始类    <=== end ===> */

@@ -1,0 +1,1981 @@
+[ 2018-02-27T20:17:00+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000516s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000731s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000813s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000848s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000910s ]
+
+[ 2018-02-27T20:17:01+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000693s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000998s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000834s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000897s ]
+
+[ 2018-02-27T20:17:17+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000406s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000709s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001170s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001262s ]
+
+[ 2018-02-27T20:17:17+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000361s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000756s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000819s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000882s ]
+
+[ 2018-02-27T20:17:20+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000370s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000577s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000612s ]
+
+[ 2018-02-27T20:17:31+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000576s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000587s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000624s ]
+
+[ 2018-02-27T20:17:49+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000597s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000637s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001015s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001091s ]
+
+[ 2018-02-27T20:17:49+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000864s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000926s ]
+
+[ 2018-02-27T20:17:54+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000223s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置类名','1519733874','1519733874','37ae7cdd2980c5cc47841e7a41c605ab') [ RunTime:0.0005s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000665s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000702s ]
+
+[ 2018-02-27T20:18:02+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000595s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000660s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000857s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000919s ]
+
+[ 2018-02-27T20:18:03+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000844s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000906s ]
+
+[ 2018-02-27T20:18:03+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000643s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000722s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000878s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000939s ]
+
+[ 2018-02-27T20:18:05+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000425s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000473s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置类名','1519733885','1519733885','bceb0b783859dd1942f13e19412c8287') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000555s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000591s ]
+
+[ 2018-02-27T20:18:11+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000404s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000444s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000570s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000622s ]
+
+[ 2018-02-27T20:18:12+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000521s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000588s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000644s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time desc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000744s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000789s ]
+
+[ 2018-02-27T20:18:13+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000399s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000626s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000701s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000828s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000887s ]
+
+[ 2018-02-27T20:18:30+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000688s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000843s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000894s ]
+
+[ 2018-02-27T20:18:30+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000858s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000918s ]
+
+[ 2018-02-27T20:18:59+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000388s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000669s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000803s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000857s ]
+
+[ 2018-02-27T20:20:10+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000860s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000830s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000886s ]
+
+[ 2018-02-27T20:20:27+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000496s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000562s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000612s ]
+
+[ 2018-02-27T20:20:30+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000256s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000835s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000880s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000564s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000597s ]
+
+[ 2018-02-27T20:20:40+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000363s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000597s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000633s ]
+
+[ 2018-02-27T20:21:24+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000440s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000475s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000678s ]
+
+[ 2018-02-27T20:22:04+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000339s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000836s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000887s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000885s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000956s ]
+
+[ 2018-02-27T20:22:04+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000487s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000770s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000876s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001079s ]
+
+[ 2018-02-27T20:22:09+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000528s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000584s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000910s ]
+
+[ 2018-02-27T20:22:09+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001007s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001105s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000825s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000881s ]
+
+[ 2018-02-27T20:22:33+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000491s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000780s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000832s ]
+
+[ 2018-02-27T20:22:33+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000707s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000784s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000859s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000925s ]
+
+[ 2018-02-27T20:22:35+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000835s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000670s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000728s ]
+
+[ 2018-02-27T20:23:10+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000313s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000810s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000593s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000636s ]
+
+[ 2018-02-27T20:23:10+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000809s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001167s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001224s ]
+
+[ 2018-02-27T20:23:28+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000802s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000938s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000831s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000887s ]
+
+[ 2018-02-27T20:23:28+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000783s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000860s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001068s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001138s ]
+
+[ 2018-02-27T20:24:26+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001287s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002658s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026792s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000824s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000877s ]
+
+[ 2018-02-27T20:24:26+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000820s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000900s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000963s ]
+
+[ 2018-02-27T20:25:57+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000534s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000791s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000842s ]
+
+[ 2018-02-27T20:26:17+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000712s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000800s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000814s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000873s ]
+
+[ 2018-02-27T20:26:30+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000643s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000710s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000960s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001040s ]
+
+[ 2018-02-27T20:26:30+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001220s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001281s ]
+
+[ 2018-02-27T20:26:33+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000251s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000371s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: UPDATE `c_class` SET `class_title`='美妆护理1',`edit_time`='1519734393' WHERE `class_id` = 'aa' [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000698s ]
+
+[ 2018-02-27T20:26:35+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000661s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000737s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000869s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000953s ]
+
+[ 2018-02-27T20:26:35+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000445s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000914s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000982s ]
+
+[ 2018-02-27T20:26:39+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000354s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000390s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: UPDATE `c_class` SET `class_title`='面膜3',`edit_time`='1519734399' WHERE `class_id` = 'bb' [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000561s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000592s ]
+
+[ 2018-02-27T20:27:09+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000422s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000779s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000827s ]
+
+[ 2018-02-27T20:27:11+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000347s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000382s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519734431','1519734431','9647fa992fac6ff3b2415ab11a28119b') [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000575s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2018-02-27T20:27:13+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000223s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000369s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: UPDATE `c_class` SET `class_title`='asd',`edit_time`='1519734433' WHERE `class_id` = '9647fa992fac6ff3b2415ab11a28119b' [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000668s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000760s ]
+
+[ 2018-02-27T20:27:36+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000264s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000386s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: UPDATE `c_class` SET `class_title`='美妆护理1asd',`edit_time`='1519734456' WHERE `class_id` = 'aa' [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000572s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000608s ]
+
+[ 2018-02-27T20:27:38+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000370s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: UPDATE `c_class` SET `class_title`='美妆护理1',`edit_time`='1519734458' WHERE `class_id` = 'aa' [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000558s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000592s ]
+
+[ 2018-02-27T20:27:40+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000592s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: UPDATE `c_class` SET `class_title`='asdf',`edit_time`='1519734460' WHERE `class_id` = '9647fa992fac6ff3b2415ab11a28119b' [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000555s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000586s ]
+
+[ 2018-02-27T20:28:13+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000767s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000598s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000641s ]
+
+[ 2018-02-27T20:28:13+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000939s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000686s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000842s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000899s ]
+
+[ 2018-02-27T20:28:30+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000403s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000971s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001049s ]
+
+[ 2018-02-27T20:28:30+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000849s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000906s ]
+
+[ 2018-02-27T20:28:34+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: UPDATE `c_class` SET `class_title`='美妆护理1asd',`edit_time`='1519734514' WHERE `class_id` = 'aa' [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000606s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000642s ]
+
+[ 2018-02-27T20:28:34+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000758s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000830s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: UPDATE `c_class` SET `class_title`='美妆护理1asd',`edit_time`='1519734514' WHERE `class_id` = 'aa' [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000861s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000920s ]
+
+[ 2018-02-27T20:29:51+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000672s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000737s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000984s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001051s ]
+
+[ 2018-02-27T20:29:51+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000722s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000801s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000939s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001011s ]
+
+[ 2018-02-27T20:31:13+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000257s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000691s ]
+
+[ 2018-02-27T20:31:17+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000837s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000649s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000705s ]
+
+[ 2018-02-27T20:32:45+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000543s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000893s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000957s ]
+
+[ 2018-02-27T20:32:46+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000590s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000854s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000914s ]
+
+[ 2018-02-27T20:32:49+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000387s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000556s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000610s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000974s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001041s ]
+
+[ 2018-02-27T20:32:49+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000692s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000921s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000992s ]
+
+[ 2018-02-27T20:32:59+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000449s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000894s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000870s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000924s ]
+
+[ 2018-02-27T20:33:00+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001115s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000832s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000887s ]
+
+[ 2018-02-27T20:33:07+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000416s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000713s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000959s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001029s ]
+
+[ 2018-02-27T20:33:07+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000678s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000823s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000879s ]
+
+[ 2018-02-27T20:33:38+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000726s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000796s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001020s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001103s ]
+
+[ 2018-02-27T20:33:38+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000670s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000875s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000937s ]
+
+[ 2018-02-27T20:33:46+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000512s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000631s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000708s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000868s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000922s ]
+
+[ 2018-02-27T20:33:47+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000491s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000675s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000904s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000967s ]
+
+[ 2018-02-27T20:33:50+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000679s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000817s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000864s ]
+
+[ 2018-02-27T20:33:50+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000989s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001065s ]
+
+[ 2018-02-27T20:33:53+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000696s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000776s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000867s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000915s ]
+
+[ 2018-02-27T20:33:53+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000639s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000718s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001278s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001399s ]
+
+[ 2018-02-27T20:34:01+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000495s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000698s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000780s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001351s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001450s ]
+
+[ 2018-02-27T20:34:01+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000392s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000675s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000753s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000880s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000944s ]
+
+[ 2018-02-27T20:34:29+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000671s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000749s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001010s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001084s ]
+
+[ 2018-02-27T20:34:29+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000931s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000999s ]
+
+[ 2018-02-27T20:34:58+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000522s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000700s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000869s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000940s ]
+
+[ 2018-02-27T20:34:58+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000693s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001079s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001158s ]
+
+[ 2018-02-27T20:35:14+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000889s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000953s ]
+
+[ 2018-02-27T20:35:14+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000668s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000749s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000916s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000983s ]
+
+[ 2018-02-27T20:35:19+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000630s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000714s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000836s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000895s ]
+
+[ 2018-02-27T20:35:19+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000626s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000701s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001126s ]
+
+[ 2018-02-27T20:35:32+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000648s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000718s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000785s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000836s ]
+
+[ 2018-02-27T20:35:32+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000708s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000853s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000915s ]
+
+[ 2018-02-27T20:37:34+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001355s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000839s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000927s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000780s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000826s ]
+
+[ 2018-02-27T20:37:35+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000748s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000826s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000862s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000931s ]
+
+[ 2018-02-27T20:37:37+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000738s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000908s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000979s ]
+
+[ 2018-02-27T20:37:37+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000556s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001056s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000848s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000910s ]
+
+[ 2018-02-27T20:37:39+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000490s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000713s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000863s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000924s ]
+
+[ 2018-02-27T20:37:39+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000445s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000803s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000888s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000947s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001025s ]
+
+[ 2018-02-27T20:37:49+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000801s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000823s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000879s ]
+
+[ 2018-02-27T20:37:50+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000958s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001048s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000838s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000894s ]
+
+[ 2018-02-27T20:38:13+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000511s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000876s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000937s ]
+
+[ 2018-02-27T20:38:14+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000703s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000757s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000839s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000907s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000973s ]
+
+[ 2018-02-27T20:39:23+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000690s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000754s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000796s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000846s ]
+
+[ 2018-02-27T20:39:23+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000478s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000890s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000867s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001002s ]
+
+[ 2018-02-27T20:39:43+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000329s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000682s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000897s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000980s ]
+
+[ 2018-02-27T20:39:43+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000612s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000726s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000799s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000880s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000936s ]
+
+[ 2018-02-27T20:40:26+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001680s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000935s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000996s ]
+
+[ 2018-02-27T20:40:26+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000677s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000787s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000876s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000874s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000934s ]
+
+[ 2018-02-27T20:40:27+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000783s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000810s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000861s ]
+
+[ 2018-02-27T20:40:27+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000751s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000827s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000880s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000941s ]
+
+[ 2018-02-27T20:42:40+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000220s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000440s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000485s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('37ae7cdd2980c5cc47841e7a41c605ab','未配置类名','1519735360','1519735360','e012b5740f18201bbc2db083ad361657') [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000621s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000658s ]
+
+[ 2018-02-27T20:42:41+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('37ae7cdd2980c5cc47841e7a41c605ab','未配置类名','1519735361','1519735361','d3f0513e45a9e2274a1e7767e1ba0699') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000562s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000597s ]
+
+[ 2018-02-27T20:43:11+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000506s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('37ae7cdd2980c5cc47841e7a41c605ab','未配置类名','1519735391','1519735391','6135acd3e78df92f615ac713c878461b') [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2018-02-27T20:43:13+08:00 ] 127.0.0.1 /index.php/Admin/class/save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000339s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000634s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: UPDATE `c_class` SET `class_title`='未配置类名asd',`edit_time`='1519735393' WHERE `class_id` = '6135acd3e78df92f615ac713c878461b' [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000676s ]
+
+[ 2018-02-27T20:43:14+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000612s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735394','1519735394','1c7033a8e1820e082a6258e951865ccc') [ RunTime:0.0009s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000587s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000628s ]
+
+[ 2018-02-27T20:43:24+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000505s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735404','1519735404','8dd279258f70998bf37f4bb703d24b0a') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000663s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000698s ]
+
+[ 2018-02-27T20:43:26+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000250s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000581s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735406','1519735406','aa485326d5badd57f72af860514237a6') [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000572s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000604s ]
+
+[ 2018-02-27T20:43:27+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000648s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000495s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000532s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735407','1519735407','6d8c1b44c6e95b7899e48cb691d88fde') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000579s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000622s ]
+
+[ 2018-02-27T20:43:34+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000485s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735414','1519735414','c2317698e41ad9f89fda0db6255c6e02') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000687s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000728s ]
+
+[ 2018-02-27T20:43:35+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000476s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735415','1519735415','f97d0dd56a137a8e76fa84f36038d6a0') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000601s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000634s ]
+
+[ 2018-02-27T20:43:35+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000890s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735415','1519735415','31a97608ba89ae0ec739cb8c2fca976d') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000583s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000643s ]
+
+[ 2018-02-27T20:43:36+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000515s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000564s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0008s ]
+SQL: INSERT INTO `c_class` (`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('未配置分组名','1519735416','1519735416','295b9e1f2a7b22eabea117458450202f') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000596s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000628s ]
+
+[ 2018-02-27T20:44:26+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000245s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000454s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('aa','未配置类名','1519735466','1519735466','fd00bc18885979e10c04cc16ec064281') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2018-02-27T20:44:26+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000396s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('aa','未配置类名','1519735466','1519735466','7c41db1c96d5e9f46be84490da1f0d2f') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000598s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000635s ]
+
+[ 2018-02-27T20:44:27+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000495s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000637s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0003s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('aa','未配置类名','1519735467','1519735467','4e5fb63170df62b1b4760c5b38c6ccb9') [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000548s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000581s ]
+
+[ 2018-02-27T20:44:39+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000541s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000605s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000804s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000866s ]
+
+[ 2018-02-27T20:44:40+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000810s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000804s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000857s ]
+
+[ 2018-02-27T20:44:48+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000781s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000873s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001796s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001904s ]
+
+[ 2018-02-27T20:44:48+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000570s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000708s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000965s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001029s ]
+
+[ 2018-02-27T20:45:35+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000998s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000938s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001002s ]
+
+[ 2018-02-27T20:45:36+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000706s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000863s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000912s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000975s ]
+
+[ 2018-02-27T20:45:42+08:00 ] 127.0.0.1 /index.php/Admin/class/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000584s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000638s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_class` (`super_id`,`class_title`,`add_time`,`edit_time`,`class_id`) VALUES ('aa','未配置类名','1519735542','1519735542','be251bc52de17cecd2f0fe23712f3db3') [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000677s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000718s ]
+
+[ 2018-02-27T20:45:47+08:00 ] 127.0.0.1 /index.php/Admin/Class/getList?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000876s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000964s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_class` ORDER BY add_time asc  [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000857s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000924s ]
+
+[ 2018-02-27T20:45:47+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin?token=75417e81559eb481585447a3e04e2a39&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000614s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000775s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001079s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001154s ]
+

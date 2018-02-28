@@ -1,0 +1,120 @@
+[ 2018-02-11T11:10:40+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000801s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000777s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000811s ]
+
+[ 2018-02-11T11:11:04+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000768s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000687s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000727s ]
+
+[ 2018-02-11T11:14:13+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000780s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000817s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001377s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001461s ]
+
+[ 2018-02-11T11:17:26+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000488s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000765s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000768s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000806s ]
+
+[ 2018-02-11T11:17:34+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000639s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000866s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001147s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001216s ]
+
+[ 2018-02-11T11:17:35+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000922s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000919s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000978s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001333s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001409s ]
+
+[ 2018-02-11T11:17:48+08:00 ] 127.0.0.1 /index.php/Admin/index/isLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000686s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001293s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001119s ]
+
+[ 2018-02-11T11:17:52+08:00 ] 127.0.0.1 /index.php/Admin/index/get
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000706s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001441s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001446s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001538s ]
+
+[ 2018-02-11T11:17:55+08:00 ] 127.0.0.1 /index.php/Admin/index/get
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000648s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001163s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001238s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001328s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001404s ]
+
+[ 2018-02-11T12:00:03+08:00 ] 127.0.0.1 /index.php/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000731s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001259s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001345s ]
+NOTIC: [2048] Declaration of Admin\Controller\IndexController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php 第 123 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001254s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001316s ]
+
