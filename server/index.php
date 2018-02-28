@@ -12,7 +12,7 @@
 //跨域
 // header('Access-Control-Allow-Origin:http://192.168.1.254:8081');
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
-$allow_origin=['http://192.168.1.5:8080','http://192.168.1.6:8080'];
+$allow_origin=['http://192.168.1.5:8080','http://192.168.1.6:8080','http://192.168.1.4:8080','http://10.0.139.88:8080'];
 
 if(in_array($origin, $allow_origin)){
     header('Access-Control-Allow-Origin:'.$origin);
