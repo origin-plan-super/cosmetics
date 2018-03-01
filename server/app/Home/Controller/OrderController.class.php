@@ -52,7 +52,15 @@ class OrderController extends Controller{
                 $where=[];
                 $where['goods_id']=$value;
                 $re_goods=$goods->where($where)->find();
-                $item['order_info']['goods'][]=$re_goods;
+                
+                $map=[];
+                $map['img_list']=false;
+                $map['goods_class']=false;
+                $map['spec']=false;
+                $re_goods=arrJsonD([$re_goods],$map);
+                
+                $item['order_info']['goods'][]=$re_goods[0];
+                
                 
             }
             
@@ -69,7 +77,6 @@ class OrderController extends Controller{
         }
         //=========判断end=========
         
-        dump($orderList);
         //=========输出json=========
         echo json_encode($res);
         //=========输出json=========
@@ -103,6 +110,7 @@ class OrderController extends Controller{
         $model=M('bag');
         $where['bag_id']=array('in',$bag_id);
         
+        //购物车、商品联表查询
         $result= $model
         ->where($where)
         ->field('t1.*,t2.*,t1.spec as user_spec,t2.spec as goods_spce')
@@ -110,79 +118,124 @@ class OrderController extends Controller{
         ->where('t1.goods_id = t2.goods_id')
         ->select();
         
+        $map=[];
+        $map['user_spec']=true;
+        $result=arrJsonD($result,$map);
+        
+        //商品id的列表
         $goods_id_list=[];
+        //用户选择的列表
         $user_spec=[];
+        //循环购物车信息，并且组成数据
         for ($i=0; $i <count($result) ; $i++) {
+            //商品的id
             $goods_id=$result[$i]['goods_id'];
+            //将商品的id追加到商品id列表
             $goods_id_list[]=  $goods_id;
-            if($result[$i]['user_spec']){
-                $sp=[];
-                $sp['颜色']='红色';
-                $sp['材质']='铁';
-                $sp['大小']='10*10';
-                $sp['money']=1.1;
-                $sp['stock']=1.1;
-                $user_spec[$goods_id]=$sp;
-            }else{
-                $user_spec[$goods_id]=$result[$i]['user_spec'];
-            }
+            //将用户选择的数据追加到用户选择列表中
+            
+            $_user_spec=[];
+            
+            $_user_spec=$result[$i]['user_spec'];
+            $_user_spec['goods_count']=$result[$i]['goods_count']+0;
+            
+            $user_spec[$goods_id]=$_user_spec;
+            
+            // $user_spec[$goods_id]['goods_count']=$result[$i]['goods_count'];
+            
+            
+            // 这个判断待定
+            // if($result[$i]['user_spec']){
+            //     $sp=[];
+            //     $sp['颜色']='红色';
+            //     $sp['材质']='铁';
+            //     $sp['大小']='10*10';
+            //     $sp['money']=1.1;
+            //     $sp['stock']=1.1;
+            //     $user_spec[$goods_id]=$sp;
+            // }else{
+            // }
+            
         }
+        
+        //此订单的价格
         $order_money=0;
         //计价
         for ($i=0; $i <count($result) ; $i++) {
+            
+            //取得商品数量
             $count=$result[$i]['goods_count'];
-            $money=0;
-            if(empty($result[$i]['goods_count']['user_spec'])){
-                //没有
-                $money=1.1;
-            }else{
-                //有spce
-                $money=$result[$i]['goods_count']['user_spec']['money'];
-            }
+            
+            //记录单价，让单价等于用户选择的东西的单价
+            
+            $money=$result[$i]['user_spec']['money'];
+            
+            //计算钱 公式： 总价=数量*单价
             $order_money+=($count*$money);
+            
+            //这个判断待定
+            // if(empty($result[$i]['goods_count']['user_spec'])){
+            //     //没有
+            //     // $money=1.1;
+            // }else{
+            //     //有spce
+            // }
+            
         }
         
+        
+        //生成订单号
         $order_id=date('YmdHis',time()).rand(1000,9999);
         
-        $add=[];
-        $add['order_id']=$order_id;
-        $add['add_time']=time();
-        $add['edit_time']=time();
-        $add['user_id']='12138';
-        $add['money']=$order_money;
+        //组装数据
+        $add=[];//add数组
+        $add['order_id']=$order_id;//订单号
+        $add['add_time']=time();//订单创建时间
+        $add['edit_time']=time();//订单最后一次编辑时间
+        $add['user_id']='12138';//提交订单的用户id
+        $add['money']=$order_money;//此订单的总价
         
+        
+        //订单模型
         $model=M('order');
+        //添加进去
         $result=$model->add($add);
-        $result=true;
-        // dump($add);
+        // $result=true;
+        //如果添加成功
         if($result){
             //添加成功
-            //开始添加订单信息
+            //开始添加订单信息,订单信息模型
             $model=M('order_info');
             
+            //订单信息数组
             $order_info=[];
-            $order_info['goods_id_list']=$goods_id_list;
-            $order_info['user_spec']=$user_spec;
-            $add=[];
-            $add['order_id']=$order_id;
-            $add['order_info']=json_encode($order_info);
+            $order_info['goods_id_list']=$goods_id_list;//订单的商品的id数组
+            $order_info['user_spec']=$user_spec;//订单的用户选择的规格
+            $add=[];//add数组
+            $add['order_id']=$order_id;//订单号
+            $add['order_info']=json_encode($order_info);//将订单信息转换为字符串
             // $add['order_info']=$order_info;
-            $result=$model->add($add);
+            $result=$model->add($add);//添加到订单信息表中
             
-            // dump($add);
-            
+            //如果订单信息添加成功
             if($result){
+                //输出1
                 $res['res']=1;
                 $res['msg']=$order_id;
             }else{
+                //如果订单信息表添加失败，输出-1
                 $res['res']=-1;
+                $res['msg']='订单信息创建失败';
+                $res['order_id']=$order_id;
             }
+            // 返回接口
             echo json_encode($res);
-            
+            die;
         }else{
-            ///添加失败
-            
+            //订单创建失败
             $res['res']=-2;
+            $res['msg']='订单创建失败';
+            // 返回接口
             echo json_encode($res);
             
         }

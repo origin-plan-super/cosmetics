@@ -19,13 +19,40 @@ use Think\Controller;
 class OrderController extends CommonController{
     
     
+    //获得总数
+    public function getCount(){
+        $model=M('order');
+        $count=$model->count();
+        $res['res']=$count+0;
+        //=========输出json=========
+        echo json_encode($res);
+        //=========输出json=========
+    }
+    
+    
     //获得列表
     public function getList(){
         
         
         $model=M('order');
-        $where=[];
-        $order=$model->where($where)->select();
+        
+        $page=I('page')?I('page'):0;
+        $limit=I('limit')?I('limit'):10;
+        $where=I('where')?I('where'):[];
+        
+        $count=$model
+        ->order('add_time desc')
+        ->where($where)
+        ->count();
+        $res['count']=$count+0;
+        
+        
+        $order=$model
+        ->where($where)
+        ->order('add_time desc')
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
+        
         
         $order= toTime($order);
         
@@ -51,7 +78,14 @@ class OrderController extends CommonController{
                 $where=[];
                 $where['goods_id']=$value;
                 $re_goods=$goods->where($where)->find();
-                $item['order_info']['goods'][]=$re_goods;
+                
+                $map=[];
+                $map['img_list']=false;
+                $map['goods_class']=false;
+                $map['spec']=false;
+                $re_goods=arrJsonD([$re_goods],$map);
+                
+                $item['order_info']['goods'][]=$re_goods[0];
                 
             }
             
@@ -60,7 +94,7 @@ class OrderController extends CommonController{
         
         //=========判断=========
         if($orderList){
-            $res['res']=count($orderList);
+            $res['res']=$count+0;
             $res['msg']=$orderList;
         }else{
             $res['res']=-1;

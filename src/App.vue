@@ -128,7 +128,7 @@ export default {
   },
   watch: {
     $route() {
-      console.log(this.$route);
+      // console.log(this.$route);
     }
   },
   computed: {},

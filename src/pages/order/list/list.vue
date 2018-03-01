@@ -1,53 +1,115 @@
 <template>
   <div id="orderList">
 
-    <template>
-      <router-view></router-view>
+    <div class="frame">
+      <el-button-group>
 
-      <div class="frame">
-        <el-button-group>
+        <el-tooltip class="item" effect="dark" content="刷新列表" placement="top-start">
+          <el-button type="primary" size="mini" icon="el-icon-refresh" @click="update()"></el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="删除选中" placement="top-start">
+          <el-button type="primary" size="mini" icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
+        </el-tooltip>
 
+      </el-button-group>
 
-          <el-tooltip class="item" effect="dark" content="刷新列表" placement="top-start">
-            <el-button type="primary" size='mini' icon="el-icon-refresh" @click='upDate'></el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="删除选中" placement="top-start">
-            <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
-          </el-tooltip>
+      <!-- <el-button type="primary" size="mini" :icon="isOpen?'el-icon-remove-outline':'el-icon-circle-plus-outline'" @click="isOpen=!isOpen">{{isOpen?"全部收起":"全部展开"}}</el-button> -->
+    </div>
 
-        </el-button-group>
-   
-      </div>
-      <div class="frame">
+    <div class="frame">
 
-        <el-table ref='table' @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border max-height='70vh' stripe size='mini'>
+      <el-table header-cell-class-name="table-head-call" header-row-class-name="table-head" default-expand-all ref="table" @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border height="70vh" max-height="70vh" size="mini">
+        <el-table-column type="selection" align="center"></el-table-column>
 
-          <el-table-column type='selection' align="center"></el-table-column>
+        <el-table-column prop="order_id" label="订单号" resizable show-overflow-tooltip width="155"></el-table-column>
+        <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip width="100"></el-table-column>
 
-          <el-table-column prop="order_id" label="订单号" resizable show-overflow-tooltip width="155"></el-table-column>
-          <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip width="100"></el-table-column>
+        <el-table-column label="订单总价￥" width="100" prop="money"></el-table-column>
 
+        <el-table-column prop="add_time" label="创建时间" resizable show-overflow-tooltip width="155"></el-table-column>
 
-          <el-table-column label="价格￥" width="80" prop="money"></el-table-column>
+        <el-table-column prop="state" label="状态" align="center" :filters="state" :filter-method="filterMethod" resizable show-overflow-tooltip width="160">
+          <template slot-scope="scope">
 
-
-          <el-table-column fixed="right" label="操作" width="100" align="center">
-            <template slot-scope="scope">
-              <el-button type="text" size="mini">查看</el-button>
-              <el-button type="text" size="mini" @click="editorder(scope.row)">编辑</el-button>
+            <template v-if="state[scope.row.state]">
+              <el-tag :type="state[scope.row.state].type">{{state[scope.row.state].text}}</el-tag>
             </template>
-          </el-table-column>
+            <template v-else>
+              <span class="text-error">
+                订单状态获取错误！：{{scope.row.state}}
+              </span>
+            </template>
 
-        </el-table>
+          </template>
+        </el-table-column>
 
-      </div>
+        <el-table-column></el-table-column>
 
-      <div class="frame">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
-        </el-pagination>
-      </div>
+        <el-table-column fixed="right" label="操作" width="100" align="center">
+          <template slot-scope="scope">
+            <el-button type="text" size="mini" icon="el-icon-search" @click="see(scope.row)">订单详情</el-button>
+          </template>
+        </el-table-column>
 
-    </template>
+        <el-table-column type="expand" fixed="right">
+          <template slot-scope="scope">
+
+            <!-- 显示商品 -->
+
+            <div class="goods-list">
+              <div class="goods-item" v-for="(item,index) in scope.row.order_info.goods">
+                <img :src="$getUrl(item.img_list[0].src)" alt="图片错误！">
+
+                <div class="goods-info">
+
+                  <span class="goods-title">
+                    {{item.goods_title}}
+                  </span>
+
+                  <br>
+                  <span class="goods-money text-muted">
+                    <span>
+                      [单价：￥{{scope.row.order_info.user_spec[item.goods_id].money}}]
+                    </span>
+                    -
+                    <span>
+                      [数量 {{scope.row.order_info.user_spec[item.goods_id].goods_count}}]
+                    </span>
+                    <!-- 规格 -->
+                    -
+                    <span class="spec-list">
+
+                      [
+                      <template v-for="(spec,j) in scope.row.order_info.user_spec[item.goods_id]">
+                        <span v-if="typeof(spec)=='object'" class="spec-item">
+                          {{j}} : {{spec.title}}。
+                        </span>
+                      </template>
+                      ]
+
+                    </span>
+                  </span>
+
+                </div>
+
+                <span class="goods-count">
+                  x{{scope.row.order_info.user_spec[item.goods_id].goods_count}}
+                </span>
+              </div>
+            </div>
+
+          </template>
+
+        </el-table-column>
+
+      </el-table>
+
+    </div>
+
+    <div class="frame">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+      </el-pagination>
+    </div>
 
   </div>
 </template>
@@ -62,7 +124,7 @@ export default {
       // 总条数
       total: 0,
       // 当前每页显示的数量
-      pageSize: 20,
+      pageSize: 10,
       //表格数据
       tableData: [],
       //表格是否显示加载层
@@ -70,19 +132,28 @@ export default {
       //记录用的值
       testValue: "",
       //被选中项
-      selectItem: []
+      selectItem: [],
+      //状态值
+      state: [
+        { value: "未支付", text: "未支付", type: "info" },
+        { value: "未发货", text: "未发货", type: "warning" },
+        { value: "已发货", text: "已发货", type: "" },
+        { value: "已签收", text: "已签收", type: "success" },
+        { value: "退款/售后", text: "退款/售后", type: "danger" }
+      ],
+      interval: null
     };
   },
   methods: {
     //页面切换事件
     handleCurrentChange: function() {
-      this.upDate();
+      this.update();
     },
     //大小改变事件
     handleSizeChange: function() {
-      this.upDate();
+      this.update();
     },
-    upDate: function() {
+    update: function(showInfo, message) {
       var setTim = setTimeout(() => {
         this.tableLoading = true;
       }, 500);
@@ -91,14 +162,20 @@ export default {
         "order/getList",
         { page: this.currentPage, limit: this.pageSize },
         res => {
+          if (showInfo) {
+            this.$message({
+              message: message ? message : "更新完成~",
+              type: "success"
+            });
+          }
           clearTimeout(setTim);
           this.tableLoading = false;
-          var map = ["order_info"];
           this.total = res.count;
-          this.tableData=res.msg;
-          // if (res.count > 0) this.tableData = stringToArr(res.msg, map);
+          this.tableData = res.msg;
           console.log(res.msg);
-          
+
+          // var map = ["order_info"];
+          // if (res.count > 0) this.tableData = asdasd stringToArr(res.msg, map);
         }
       );
     },
@@ -133,7 +210,7 @@ export default {
       this.testValue = value;
     },
     setUpAll(is_up) {
-      // this.$refs['table'].
+      // this.$refs["].
       var list = this.selectItem;
       for (let i = 0; i < list.length; i++) {
         list[i].is_up = is_up + "";
@@ -144,11 +221,48 @@ export default {
     selectionChange(items) {
       console.log(items);
       this.selectItem = items;
+    },
+    see(item) {
+      this.$router.push({ name: "/order/info", params: { order: item } });
+    },
+
+    filterMethod(value, row, column) {
+      if (!this.state[row.state]) return true;
+      return this.state[row.state].text === value;
+
+      // const property = column["property"];
+      // return row[property] ===asdasdasdas12312 value;
     }
   },
   mounted: function() {
-    this.upDate();
-  }
+    this.update();
+
+    clearInterval(this.interval);
+
+    this.interval = setInterval(() => {
+      this.$get("order/getCount", {}, res => {
+        if (res.res > this.total) {
+          this.total = res.res;
+          var $notify = this.$notify.info({
+            title: "消息",
+            message: "有新订单了！",
+            duration: 0,
+            onClick: () => {
+              this.update(true, "已更新新订单~");
+              $notify.close();
+            },
+            onClose: () => {
+              this.update(true, "已更新新订单~");
+            }
+          });
+        }
+      });
+    }, 2000);
+  },
+  destroyed() {
+    clearInterval(this.interval);
+  },
+  watch: {}
 };
 
 function stringToArr(arr, map) {
@@ -162,7 +276,7 @@ function stringToArr(arr, map) {
 </script>
 
 
-<style lang='scss' scoped>
+<style lang="scss" >
 @import "list.scss";
 </style>
 

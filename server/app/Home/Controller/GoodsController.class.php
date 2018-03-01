@@ -34,7 +34,6 @@ class GoodsController extends Controller{
         // ->limit(($page-1)*$limit,$limit)
         ->select();
         
-        
         // =========判断=========
         if($result){
             //总条数

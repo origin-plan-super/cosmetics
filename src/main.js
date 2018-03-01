@@ -19,8 +19,8 @@ Vue.use(VueResource);
 var Url = {};
 Url.install = function (Vue, options) {
 
-  // var server = 'http://cosmetics.com/index.php/';
-  var server = 'http://120.78.162.200:12138/index.php/';
+  var server = 'http://cosmetics.com/index.php/';
+  // var server = 'http://120.78.162.200:12138/index.php/';
 
   var serverAdmin = server + 'Admin/';
   var serverHome = server + 'Home/';
@@ -237,6 +237,7 @@ import _class from './pages/class/class.vue';
 //订单管理
 import order from './pages/order/order.vue';
 import order_list from './pages/order/list/list.vue';
+import order_info from './pages/order/info/info.vue';
 
 // =============
 
@@ -258,6 +259,7 @@ const router = new VueRouter({
     {
       path: '/order', component: order, children: [
         { path: 'list', name: "/order/list", component: order_list, meta: { name: '订单列表' }, },
+        { path: 'info', name: "/order/info", component: order_info, meta: { name: '订单详情' }, },
       ]
     },
     { path: '/ctos', component: ctos },

@@ -75,13 +75,19 @@ class BagController extends Controller{
         }
         
         $result=$model->where($where)->save($save);
-        if($result){
+        if($result===0){
             $res['res']=$result;
             $res['msg']=$result;
         }else{
-            $res['res']=-1;
-            $res['msg']=$result;
+            if($result){
+                $res['res']=$result;
+                $res['msg']=$result;
+            }else{
+                $res['res']=-1;
+                $res['msg']=$result;
+            }
         }
+        
         echo json_encode($res);
         
     }

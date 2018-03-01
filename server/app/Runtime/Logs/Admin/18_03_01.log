@@ -1,0 +1,120 @@
+[ 2018-03-01T14:02:56+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000525s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000531s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000573s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000918s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000980s ]
+
+[ 2018-03-01T14:02:58+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000524s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000565s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000664s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000697s ]
+
+[ 2018-03-01T14:03:00+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000531s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000713s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000746s ]
+
+[ 2018-03-01T14:03:02+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000558s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000690s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000724s ]
+
+[ 2018-03-01T14:03:04+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000372s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000711s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000744s ]
+
+[ 2018-03-01T14:03:06+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000533s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000712s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000744s ]
+
+[ 2018-03-01T14:03:08+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000577s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000808s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000701s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000742s ]
+
+[ 2018-03-01T14:03:10+08:00 ] 127.0.0.1 /index.php/Admin/order/getCount?token=db1bc0945ad5f5a7d50f8d7d125cfbb8&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000444s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000640s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000672s ]
+
