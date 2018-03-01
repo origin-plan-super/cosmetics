@@ -99,7 +99,6 @@ class OrderController extends Controller{
             die;
         }
         
-        
         //取出购物车中的东西
         $model=M('bag');
         $where['bag_id']=array('in',$bag_id);
