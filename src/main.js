@@ -19,8 +19,8 @@ Vue.use(VueResource);
 var Url = {};
 Url.install = function (Vue, options) {
 
-  var server = 'http://cosmetics.com/index.php/';
-  // var server = 'http://120.78.162.200:12138/index.php/';
+  // var server = 'http://cosmetics.com/index.php/';
+  var server = 'http://120.78.162.200:12138/index.php/';
 
   var serverAdmin = server + 'Admin/';
   var serverHome = server + 'Home/';
