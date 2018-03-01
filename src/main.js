@@ -243,8 +243,8 @@ import order_list from './pages/order/list/list.vue';
 import { EINPROGRESS } from 'constants';
 
 const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
+  // mode: 'history',
+  // base: __dirname,
   routes: [
     { path: '/', component: index },
     { path: '/index', component: index, meta: { name: '首页' }, },

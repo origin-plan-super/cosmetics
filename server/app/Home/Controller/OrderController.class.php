@@ -87,7 +87,7 @@ class OrderController extends Controller{
     
     public function add(){
         
-        $post=I('post','',false);
+        $post=I('post.','',false);
         
         //购物车id是个数组
         $bag_id=$post['bag_id'];
