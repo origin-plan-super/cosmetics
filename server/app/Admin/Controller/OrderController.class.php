@@ -36,26 +36,38 @@ class OrderController extends CommonController{
         
         $model=M('order');
         
-        $page=I('page')?I('page'):0;
+        $page=I('page')?I('page'):1;
         $limit=I('limit')?I('limit'):10;
         $where=I('where')?I('where'):[];
         
+        
+        
+        // 总数
         $count=$model
-        ->order('add_time desc')
+        ->table('c_order as t1,c_user as t2')
+        ->field('t1.*,t2.user_name,t2.user_id')
+        ->order('t1.add_time desc')
         ->where($where)
+        ->where('t1.user_id = t2.user_id')
         ->count();
         $res['count']=$count+0;
         
         
+        // 查找
         $order=$model
-        ->where($where)
-        ->order('add_time desc')
+        ->table('c_order as t1,c_user as t2')
+        ->field('t1.*,t2.user_name,t2.user_id')
+        ->order('t1.add_time desc')
         ->limit(($page-1)*$limit,$limit)
+        ->where($where)
+        ->where('t1.user_id = t2.user_id')
         ->select();
         
         
+        //转换时间
         $order= toTime($order);
         
+        // 找信息
         $orderList=[];
         $model=M('order_info');
         $goods=M('goods');
@@ -67,10 +79,13 @@ class OrderController extends CommonController{
             $where['order_id']=$order_id;
             $order_info=$model->where($where)->find();
             
+            
             $item=[];
             $item=$order[$i];
             $item['order_info']=json_decode($order_info['order_info'],true);
+            $item['express_number']=$order_info['express_number'];
             $item['order_info']['goods']=[];
+            
             
             //找到商品
             foreach ($item['order_info']['goods_id_list'] as $key => $value) {
@@ -115,6 +130,43 @@ class OrderController extends CommonController{
     //保存字段
     public function save(){
         
+        $where=I('where');
+        $table=I('table');
+        
+        
+        if(!$where || !$table){
+            $res['res']=-2;
+            echo json_encode($res);
+            die;
+        }
+        $model=M($table);
+        
+        $save=I('save','',false);
+        
+        unset($save['order_id']);
+        unset($save['add_time']);
+        $save['edit_time']=time();
+        
+        $save=arrToString($save);
+        $result = $model->where($where)->save($save);
+        $res['msg']=$result;
+        
+        //=========判断=========
+        if($result===false){
+            $res['res']=-1;
+        }
+        if($result>0){
+            $res['res']=1;
+        }
+        if($result===0){
+            $res['res']=0;
+        }
+        
+        //=========判断end=========
+        
+        //=========输出json=========
+        echo json_encode($res);
+        //=========输出json=========
     }
     
     public function add(){

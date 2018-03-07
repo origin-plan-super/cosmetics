@@ -1,0 +1,43 @@
+.goods-list {
+    padding: 0;
+    background-color: #f6f6f6;
+    font-size: 14px;
+    color: #606266;
+    .goods-item {
+        white-space: nowrap;
+        padding: 20px;
+        img {
+            vertical-align: top;
+            width: 50px;
+            height: 50px;
+        }
+        .goods-info {
+            display: inline-block;
+            max-width: 100%;
+            width: 100%;
+            line-height: 20px;
+            padding-left: 10px;
+            .goods-title {
+                width: 100%;
+                display: inline-block;
+                font-size: 15px;
+                white-space: normal;
+            }
+            .goods-money {
+                padding-left: 10px;
+            }
+        }
+        .goods-count {
+            border-left: solid 1px #ccc;
+            padding-left: 5px;
+            vertical-align: top;
+        }
+        .spec-list {
+            display: block;
+            .spec-item {
+                display: block;
+                padding-left: 20px;
+            }
+        }
+    }
+}

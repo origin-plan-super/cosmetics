@@ -40,14 +40,19 @@
 export default {
   name: "selectImg",
   props: {
-    value: Array
+    value: Array,
+    src: {
+      type: String,
+      default: "admin"
+    }
   },
   data() {
     return {
       img_list: [],
       parame: {
         token: localStorage.token,
-        admin_id: localStorage.admin_id
+        admin_id: localStorage.admin_id,
+        src: ""
       },
       count: 0,
       fileMax: 10
@@ -56,6 +61,7 @@ export default {
   methods: {
     remove(item, index, list) {
       list.splice(index, 1);
+      this.$emit("on-remove", item);
     },
     // 文件超出个数限制时的钩子
     onExceed() {
@@ -68,7 +74,6 @@ export default {
     // 文件上传成功时的钩子
     success(response, file, fileList) {
       // clearFiles
-      console.log("===================");
       this.count++;
 
       if (this.count == fileList.length) {
@@ -80,6 +85,8 @@ export default {
         src: response.msg.src,
         key: Math.random() + new Date().getTime()
       });
+
+      this.$emit("on-success", response);
     },
     //失败
     error(response, file, fileList) {
@@ -105,6 +112,7 @@ export default {
   },
 
   mounted() {
+    this.parame.src = this.src;
     this.$nextTick(() => {
       this.img_list = this.value;
     });

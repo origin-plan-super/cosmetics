@@ -10,7 +10,7 @@
           <el-button type="primary" size='mini' icon="el-icon-plus" @click='add()'>新增商品</el-button>
 
           <el-tooltip class="item" effect="dark" content="刷新列表" placement="top-start">
-            <el-button type="primary" size='mini' icon="el-icon-refresh" @click='upDate'></el-button>
+            <el-button type="primary" size='mini' icon="el-icon-refresh" @click='update'></el-button>
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="删除选中" placement="top-start">
             <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
@@ -59,16 +59,14 @@
           <el-table-column label="排序" width="80">
 
             <template slot-scope="scope">
-              <el-input v-model="scope.row.sort" size="mini" @focus="recordValue(scope.row.sort)" @blur="save(scope.row,'sort',true,true)" @keyup.enter.native="save(scope.row,'sort',true,true)"></el-input>
+              <el-input :disabled="isPreservation" v-model="scope.row.sort" size="mini" @focus="recordValue(scope.row.sort)" @blur="save(scope.row,'sort',true,true)" @keyup.enter.native="save(scope.row,'sort',true,true)"></el-input>
             </template>
 
           </el-table-column>
 
           <el-table-column label="上架" fixed="right" width="80" align="center">
             <template slot-scope="scope">
-              <el-tooltip :content="'上架：' + (scope.row.is_up==1?'开':'关')" placement="right">
-                <el-switch active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="save(scope.row,'is_up')"></el-switch>
-              </el-tooltip>
+              <el-switch :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="save(scope.row,'is_up')"></el-switch>
             </template>
           </el-table-column>
 
@@ -111,19 +109,21 @@ export default {
       //记录用的值
       testValue: "",
       //被选中项
-      selectItem: []
+      selectItem: [],
+      //是否是保存数据状态
+      isPreservation: false
     };
   },
   methods: {
     //页面切换事件
     handleCurrentChange: function() {
-      this.upDate();
+      this.update();
     },
     //大小改变事件
     handleSizeChange: function() {
-      this.upDate();
+      this.update();
     },
-    upDate: function() {
+    update: function() {
       var setTim = setTimeout(() => {
         this.tableLoading = true;
       }, 500);
@@ -146,7 +146,15 @@ export default {
     // 保存
     save(item, saveName, isInfo, isValidate) {
       if (isValidate && item[saveName] == this.testValue) return;
-
+      var tim = setTimeout(() => {
+        this.isPreservation = true;
+      }, 100);
+      var msg;
+      msg = this.$message({
+        message: "正在保存",
+        duration: 0,
+        iconClass: "el-icon-loading"
+      });
       var save = {};
       save[saveName] = item[saveName];
 
@@ -154,6 +162,11 @@ export default {
         "goods/save",
         { where: { goods_id: item.goods_id }, save: save },
         res => {
+          clearTimeout(tim);
+          msg.close();
+
+          this.isPreservation = false;
+
           if (res.res >= 1 && isInfo) {
             this.$message({ message: "保存成功！", type: "success" });
           }
@@ -188,7 +201,7 @@ export default {
     }
   },
   mounted: function() {
-    this.upDate();
+    this.update();
   }
 };
 

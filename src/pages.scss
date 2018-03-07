@@ -136,6 +136,11 @@ p {
     color: #E6A23C;
 }
 
+.text-blue,
+.text-primary {
+    color: #409EFF;
+}
+
 .text-success {
     color: #67C23A;
 }
@@ -176,3 +181,14 @@ p {
 
 
 /*修改原有原始类    <=== end ===> */
+
+.clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

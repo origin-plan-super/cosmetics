@@ -18,32 +18,53 @@
 
     <div class="frame">
 
-      <el-table header-cell-class-name="table-head-call" header-row-class-name="table-head" default-expand-all ref="table" @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border height="70vh" max-height="70vh" size="mini">
+      <el-table header-cell-class-name="table-head-call" header-row-class-name="table-head" :default-expand-all="false" ref="table" @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border height="70vh" max-height="70vh" size="mini">
         <el-table-column type="selection" align="center"></el-table-column>
 
         <el-table-column prop="order_id" label="订单号" resizable show-overflow-tooltip width="155"></el-table-column>
         <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip width="100"></el-table-column>
+        <el-table-column prop="user_name" label="用户名" resizable show-overflow-tooltip width="100"></el-table-column>
 
         <el-table-column label="订单总价￥" width="100" prop="money"></el-table-column>
 
         <el-table-column prop="add_time" label="创建时间" resizable show-overflow-tooltip width="155"></el-table-column>
 
-        <el-table-column prop="state" label="状态" align="center" :filters="state" :filter-method="filterMethod" resizable show-overflow-tooltip width="160">
+        <el-table-column prop="state" label="状态" align="left" :filters="state" :filter-method="filterMethod" resizable show-overflow-tooltip width="140">
           <template slot-scope="scope">
 
             <template v-if="state[scope.row.state]">
-              <el-tag :type="state[scope.row.state].type">{{state[scope.row.state].text}}</el-tag>
+
+              <span :class="state[scope.row.state].type">
+                <i style="width:20px;display: inline-block;" :class="state[scope.row.state].icon" v-if="state[scope.row.state].icon"></i>
+                {{state[scope.row.state].text}}
+              </span>
+
             </template>
+
             <template v-else>
               <span class="text-error">
-                订单状态获取错误！：{{scope.row.state}}
+                <i style="width:20px;display: inline-block;" class="el-icon-error"></i>
+                未知状态：{{scope.row.state}}
               </span>
             </template>
 
           </template>
         </el-table-column>
 
-        <el-table-column></el-table-column>
+        <el-table-column label="商品信息">
+          <template slot-scope="scope">
+            <div class="godos-img-list">
+
+              <img class="goods-img-mini" :key="item.key" :src="$getUrl(item.img_list[0].src)" alt="图片错误！" v-for="(item,index) in scope.row.order_info.goods" v-if="index<10">
+
+              <span class="godos-img-count">
+                等{{scope.row.order_info.goods.length}}件商品
+              </span>
+            </div>
+
+          </template>
+
+        </el-table-column>
 
         <el-table-column fixed="right" label="操作" width="100" align="center">
           <template slot-scope="scope">
@@ -62,7 +83,7 @@
 
                 <div class="goods-info">
 
-                  <span class="goods-title">
+                  <span class="goods-title" @click="see(scope.row)">
                     {{item.goods_title}}
                   </span>
 
@@ -135,11 +156,36 @@ export default {
       selectItem: [],
       //状态值
       state: [
-        { value: "未支付", text: "未支付", type: "info" },
-        { value: "未发货", text: "未发货", type: "warning" },
-        { value: "已发货", text: "已发货", type: "" },
-        { value: "已签收", text: "已签收", type: "success" },
-        { value: "退款/售后", text: "退款/售后", type: "danger" }
+        {
+          icon: "fa fa-credit-card",
+          value: "未支付",
+          text: "未支付",
+          type: "text-info"
+        },
+        {
+          icon: "fa fa-cube",
+          value: "未发货",
+          text: "未发货",
+          type: "text-warning"
+        },
+        {
+          icon: "fa fa-truck",
+          value: "已发货",
+          text: "已发货",
+          type: "text-primary"
+        },
+        {
+          icon: "el-icon-success",
+          value: "已签收",
+          text: "已签收",
+          type: "text-success"
+        },
+        {
+          icon: "el-icon-service",
+          value: "退款/售后",
+          text: "退款/售后",
+          type: "text-danger"
+        }
       ],
       interval: null
     };
@@ -172,8 +218,6 @@ export default {
           this.tableLoading = false;
           this.total = res.count;
           this.tableData = res.msg;
-          console.log(res.msg);
-
           // var map = ["order_info"];
           // if (res.count > 0) this.tableData = asdasd stringToArr(res.msg, map);
         }
@@ -223,7 +267,10 @@ export default {
       this.selectItem = items;
     },
     see(item) {
-      this.$router.push({ name: "/order/info", params: { order: item } });
+      this.$router.push({
+        name: "/order/info",
+        params: { order_id: item.order_id }
+      });
     },
 
     filterMethod(value, row, column) {

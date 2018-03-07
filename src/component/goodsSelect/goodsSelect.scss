@@ -1,0 +1,64 @@
+.goods-select {
+    .goods-list {
+        padding: 10px 0;
+        width: 100%;
+        display: block;
+        .goods-item {
+            $size: 100px;
+            $left: $size+5px;
+            /*=====*/
+            cursor: pointer;
+            position: relative;
+            width: 333px;
+            float: left;
+            margin: 15px 0;
+            margin-right: 15px;
+            border: solid 1px #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.1);
+            transition: all 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:hover {
+                box-shadow: 0 0 20px rgba($color: #000, $alpha: 0.2);
+            }
+            .goods-img {
+                width: $size;
+                height: $size;
+                display: block;
+            }
+            .goods-title {
+                position: absolute;
+                top: 5px;
+                left: $left;
+                text-overflow: ellipsis;
+                right: 5px;
+                overflow: hidden;
+                font-size: 14px;
+                color: #777;
+            }
+            .goods-money {
+                position: absolute;
+                bottom: 5px;
+                left: $left;
+                font-size: 14px;
+                color: #777;
+            }
+            .active-icon {
+                position: absolute;
+                opacity: 0;
+                bottom: 0;
+                right: 0;
+                color: #65bd77;
+                transition: all 0.3s;
+            }
+            &.active {
+                border-color: #65bd77;
+                .active-icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

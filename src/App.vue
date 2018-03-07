@@ -12,16 +12,36 @@
           <el-menu-item-group>
 
             <el-menu-item index='/index'>
-              <i class="el-icon-setting"></i>
+              <i class="fa fa-home"></i>
               <span slot="title">首页</span>
             </el-menu-item>
 
           </el-menu-item-group>
 
-          <el-submenu index="/goods" :show-timeout='0'>
+          <el-submenu index="/renovation" :show-timeout='0' :hide-timeout='0'>
 
             <template slot="title">
-              <i class="el-icon-goods"></i>
+              <i class="fa fa-shopping-bag"></i>
+              <span slot="title">店铺装修</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <span slot="title">页面</span>
+
+              <el-menu-item index="/renovation/carousel">
+                <i class="el-icon-picture-outline"></i>
+                <span>首页轮播</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
+
+          <el-submenu index="/goods" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="fa fa-inbox"></i>
               <span slot="title">商品管理</span>
             </template>
 
@@ -49,7 +69,8 @@
             </el-menu-item-group>
 
           </el-submenu>
-          <el-submenu index="/order" :show-timeout='0'>
+
+          <el-submenu index="/order" :show-timeout='0' :hide-timeout='0'>
 
             <template slot="title">
               <i class="fa fa-paste"></i>
@@ -63,6 +84,46 @@
               <el-menu-item index="/order/list">
                 <i class="fa fa-paste"></i>
                 <span>订单管理</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
+
+          <el-submenu index="/feedback" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="el-icon-service"></i>
+              <span slot="title">其他管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <span slot="title">用户反馈</span>
+
+              <el-menu-item index="/feedback/list">
+                <i class="el-icon-service"></i>
+                <span>反馈列表</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
+
+          <el-submenu index="/fork" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="fa fa-code-fork"></i>
+              <span slot="title">分销管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/user/list">
+                <span>客户管理</span>
+              </el-menu-item>
+              <el-menu-item index="/fork/seller">
+                <span>分销商管理</span>
               </el-menu-item>
 
             </el-menu-item-group>
@@ -85,13 +146,28 @@
             </el-menu>
 
             <el-menu class="top-menu float-right" mode="horizontal" router>
-              <el-menu-item index='/ctos'>
-                <i class="el-icon-setting"></i>
-                <span slot="title">CTOS</span>
-              </el-menu-item>
+
+              <el-submenu index="1" :show-timeout='0' :hide-timeout='0'>
+
+                <template slot="title">
+                  系统
+                </template>
+
+                <el-menu-item index="/admin/list">
+                  管理员列表
+                </el-menu-item>
+
+                <el-menu-item index='/ctos'>
+                  <span slot="title">CTOS</span>
+                </el-menu-item>
+
+              </el-submenu>
 
               <el-submenu index="2" :show-timeout='0' :hide-timeout='0'>
-                <template slot="title">账户</template>
+                <template slot="title">{{admin_name}}</template>
+                <el-menu-item index="/admin/info">
+                  账户设置
+                </el-menu-item>
                 <el-menu-item index="/login" @click='sinOut()'>
                   退出登录
                 </el-menu-item>
@@ -112,7 +188,8 @@ export default {
   data() {
     return {
       isCollapse: localStorage["app_nav_isCollapse"] == "1" ? true : false,
-      defaultActive: ""
+      defaultActive: "",
+      admin_name: localStorage.admin_name
     };
   },
   methods: {
@@ -128,7 +205,7 @@ export default {
   },
   watch: {
     $route() {
-      // console.log(this.$route);
+      this.admin_name = localStorage.admin_name;
     }
   },
   computed: {},

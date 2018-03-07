@@ -20,7 +20,6 @@ class CommonController extends Controller {
     //ThinkPHP提供的构造方法
     public function _initialize() {
         
-        
         if(!empty(I('token'))){
             
             $token=I('token');
@@ -35,9 +34,9 @@ class CommonController extends Controller {
                 
                 //再验证时间是否过期
                 $toTome=time();
-                if( ($result['edit_time']+99999999)>$toTome ){
-                    //未到期
+                if(($result['edit_time']+3600)>$toTome ){
                     
+                    // 未到期
                     // 可以继续查操作
                     
                 }else{

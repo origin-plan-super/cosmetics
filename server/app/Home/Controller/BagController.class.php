@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年2月6日10:46:01
-* 最新修改时间：2018年2月6日10:46:01
+* 创建日期：2018年3月2日11:16:39
+* 最新修改时间：2018年3月2日11:16:39
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,13 +10,13 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####商品管理控制器#####
+* #####购物单管理控制器#####
 * @author 代码狮
 *
 */
 namespace Home\Controller;
 use Think\Controller;
-class BagController extends Controller{
+class BagController extends CommonController{
     
     
     //获得列表
@@ -123,6 +123,7 @@ class BagController extends Controller{
                 $res['data']=$add;
             }
             
+            $res['bag_num']=getBagNum();
             echo json_encode($res);
             
             die;
@@ -146,9 +147,31 @@ class BagController extends Controller{
                 $res['data']=$add;
             }
             
+            
+            $res['bag_num']=getBagNum();
             echo json_encode($res);
             
         }
+        
+        
+    }
+    
+    public function del(){
+        
+        $model=M('bag');
+        $where=[];
+        $where['user_id']=session('user_id');
+        $where['bag_id']=I('bag_id');
+        $result=$model->where($where)->delete();
+        
+        if($result){
+            $res['res']=$result;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
         
         
     }

@@ -16,7 +16,6 @@ function toTime($arr,$code='Y-m-d H:i:s'){
     return $arr;
     
 }
-
 function toHtml($arr,$field){
     
     
@@ -31,19 +30,15 @@ function toHtml($arr,$field){
     return $arr;
     
 }
-
 function html($arr){
     return htmlspecialchars_decode($arr);
 }
-
-
 /**强验证是否正确 */
 function check($var){
     
     return isset($var) && !empty($var) ? true:false;
     
 }
-
 /**判断验证码是否正确 */
 function isCode($code){
     //验证 验证码
@@ -75,8 +70,6 @@ function getCode($cfg){
     $verify -> entry();
     
 }
-
-
 /**验证用户名和密码是否匹配 */
 function login($form,$id,$pwd,$isMd5=true){
     
@@ -97,7 +90,6 @@ function login($form,$id,$pwd,$isMd5=true){
     }
     
 }
-
 /**
 * 查询数据
 */
@@ -190,7 +182,6 @@ function initGetList(){
     return $conf;
     
 }
-
 /**
 * 分页处理
 */
@@ -204,7 +195,6 @@ function getPageList($conf,$data){
     return $data;
     
 }
-
 /**
 * 保存
 */
@@ -260,7 +250,6 @@ function save(){
     
     return $res;
 }
-
 /**
 * 删除单个
 * $isRecycle 是否设置回收状态，默认是false，也就是真的直接删除，如果为true，并不会被真的删掉，而是设置某个字段
@@ -308,7 +297,6 @@ function del($isRecycle=false,$field ,$val,$whereData){
     return $res;
     
 }
-
 /**
 * 批量删除
 */
@@ -342,7 +330,6 @@ function dels($isRecycle=false,$field ,$val){
     //=========判断end=========
     return $res;
 }
-
 /**
 * 添加
 */
@@ -407,8 +394,6 @@ function add($id=false,$idType=false,$addData){
 /**
 * 验证用户是否登录
 */
-
-
 function isUserLogin(){
     
     //接收登录参数
@@ -480,7 +465,6 @@ function set_mkdir($src) {
         }
     }
 }
-
 /**
 * +-----------------------------------------------------------------------------------------
 * 删除目录及目录下所有文件或删除指定文件
@@ -548,7 +532,6 @@ function decGoods($orderListId){
 }
 
 //获得订单详细信息，返回的是json型数据
-
 function getOrderInfo($order_id){
     $model=M('order_info');
     $where=[];
@@ -568,14 +551,11 @@ function getOrderMoney($orderInfo){
     }
     return $money;
 }
-
 //将数组转换为json字符串
 function json($arr){
     
     return serialize($arr);
 }
-
-
 //字符串转换为数组
 function stringToArr($arr,$map){
     
@@ -607,7 +587,6 @@ function arrToString($arr){
     return $arr;
     
 }
-
 //将字符串转换为json数组
 function jsonD($arr ,$is=false){
     return json_decode($arr,$is);
@@ -635,8 +614,19 @@ function arrJsonD($arr,$map){
     
     return $arr;
 }
-
 //获得md5加密后的id
 function getMd5($name="12138"){
     return md5($name.__KEY__.rand().time());
+}
+function getBagNum(){
+    
+    $where['user_id']=session('user_id');
+    $bag=M('bag')->where($where)->select();
+    $bag_num=0;
+    for ($i=0; $i <count($bag) ; $i++) {
+        $bag_num+=$bag[$i]['goods_count'];
+    }
+    $res['bag_num']=$bag_num;
+    
+    return $bag_num;
 }

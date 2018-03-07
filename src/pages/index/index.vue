@@ -1,24 +1,53 @@
 <template>
   <div id="index">
     <div class="frame">
-      <div>index</div>
-      <el-button-group>
-        <el-button type="primary" icon="el-icon-refresh" @click='get'>get</el-button>
-        <el-button type="primary" icon="el-icon-refresh" @click='post'>post</el-button>
-        <el-button type="primary" icon="el-icon-share"></el-button>
-        <el-button type="primary" icon="el-icon-delete"></el-button>
-      </el-button-group>
+      <div class="well-list">
+
+        <el-row>
+
+          <el-col :span="6">
+
+            <div class="well" @click="$router.push('/order/list')">
+              <i class="fa fa-truck well-icon" style="background-color:#409EFF"></i>
+              <div class="well-body">
+                <div class="well-count">{{pending}}</div>
+                <div class="well-title text-info">待发货订单</div>
+              </div>
+            </div>
+
+          </el-col>
+          <el-col :span="6">
+            <div class="well" @click="$router.push('/order/list')">
+              <i class="fa fa-legal well-icon" style="background-color:#ffc333"></i>
+              <div class="well-body">
+                <div class="well-count">{{rights}}</div>
+                <div class="well-title text-info">待处理维权</div>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="well">
+              <i class="fa fa-paste well-icon" style="background-color:#fb6b5b"></i>
+              <div class="well-body">
+                <div class="well-count">{{yesterday}}</div>
+                <div class="well-title text-info">昨天下单数</div>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="well">
+              <i class="fa fa-rmb well-icon" style="background-color:#ccc"></i>
+              <div class="well-body">
+                <div class="well-count">{{money}}</div>
+                <div class="well-title text-info">昨日成交额</div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+
+      </div>
 
     </div>
-    <div class="frame">
-      <p>get:</p>
-      <el-input v-model='getKey'></el-input>
-      <p>post:</p>
-      <el-input v-model='postKey'></el-input>
-    </div>
-
-    <pre v-html='response'></pre>
-    <pre v-html='response2'></pre>
 
   </div>
 
@@ -29,52 +58,31 @@ export default {
   name: "index",
   data() {
     return {
-      response: {},
-      response2: {},
-      getKey: "get请求参数",
-      postKey: "post请求参数"
+      pending: 0,
+      rights: 0,
+      yesterday: 0,
+      money: 0
     };
   },
   methods: {
-    get: function() {
-      this.$get(
-        this.$serverAdmin + "index/get",
-        {
-          key: this.getKey
-        },
-        res => {
-          this.response = res;
+    update() {
+      this.$get("Info/getIndex", {}, res => {
+        if (res.res == 1) {
+          this.pending = res.pending;
+          this.rights = res.rights;
+          this.yesterday = res.yesterday;
+          this.money = res.money;
         }
-      );
-    },
-    post: function() {
-      this.$post(
-        this.$serverAdmin + "index/get",
-        {
-          keyPost: this.postKey
-        },
-        res => {
-          this.response2 = res;
-        }
-      );
+      });
     }
   },
-  watch: {
-    getKey: function() {
-      this.get();
-    },
-    postKey: function() {
-      this.post();
-    }
-  },
-  //启动函数
-  mounted: function() {}
+  watch: {},
+  mounted: function() {
+    this.update();
+  }
 };
 </script>
 
-<style lang='scss'>
-@import "../../pages.scss";
-</style>
 
 <style lang='scss' scoped>
 @import "index.scss";

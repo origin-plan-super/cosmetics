@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年2月6日10:46:01
-* 最新修改时间：2018年2月6日10:46:01
+* 创建日期：2018年3月2日11:17:34
+* 最新修改时间：2018年3月2日11:17:34
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,7 +10,7 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####商品管理控制器#####
+* #####订单管理控制器#####
 * @author 代码狮
 *
 */
@@ -95,6 +95,10 @@ class OrderController extends Controller{
     public function add(){
         
         $post=I('post.','',false);
+        $address=$post['address'];
+        $payment_type=$post['payment_type'];
+        
+        
         
         //购物车id是个数组
         $bag_id=$post['bag_id'];
@@ -135,7 +139,6 @@ class OrderController extends Controller{
             //将用户选择的数据追加到用户选择列表中
             
             $_user_spec=[];
-            
             $_user_spec=$result[$i]['user_spec'];
             $_user_spec['goods_count']=$result[$i]['goods_count']+0;
             
@@ -183,7 +186,6 @@ class OrderController extends Controller{
             
         }
         
-        
         //生成订单号
         $order_id=date('YmdHis',time()).rand(1000,9999);
         
@@ -194,6 +196,7 @@ class OrderController extends Controller{
         $add['edit_time']=time();//订单最后一次编辑时间
         $add['user_id']='12138';//提交订单的用户id
         $add['money']=$order_money;//此订单的总价
+        $add['payment_type']=$payment_type;//支付方式
         
         
         //订单模型
@@ -211,9 +214,11 @@ class OrderController extends Controller{
             $order_info=[];
             $order_info['goods_id_list']=$goods_id_list;//订单的商品的id数组
             $order_info['user_spec']=$user_spec;//订单的用户选择的规格
+            $order_info['address']=$address;//收货地址
             $add=[];//add数组
             $add['order_id']=$order_id;//订单号
             $add['order_info']=json_encode($order_info);//将订单信息转换为字符串
+            
             // $add['order_info']=$order_info;
             $result=$model->add($add);//添加到订单信息表中
             

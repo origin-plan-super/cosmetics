@@ -41,6 +41,7 @@
             </span>
 
             <!-- 上传 -->
+            
             <el-upload :show-file-list="false" class="upload" @click.native="setItem(group.item)" :action="uploadAction" :data="uploadData(group.item)" :on-success="uploadSuccess">
               <img class="tree-img" v-if="group.item.img" v-img="group.item.img">
             </el-upload>

@@ -75,6 +75,7 @@ class IndexController extends Controller {
                 $res['res']=1;
                 $res['msg']['token']=$token;
                 $res['msg']['admin_id']=$admin_id;
+                $res['msg']['admin_name']=$result['admin_name'];
                 
             }else{
                 //账户和密码不正确

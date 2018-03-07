@@ -54,7 +54,7 @@ class IndexController extends Controller {
             
             //账户和密码正确
             //换取token
-            $token=md5($user_id.time().rand());
+            $token=md5($user_id.time().rand()); 
             
             $model=M('token');
             $add['user_id']=$user_id;

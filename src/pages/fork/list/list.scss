@@ -1,0 +1,10 @@
+.user-info {
+    * {
+        vertical-align: top;
+    }
+    .user-head {
+        $size: 35px;
+        width: $size;
+        height: $size;
+    }
+}

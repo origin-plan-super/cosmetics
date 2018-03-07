@@ -17,7 +17,7 @@
             <el-input v-model="login.admin_id" placeholder='请输入账户'></el-input>
           </el-form-item>
           <el-form-item prop="admin_pwd">
-            <el-input v-model="login.admin_pwd" placeholder='请输入密码'></el-input>
+            <el-input v-model="login.admin_pwd" type="password" placeholder='请输入密码'></el-input>
           </el-form-item>
 
           <el-row :gutter='20'>
@@ -103,8 +103,9 @@ export default {
               this.btnTitle = "登录成功~";
               localStorage.token = res.msg.token;
               localStorage.admin_id = res.msg.admin_id;
+              localStorage.admin_name = res.msg.admin_name;
               setTimeout(() => {
-                this.$router.push("ctos");
+                this.$router.push("admin/list");
               }, 500);
 
               return;

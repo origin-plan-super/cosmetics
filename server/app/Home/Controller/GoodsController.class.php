@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年2月6日10:46:01
-* 最新修改时间：2018年2月6日10:46:01
+* 创建日期：2018年3月2日11:17:23
+* 最新修改时间：2018年3月2日11:17:23
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class GoodsController extends Controller{
+class GoodsController extends CommonController{
     
     
     //获得商品列表
@@ -46,12 +46,6 @@ class GoodsController extends Controller{
             
             $result=arrJsonD($result,$map);
             
-            
-            for ($i=0; $i < count($result); $i++) {
-                $result[$i]['isCollection']=false;
-            }
-            
-            
             $res['count']=$model->count()+0;
             $res['res']=1;
             $res['msg']=$result;
@@ -63,6 +57,67 @@ class GoodsController extends Controller{
         
         echo json_encode($res);
         
+        
+    }
+    
+    public function get(){
+        
+        
+        // 5de29730ce2d36ab744fcf9e70bc6a9f
+        $goods_id=I('goods_id');
+        if(!$goods_id){
+            $res['res']=-2;
+            $res['msg']='没有goods_id';
+            echo json_encode($res);
+            die;
+        }
+        $where=[];
+        $where['goods_id']=$goods_id;
+        
+        $model=M('goods');
+        
+        $result=$model
+        ->where($where)
+        ->find();
+        if($result){
+            
+            $result=toTime([$result])[0];
+            $map=[];
+            $map['img_list']=false;
+            $map['goods_class']=false;
+            $map['spec']=false;
+            $result=arrJsonD([$result],$map)[0];
+            
+            //找是否收藏
+            $model=M('collection');
+            $where['user_id']=session('user_id');
+            $collection=$model->where($where)->find();
+            
+            
+            if($collection){
+                $result['is_collection']=true;
+            }else{
+                $result['is_collection']=false;
+            }
+            
+            $res['bag_num']=getBagNum();
+            
+            $res['res']=1;
+            $res['msg']=$result;
+            
+            
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
+    
+    public function query(){
+        $model=M('goods');
+        $key = I('key');
+        echo json_encode($key);
         
     }
     

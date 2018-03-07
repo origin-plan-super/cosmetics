@@ -73,9 +73,11 @@ class GoodsController extends CommonController{
         $page=I('page')?I('page'):0;
         $limit=I('limit')?I('limit'):10;
         $where=I('where')?I('where'):[];
+        $field=I('field')?I('field'):'*';
         
         $result=$model
         ->where($where)
+        ->field($field)
         ->order('add_time desc')
         ->limit(($page-1)*$limit,$limit)
         ->select();

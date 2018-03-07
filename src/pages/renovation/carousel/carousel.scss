@@ -1,0 +1,43 @@
+#carousel {
+    padding: 10px;
+}
+
+.carousel-box {
+    width: 900px;
+    margin: 0 auto;
+    .carousel-img {
+        margin: auto;
+    }
+}
+
+.img-list {
+    width: 100%;
+    user-select: none;
+    padding-top: 20px;
+    .img-item {
+        display: inline-block;
+        width: 300px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        .del {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            line-height: 14px;
+            cursor: pointer;
+            border-radius: 100%;
+            background-color: #333;
+            color: #fff;
+            font-size: 13px;
+        }
+        img {
+            border-radius: 5px;
+            max-width: 300px;
+            height: 200px;
+        }
+    }
+}

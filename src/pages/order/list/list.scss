@@ -19,10 +19,10 @@
 .table-head-call {}
 
 .goods-list {
-    padding: 20px 20px;
+    padding: 0;
     background-color: #f6f6f6;
     .goods-item {
-        padding: 10px 0;
+        padding: 20px;
         border-top: dashed 1px #ddd;
         &:last-child {
             border-bottom: dashed 1px #ddd;
@@ -31,6 +31,7 @@
             vertical-align: middle;
             width: 30px;
             height: 30px;
+            border-radius: 3px;
         }
         .goods-info {
             display: inline-block;
@@ -39,6 +40,11 @@
             line-height: 18px;
             .goods-title {
                 display: inline-block;
+                cursor: pointer;
+                transition: all 0.2s;
+                &:hover {
+                    color: #F56C6C;
+                }
             }
             .goods-money {}
         }
@@ -51,6 +57,28 @@
             .spec-item {
                 padding-left: 5px;
             }
+        }
+    }
+}
+
+.godos-img-list {
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    padding-left: 2px;
+    .godos-img-count {
+        padding-left: 10px;
+    }
+    .goods-img-mini {
+        display: inline-block;
+        border-radius: 100%;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
+        box-shadow: 0px 0px 1px 1px rgba($color: #000000, $alpha: 0.3);
+        vertical-align: middle;
+        &:first-child {
+            margin: 0;
         }
     }
 }
