@@ -30,6 +30,19 @@ class AddressController extends CommonController{
         $add['edit_time']=time();
         $add['user_id']=session('user_id');
         $add['address_id']=getMd5('address');
+        
+        $is_default=$add['is_default'];
+        
+        if($is_default){
+            //是默认的
+            $save['is_default']=0;
+            $where=[];
+            $where['user_id']=session();
+            $model->where($where)->save($save);
+            
+        }
+        
+        
         $result=$model->add($add);
         if($result){
             $res['res']=1;
@@ -80,7 +93,7 @@ class AddressController extends CommonController{
         $save=I('save','',false);
         $where=[];
         $where['user_id']=session('user_id');
-        $where['address_id']=$save['address_id'];
+        $where['address_id']=I('address_id');
         unset($save['address_id']);
         $result=$model->where($where)->save($save);
         if($result){

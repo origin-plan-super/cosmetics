@@ -93,7 +93,7 @@ export default {
       this.isLoginLoad = true;
       this.$refs["ruleForm"].validate(valid => {
         if (valid) {
-          this.$post(this.$serverAdmin + "index/login", this.login, res => {
+          this.$post("index/login", this.login, res => {
             this.isLoginLoad = false;
             if (res.res == 1) {
               //成功
@@ -105,7 +105,7 @@ export default {
               localStorage.admin_id = res.msg.admin_id;
               localStorage.admin_name = res.msg.admin_name;
               setTimeout(() => {
-                this.$router.push("admin/list");
+                this.$router.push("/index");
               }, 500);
 
               return;

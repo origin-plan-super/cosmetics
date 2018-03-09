@@ -35,7 +35,10 @@ class FeedbackController extends CommonController{
         $res['count']=$model->where($where)->count()+0;
         
         $result=$model
+        ->table('c_feedback as t1,c_user as t2')
+        ->field('t1.*,t2.user_name,t2.user_id')
         ->where($where)
+        ->where('t1.user_id = t2.user_id')
         ->order('add_time desc,feedback_type asc')
         ->limit(($page-1)*$limit,$limit)
         ->select();
@@ -68,4 +71,21 @@ class FeedbackController extends CommonController{
         
     }
     
+    
+    public function save(){
+        
+        $model=M('feedback');
+        $where=I('where');
+        $save=I('save');
+        $result=$model->where($where)->save($save);
+        if($result){
+            $res['res']=$result;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
 }

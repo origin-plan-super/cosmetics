@@ -42,54 +42,105 @@ class IndexController extends Controller {
     
     public function login(){
         
-        $user_id=I('post.user_id','false');
-        $user_pwd=I('post.user_pwd','false');
-        $res=[];
+        $user_id=I('post.user_id');
+        $user_code=I('post.user_code');
+        $verifyCode=session('verifyCode');
         
-        //验证账户密码
-        //验证用户的账户需要多种类型的判断
-        $result= login('user',$user_id,$user_pwd,false);
-        
-        if($result){
-            
-            //账户和密码正确
-            //换取token
-            $token=md5($user_id.time().rand()); 
-            
-            $model=M('token');
-            $add['user_id']=$user_id;
-            $add['token']=$token;
-            $add['add_time']=time();
-            $add['edit_time']=time();
-            $tokenResult=$model->add($add,null,true);
-            
-            if($tokenResult!==false){
-                $res['res']=1;
-                $res['token']=$token;
-                $res['user_id']=$user_id;
-                $res['userInfo']=[];
-                $res['userInfo']['user_name']=$result['user_name'];
-                $res['userInfo']['user_phone']=$result['user_phone'];
-            }else{
-                //添加token的时候失败
-                $res['res']=-2;
-            }
-            
+        //检查参数
+        if(!$verifyCode || !$user_id || !$user_code ){
+            //少一样都不行
+            $res['res']=-2;
+            echo json_encode($res);
+            die;
         }else{
-            //账户和密码不正确
-            $res['res']=-1;
+            //有验证码
+            //验证码加密算法：用户id+验证码+密匙
+            
+            $isSuccess= $verifyCode==md5($user_id.$user_code.__KEY__);
+            
+            if($isSuccess){
+                //验证码正确
+                //生成 token
+                //换取token
+                $token=md5($user_id.time().rand().__KEY__);
+                $model=M('token');
+                
+                //先删除原本的 token
+                // $where=[];//条件
+                // $where['user_id']=$user_id;//条件
+                // $model->where($where)->delete();//删除
+                
+                //添加
+                $add=[];
+                $add['edit_time']=time();
+                $add['user_id']=$user_id;
+                $add['token']=$token;
+                $result=$model->add($add,null,true);
+                
+                if($result){
+                    $res['res']=1;
+                    $res['token']=$token;
+                }else{
+                    $res['res']=-1;
+                    $res['msg']=$result;
+                }
+                
+                echo json_encode($res);
+                
+            }else{
+                //验证码不正确
+                $res['res']=-3;
+                echo json_encode($res);
+            }
         }
         
-        //=========输出json=========
-        echo json_encode($res);
-        //=========输出json=========
+        
     }
     
     /**
-    * 获得验证码
+    * 获得手机验证码
     */
     public function getCode(){
-        getCode();
+        
+        
+        $user_id=I('user_id');
+        if(!$user_id){
+            //没有传参数
+            $res['res']=-2;
+            echo json_encode($res);
+            die;
+        }
+        //如果没有此用户，那么这个用户在这里就等于注册
+        
+        $model=M('user');
+        $where=[];
+        $where['user_id']=$user_id;
+        $isUser=$model->where($where)->find();
+        if(!$isUser){
+            //没有用户，需要注册
+            $add=[];
+            $add['user_id']=$user_id;
+            $add['user_name']='用户'.rand(0,99999);
+            $add['add_time']=time();
+            $add['edit_time']=time();
+            $add['user_type']=0;
+            $model->add($add);
+        }
+        
+        //生成短信验证码
+        $code=rand(1000,9999);
+        //在这里发送短信
+        
+        //加密验证码
+        $verifyCode=md5($user_id.$code.__KEY__);
+        //储存验证码
+        session('verifyCode',$verifyCode);
+        
+        $res['res']=1;
+        $res['msg']=$code;
+        
+        echo json_encode($res);
+        
     }
     /**
     * 判断是否登录
@@ -99,9 +150,9 @@ class IndexController extends Controller {
         $is=isUserLogin();
         
         if($is==1){
-            //登录成功，继续操作
+            //登录还未过期
             $res['res']=$is;
-            $res['msg']='登录成功！';
+            $res['msg']='已登录';
             //=========输出json=========
             echo json_encode($res);
             //=========输出json=========

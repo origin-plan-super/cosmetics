@@ -38,4 +38,50 @@ class UserController extends CommonController{
         echo json_encode($res);
     }
     
+    
+    public function getUserInfo(){
+        $field=I('field');
+        if(!$field){
+            $res['res']=-2;
+            echo json_encode($res);
+            exit;
+        }
+        if(gettype($field)!='array'){
+            //field不是数组。不能提交
+            $res['res']=-4;
+            echo json_encode($res);
+            exit;
+        }
+        //权限处理
+        //这里是禁止访问的用户字段
+        $arr = array(
+        'user_pwd',
+        );
+        //循环检查
+        foreach ($field as $key => $value) {
+            if(in_array($value,$arr)){
+                //当字段数组中出现禁止访问的字段
+                $res['res']=-3;
+                echo json_encode($res);
+                exit;
+            }
+        }
+        
+        //到这一步，初步权限检测通过。
+        $model=M('user');
+        $where=[];
+        $where['user_id']=session('user_id');
+        $result=$model->where($where)->field($field)->find();
+        
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
+    
 }

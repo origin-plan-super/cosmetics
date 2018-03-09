@@ -30,10 +30,14 @@ class FeedbackController extends CommonController{
         $add=[];
         
         $add=I('add','',false);
-        $add['feedback_id']=getMd5('dynamic');
+        
+        $add['feedback_id']=date('YmdHis',time()).rand(1000,9999);
         $add['user_id']=session('user_id');
         $add['add_time']=time();
         $add['edit_time']=time();
+        
+        
+        $add['feedback_info']=trim($add['feedback_info']);
         
         $model=M('feedback');
         $result=$model->add($add);

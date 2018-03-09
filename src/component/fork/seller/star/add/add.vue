@@ -2,12 +2,19 @@
   <div class="star-add">
     <el-card>
 
-      <el-form :model="add" size="mini" :rules="rules" ref="adForm" label-width="100px" class="add-form">
+      <el-form :model="add" size="mini" :rules="rules" ref="adForm" label-width="120px" class="add-form">
 
         <el-form-item label="等级名称" prop="star_name">
           <el-input v-model="add.star_name" placeholder="尽量简单，不要超过20字" :maxlength="20">
             <span slot="suffix">{{add.star_name.length}}/20</span>
           </el-input>
+        </el-form-item>
+
+        <el-form-item label="每单所得利润%" prop="gain">
+          <el-input v-model.number="add.gain" :maxlength="11"></el-input>
+          <span class="text-info text-size-xs">百分比，如：20%。可保留两位小数，不用输入百分号</span>
+          <br>
+          <span class="text-info text-size-xs">所得利润 = 每单总价*20%</span>
         </el-form-item>
 
         <!-- <el-form-item label="经营范围" prop="star_type">
@@ -42,13 +49,18 @@ export default {
     return {
       add: {
         star_name: "",
-        star_type: ""
+        star_type: 1,
+        gain: ""
       },
       goods_list: [],
       rules: {
         star_name: [
           { required: true, message: "请输入等级名称", trigger: "blur" },
           { max: 20, message: "长度不能超过 20 个字符", trigger: "blur" }
+        ],
+        gain: [
+          { required: true, message: "请输入每单所得利润", trigger: "blur" },
+          { type: "number", message: "所得利润必须为数字" }
         ]
         // star_type: [
         //   { required: true, message: "请选择 经营范围", trigger: "blur" }
@@ -64,15 +76,7 @@ export default {
           //设置提交状态
           //type 0 全部商品
           //type 1 选择商品
-          if (this.add.star_type == 1) {
-            if (this.goods_list.length <= 0) {
-              this.$message({
-                type: "warning",
-                message: "至少选择一个商品！"
-              });
-              return;
-            }
-          }
+
           this.isLoad = true;
 
           // ====
@@ -80,19 +84,6 @@ export default {
           var data = {
             add: this.add
           };
-
-          if (this.add.star_type == 1) {
-            var goods_list = this.goods_list;
-            var arr = [];
-
-            for (let i = 0; i < goods_list.length; i++) {
-              arr.push({ goods_id: goods_list[i].goods_id });
-            }
-
-            data.goods_list = arr;
-          } else {
-            data.goods_list = 0;
-          }
 
           this.$post(
             "star/add",

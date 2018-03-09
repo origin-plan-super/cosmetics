@@ -28,10 +28,8 @@ class CommonController extends Controller {
             $where['admin_id']=$admin_id;
             $result=$model->where($where)->find();
             
-            
             if($result['token']==$token){
                 //验证成功
-                
                 //再验证时间是否过期
                 $toTome=time();
                 if(($result['edit_time']+3600)>$toTome ){

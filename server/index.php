@@ -13,8 +13,12 @@
 // header('Access-Control-Allow-Origin:http://192.168.1.254:8081');
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
+"http://10.0.139.188:8080",
 'http://192.168.1.5:8080',
+'http://192.168.1.104:8080',
+'http://192.168.1.106:8080',
 'http://192.168.1.251:8080',
+'http://120.78.162.200:12139',
 'http://120.78.162.200:12139',
 'http://10.0.139.88:8080',
 'http://cosmetics.com',
@@ -51,6 +55,7 @@ define('UPLOAD_ROOT_PATH', '/Public/Upload/');
 define('__UPLOAD__USER__', '/Public/Upload/user/');
 //定义上传的根目录——管理
 define('__UPLOAD__ADMIN__', '/Public/Upload/admin/');
+define('__UPLOAD__HOME__', '/Public/Upload/home/');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

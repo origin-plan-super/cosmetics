@@ -397,8 +397,13 @@ function add($id=false,$idType=false,$addData){
 function isUserLogin(){
     
     //接收登录参数
-    $user_id=I('user_id','false');
-    $token=I('token','false');
+    $user_id=I('user_id');
+    $token=I('token');
+    
+    if(!$user_id || !$token){
+        //没有参数
+        return -992;
+    }
     
     $where['user_id']=$user_id;
     $where['token']=$token;
@@ -411,13 +416,17 @@ function isUserLogin(){
         //验证token的时间过期没有
         $tokenTime=$result['edit_time'];
         $toTome=time();
-        if(($tokenTime+9999999)>$toTome){
+        
+        $end_time=3600;
+        
+        
+        if(($tokenTime+$end_time)>$toTome){
             //未到期
             //如果+10大于现在的时间，就是没过期
             session('user_id',$user_id);
             return 1;
         }else{
-            //如果+10秒小于或者等于现在的时间，就是过期了
+            //如果 + $end_time 秒小于或者等于现在的时间，就是过期了
             //到期了
             //删除令牌操作
             $where=[];
@@ -432,9 +441,6 @@ function isUserLogin(){
         //没有令牌
         return -992;
     }
-    
-    
-    
     
 }
 /**

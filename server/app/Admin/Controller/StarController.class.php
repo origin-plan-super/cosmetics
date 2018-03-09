@@ -27,32 +27,6 @@ class StarController extends CommonController{
         $star_goods=M('star_goods');
         $result=$star->select();
         
-        //type 0 全部商品
-        //type 1 选择商品
-        
-        //先统计当前全部商品数量，不要再for中取，太消耗资源
-        
-        $goods=M('goods');
-        $goods_count=$goods->count();
-        
-        foreach ($result as $key => $value) {
-            $type=$value['star_type'];
-            if($type==0){
-                //全部商品
-                $result[$key]['goods_count']=$goods_count;
-            }
-            if($type==1){
-                
-                //选择的商品
-                //这里直接统计 star_goods 中的数量
-                $where=[];
-                $where['star_id']=$value['star_id'];
-                $result[$key]['goods_count']=$star_goods->where($where)->count();
-            }
-            
-        }
-        
-        
         
         if($result){
             $res['res']=count($result);
@@ -124,48 +98,45 @@ class StarController extends CommonController{
         
         if($result){
             
-            //type 0 全部商品
-            //type 1 选择商品
-            //初始化商品列表
-            $goods_list=[];
-            //初始化数组
-            $arr=[];
+            $res['res']=1;
             
-            //如果是选择商品的类型
-            if($add['star_type']==1){
-                //获得选择的商品列表
-                $goods_list=I('goods_list');
-            }
+            // //type 0 全部商品
+            // //type 1 选择商品
+            // //初始化商品列表
+            // $goods_list=[];
+            // //初始化数组
+            // $arr=[];
             
-            //如果是全部商品的类型
-            if($add['star_type']==0){
-                $model=M('goods');
-                $goods_list=$model->field('goods_id')->select();
-            }
+            // //如果是选择商品的类型
+            // if($add['star_type']==1){
+            //     //获得选择的商品列表
+            //     $goods_list=I('goods_list');
+            // }
+            
+            // //如果是全部商品的类型
+            // if($add['star_type']==0){
+            //     $model=M('goods');
+            //     $goods_list=$model->field('goods_id')->select();
+            // }
             
             
-            //创建星级商品模型
-            $model=M('star_goods');
-            //组装数据
-            foreach ($goods_list as $key => $value) {
-                //初始化项
-                $item=[];
-                //设置星级id
-                $item['star_id']=$star_id;
-                //设置星级商品的id
-                $item['goods_id']=$value['goods_id'];
-                //追加到数组中
-                $arr[]=$item;
-            }
-            //添加到数据库中
-            $result=$model->addAll($arr);
+            // //创建星级商品模型
+            // $model=M('star_goods');
+            // //组装数据
+            // foreach ($goods_list as $key => $value) {
+            //     //初始化项
+            //     $item=[];
+            //     //设置星级id
+            //     $item['star_id']=$star_id;
+            //     //设置星级商品的id
+            //     $item['goods_id']=$value['goods_id'];
+            //     //追加到数组中
+            //     $arr[]=$item;
+            // }
+            // //添加到数据库中
+            // $result=$model->addAll($arr);
             
-            if($result){
-                $res['res']=1;
-            }else{
-                $res['res']=-3;
-                $res['msg']=$result;
-            }
+            
             
             
             

@@ -30,14 +30,42 @@ class ClassController extends CommonController{
         ->order('sort asc,add_time asc')
         ->select();
         
+        
         // =========判断=========
         if($result){
             //总条数
             $result=toTime($result);
             
+            
+            $arr=[];
+            
+            
+            
+            foreach ($result as $key => $value) {
+                
+                $add=[];
+                if(!$value['super_id']){
+                    //没有super，代表是一级calss
+                    $add=$value;
+                    $add['node']=[];
+                    $arr[]=$add;
+                }
+                if($value['super_id']){
+                    //有super_id 代表是二级id，需要查找一级id，看看有没有一样的
+                    for ($i=0; $i <count($arr) ; $i++) {
+                        $class1=$arr[$i];
+                        if($class1['class_id']==$value['super_id']){
+                            $add=$value;
+                            $arr[$i]['node'][]=$add;
+                        }
+                    }
+                }
+            }
+            
+            
             $res['count']=$model->count()+0;
             $res['res']=1;
-            $res['msg']=$result;
+            $res['msg']=$arr;
             
             
         }else{

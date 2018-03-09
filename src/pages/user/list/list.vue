@@ -14,25 +14,31 @@
 
       </el-button-group>
 
-      <el-button type="primary" size="mini" :disabled="selectItem.length<=0">批量设置上级</el-button>
+      <!-- <el-button type="primary" size="mini" :disabled="selectItem.length<=0">批量设置上级</el-button> -->
 
       <el-button type="primary" size="mini" icon="el-icon-plus" @click="isAdd=!isAdd">
         <span v-if="!isAdd">添加用户</span>
         <span v-if="isAdd">取消</span>
       </el-button>
 
+      <div class="float-right">
+        <el-input @keyup.enter.native="search()" v-model="queryKey" placeholder="请输入关键词，如用户id、用户名" size="mini" style="width:300px">
+          <el-button slot="append" @click="search()">搜索</el-button>
+        </el-input>
+      </div>
+
     </div>
 
     <div class="frame" v-if="isAdd">
       <el-card>
         <span slot="header">添加用户</span>
-        <add-user></add-user>
+        <add-user @on-success="addUserSuccess"></add-user>
       </el-card>
     </div>
 
     <div class="frame">
 
-      <el-table header-cell-class-name="table-head-call" header-row-class-name="table-head" :default-expand-all="false" ref="table" @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border height="70vh" max-height="70vh" size="mini">
+      <el-table stripe header-cell-class-name="table-head-call" header-row-class-name="table-head" :default-expand-all="false" ref="table" @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border height="70vh" max-height="70vh" size="mini">
         <el-table-column type="selection" align="center"></el-table-column>
 
         <el-table-column prop="user_id" label="用户账户" resizable show-overflow-tooltip width="100"></el-table-column>
@@ -42,7 +48,7 @@
           <template slot-scope="scope">
             <div class="user-info">
 
-              <img :src="$getUrl(scope.row.user_head)" class="user-head" alt="图片错误">
+              <img :src="$getUrl(scope.row.user_head)" class="user-head" alt="">
               <span class="text-info">{{scope.row.user_name}}</span>
 
             </div>
@@ -71,6 +77,18 @@
           </template>
         </el-table-column>
 
+        <el-table-column label="上级" resizable show-overflow-tooltip width="200">
+
+          <template slot-scope="scope">
+            <span class="text-info">
+              <span> {{scope.row.super_star_name}} </span>
+              <span v-if="scope.row.super_star_name">:</span>
+              <span> {{scope.row.super_name}} </span>
+            </span>
+          </template>
+
+        </el-table-column>
+
         <el-table-column></el-table-column>
 
         <el-table-column prop="add_time" label="创建时间" resizable show-overflow-tooltip width="155"></el-table-column>
@@ -79,7 +97,7 @@
           <template slot-scope="scope">
             <el-button type="text" size="mini" icon="el-icon-search"></el-button>
             <el-button type="text" size="mini" @click="showSetUserType(scope.row)">指定身份</el-button>
-            <el-button type="text" size="mini" @click="superD.activeUser=scope.row;superD.isShow=true">设置上级</el-button>
+            <el-button type="text" size="mini" @click="showSetUserSuper(scope.row)">设置上级</el-button>
           </template>
         </el-table-column>
 
@@ -92,7 +110,8 @@
       </el-pagination>
     </div>
 
-    <set-user-type ref="set-user-type"></set-user-type>
+    <set-user-type @on-success="setUserTypeSuccess" ref="set-user-type"></set-user-type>
+    <set-user-super @on-success="setUserSuperSuccess" ref="set-user-super"></set-user-super>
 
   </div>
 </template>
@@ -101,6 +120,7 @@
 <script>
 import addUser from "../../../component/addUser/addUser.vue";
 import setUserType from "../../../component/setUserType/setUserType.vue";
+import setUserSuper from "../../../component/setUserSuper/setUserSuper.vue";
 
 export default {
   name: "orderList",
@@ -148,8 +168,9 @@ export default {
         isShow: false,
         activeUser: null
       },
-   
-      stars: []
+
+      stars: [],
+      queryKey: ""
     };
   },
   methods: {
@@ -162,6 +183,10 @@ export default {
       this.update();
     },
     update: function(showInfo, message) {
+      if (this.queryKey.length > 0) {
+        this.search();
+        return;
+      }
       var setTim = setTimeout(() => {
         this.tableLoading = true;
       }, 500);
@@ -205,23 +230,8 @@ export default {
         }
       );
     },
-    editorder(item) {
-      this.$router.push({ name: "/order/edit", params: { order: item } });
-    },
     rowKey(item) {
-      return item.order_id;
-    },
-    //记录值
-    recordValue(value) {
-      this.testValue = value;
-    },
-    setUpAll(is_up) {
-      // this.$refs["].
-      var list = this.selectItem;
-      for (let i = 0; i < list.length; i++) {
-        list[i].is_up = is_up + "";
-        this.save(list[i], "is_up", false);
-      }
+      return item.user_id;
     },
     // 当选择项发生变化时会触发该事件
     selectionChange(items) {
@@ -234,7 +244,6 @@ export default {
         params: { order_id: item.order_id }
       });
     },
-
     filterMethod(value, row, column) {
       if (!this.user_types[row.user_type]) return true;
       return this.user_types[row.user_type].text === value;
@@ -242,25 +251,54 @@ export default {
       // const property = column["property"];
       // return row[property] ===asdasdasdas12312 value;
     },
+    //打开设置用户身份的窗口
     showSetUserType(item) {
       this.$refs["set-user-type"].show(item);
     },
-    //指定身份
-    setIdentity(item) {
-      var user_id = item.user_id;
-      console.log(user_id);
+    //打开设置用户上级的窗口
+    showSetUserSuper(item) {
+      this.$refs["set-user-super"].show(item);
     },
-    setSuper(item) {
-      var user_id = item.user_id;
+    //设置用户类型成功后
+    setUserTypeSuccess() {
+      this.update();
     },
-    submitForm(foemName) {
-      this.$refs[foemName].validate(valid => {
-        if (valid) {
-          console.log(add);
-        } else {
-          return false;
+    //设置用户上级成功后
+    setUserSuperSuccess() {
+      this.update();
+    },
+    //用户添加成功
+    addUserSuccess() {
+      this.isAdd = false;
+      this.update();
+    },
+    //搜索
+    search() {
+      var key = this.queryKey;
+      this.$get(
+        "user/getList",
+        {
+          page: this.currentPage,
+          limit: this.pageSize,
+          key: key
+        },
+        res => {
+          console.log(res);
+          if (res.res >= 0) {
+            var setTim = setTimeout(() => {
+              this.tableLoading = true;
+            }, 500);
+
+            clearTimeout(setTim);
+            this.tableLoading = false;
+            this.total = res.count;
+            this.tableData = res.msg;
+
+            return;
+          }
+          this.$error("数据查询出错！");
         }
-      });
+      );
     }
   },
   mounted: function() {
@@ -268,7 +306,7 @@ export default {
   },
   destroyed() {},
   watch: {},
-  components: { addUser, setUserType }
+  components: { addUser, setUserType, setUserSuper }
 };
 
 function stringToArr(arr, map) {

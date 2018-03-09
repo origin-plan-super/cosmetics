@@ -66,9 +66,9 @@
 
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="100" align="center">
+        <el-table-column fixed="right" label="操作" width="80" align="center">
           <template slot-scope="scope">
-            <el-button type="text" size="mini" icon="el-icon-search" @click="see(scope.row)">订单详情</el-button>
+            <el-button type="text" size="mini" icon="el-icon-search" @click="see(scope.row)"></el-button>
           </template>
         </el-table-column>
 
@@ -78,7 +78,7 @@
             <!-- 显示商品 -->
 
             <div class="goods-list">
-              <div class="goods-item" v-for="(item,index) in scope.row.order_info.goods">
+              <div class="goods-item" v-for="item in scope.row.order_info.goods" :key="item.goods_id">
                 <img :src="$getUrl(item.img_list[0].src)" alt="图片错误！">
 
                 <div class="goods-info">
@@ -102,7 +102,7 @@
 
                       [
                       <template v-for="(spec,j) in scope.row.order_info.user_spec[item.goods_id]">
-                        <span v-if="typeof(spec)=='object'" class="spec-item">
+                        <span v-if="typeof(spec)=='object'" class="spec-item" :key="spec.titlez">
                           {{j}} : {{spec.title}}。
                         </span>
                       </template>

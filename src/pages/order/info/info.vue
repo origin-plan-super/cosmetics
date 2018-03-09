@@ -6,11 +6,11 @@
       </el-alert>
     </template>
 
-    <el-card style="margin:20px 0">
-      <el-button @click="update()" size="small" icon="el-icon-refresh" :loading="refreshBtnLoad">刷新</el-button>
-    </el-card>
+    <el-button type="text" icon="el-icon-back" @click="$router.go(-1)" size="mini"></el-button>
+      <el-button type="text" icon="el-icon-refresh" :loading="refreshBtnLoad" @click="update()" size="mini"></el-button>
 
     <el-tabs type="border-card" v-if="order">
+
       <el-tab-pane label="订单信息">
         <el-row>
           <el-col :span="24">
@@ -102,7 +102,11 @@
           </el-form-item>
 
           <el-form-item label="收货地址">
-            <span>{{order.order_info.address.location}}</span>
+            
+            <span>{{order.order_info.address.region}}</span>
+            <br>
+            <span>{{order.order_info.address.info}}</span>
+
           </el-form-item>
 
         </el-form>
@@ -117,6 +121,7 @@
         </p>
       </el-tab-pane>
     </el-tabs>
+
   </div>
 </template>
 <script>
@@ -149,7 +154,7 @@ export default {
           if (res.res >= 1) {
             // this.order_id;
             this.order = res.msg[0];
-            console.log(this.order);
+
           }
           if (res.res < 0) {
             //订单不存在

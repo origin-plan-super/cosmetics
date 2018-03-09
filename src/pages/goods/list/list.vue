@@ -66,14 +66,14 @@
 
           <el-table-column label="上架" fixed="right" width="80" align="center">
             <template slot-scope="scope">
-              <el-switch :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="save(scope.row,'is_up')"></el-switch>
+              <el-switch title="设置上架" :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="save(scope.row,'is_up')"></el-switch>
             </template>
           </el-table-column>
 
           <el-table-column fixed="right" label="操作" width="100" align="center">
             <template slot-scope="scope">
-              <el-button type="text" size="mini">查看</el-button>
-              <el-button type="text" size="mini" @click="editGoods(scope.row)">编辑</el-button>
+              <el-button title="查看" type="text" icon="el-icon-search" size="mini"></el-button>
+              <el-button title="编辑" type="text" icon="el-icon-edit-outline" size="mini" @click="editGoods(scope.row)"></el-button>
             </template>
           </el-table-column>
 

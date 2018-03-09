@@ -21,7 +21,7 @@
 
         <el-table-column type='selection' align="center"></el-table-column>
 
-        <el-table-column prop="star_name" label="等级名称" resizable show-overflow-tooltip>
+        <el-table-column prop="star_name" width="300" label="等级名称" resizable show-overflow-tooltip>
 
           <template slot-scope="scope">
             <span v-if="!scope.row.isEdit">{{scope.row.star_name}}</span>
@@ -36,6 +36,21 @@
           </template>
 
         </el-table-column>
+
+        <el-table-column prop="gain" label="所得利润%" width="300" resizable show-overflow-tooltip>
+          <template slot-scope="scope">
+
+            <span v-if="!scope.row.isEdit">{{scope.row.gain}}%</span>
+            <span v-else>
+              <el-input v-focus :maxlength="11" @focus="testValue=scope.row.gain" @keyup.enter.native="save(scope.row,'gain',true,true);scope.row.isEdit=false" size="mini" v-model="scope.row.gain">
+                <el-button slot="append" @click="save(scope.row,'gain',true,true);scope.row.isEdit=false">保存</el-button>
+              </el-input>
+            </span>
+
+          </template>
+
+        </el-table-column>
+
         <el-table-column prop="star_type" label="经营范围" width="150" resizable show-overflow-tooltip>
 
           <template slot-scope="scope">
@@ -48,7 +63,8 @@
           </template>
 
         </el-table-column>
-        <el-table-column prop="goods_count" label="商品数量" width="150" resizable show-overflow-tooltip></el-table-column>
+
+        <el-table-column></el-table-column>
 
         <el-table-column fixed="right" label="操作" width="100" align="center">
           <template slot-scope="scope">
@@ -56,7 +72,7 @@
               <i v-if="scope.row.isEdit" class="el-icon-close"></i>
               <i v-if="!scope.row.isEdit" class="el-icon-edit"></i>
             </el-button>
-            <el-button icon="el-icon-delete" type="text" size="mini" @click="del(scope.row,scope.$index,tableData)"></el-button>
+            <el-button icon="el-icon-delete" type="text" size="mini" @click="delDate.item=scope.row;delDate.index=scope.$index;dialogVisible=true;"></el-button>
             <el-button icon="el-icon-search" type="text" size="mini" @click="show(scope.row)"></el-button>
           </template>
         </el-table-column>
@@ -64,6 +80,19 @@
       </el-table>
 
     </div>
+
+    <el-dialog title="确定删除？" :visible.sync="dialogVisible" width="30%">
+      <span>
+        <i class="el-icon-warning text-danger" style="font-size:30px"></i>
+        <span class="text-danger">重要提示：</span>
+        <span>删除后相关分销功能将受到影响！如果此时用户下单，分销功能将不能正常工作！确定删除吗？</span>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="mini" @click="dialogVisible = false;delDate.item=null">取 消</el-button>
+        <el-button size="mini" type="danger" @click="del(delDate.item,delDate.index,tableData)">确定删除</el-button>
+        <!-- del(scope.row,scope.$index,tableData) -->
+      </span>
+    </el-dialog>
 
   </div>
 
@@ -76,6 +105,11 @@ export default {
   props: {},
   data() {
     return {
+      dialogVisible: false,
+      delDate: {
+        index: 0,
+        item: null
+      },
       //表格数据
       tableData: [],
       //表格是否显示加载层
@@ -167,11 +201,19 @@ export default {
       });
     },
     del(item, i, list) {
-      // loading
+      this.dialogVisible = false;
+      const loading = this.$loading({
+        lock: true,
+        text: "正在删除……",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)"
+      });
+
       this.$post("star/del", { where: { star_id: item.star_id } }, res => {
         if (res.res >= 1) {
           this.$message({ type: "success", message: "删除成功！" });
           list.splice(i, 1);
+          loading.close();
           return;
         }
         this.$message({ type: "error", message: "删除失败请重试！" });

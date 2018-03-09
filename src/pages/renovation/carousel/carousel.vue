@@ -1,17 +1,10 @@
 <template>
   <div id="carousel" class="carousel">
     <div class="frame">
-      <el-button @click="update">刷新</el-button>
     </div>
 
-    <div class="frame carousel-box">
-      <el-carousel indicator-position="outside" height="300px" trigger="click">
-        <el-carousel-item v-for="item in img_list" :key="item.carousel_id">
-          <img class="carousel-img" :src="$getUrl(item.src)" alt="图片错误！">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
     <div class="frame">
+      <el-button @click="update" icon="el-icon-refresh" type="text"></el-button>
 
       <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-success="upLoadSuccess">
         <el-button @click="update" type="success" size="mini">上传图片</el-button>
@@ -27,9 +20,19 @@
             </div>
             <img :src="$getUrl(item.src)" alt="图片错误！">
           </div>
-
         </draggable>
 
+      </div>
+
+      <hr>
+      <div class="img-list">
+
+        <div class="img-item" v-for="(item,i) in img_list" :key="item.carousel_id">
+          <div class="del" @click="remove(item,i,img_list)">
+            <i class="el-icon-close"></i>
+          </div>
+          <o-img :src="item.src"></o-img>
+        </div>
       </div>
 
     </div>

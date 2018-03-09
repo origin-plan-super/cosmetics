@@ -4,14 +4,20 @@ import App from './App.vue';
 import VueRouter from "vue-router";
 import ElementUI from 'element-ui';
 import VueResource from 'vue-resource';
+import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome-webpack'
 import $ from 'jquery';
-
-// require('font-awesome-webpack');
-
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(VueResource);
+
+
+//自定义组件
+import load from "./component/load/load.vue";
+import OImg from "./component/OImg/OImg.vue";
+Vue.component('load', load)
+Vue.component('OImg', OImg)
 
 //自定义扩展Vue
 
@@ -35,12 +41,13 @@ Url.install = function (Vue, options) {
     //开始判断是不是http开头，如果是就不再添加头了
     var _url;
     if (url.indexOf('http') == -1) {
-      _url = server + url;
+      var head = server;
+      //取出index.php
+      head = head.replace('index.php/', '');
+      _url = head + url;
     } else {
       _url = url;
     }
-    //取出index.php
-    _url = _url.replace('index.php/', '');
     return _url;
 
   }
@@ -86,7 +93,6 @@ Origin.install = function (Vue, options) {
           console.warn("接口并没有返回任何数据！");
           return;
         }
-
 
         try {
 
@@ -183,6 +189,27 @@ Origin.install = function (Vue, options) {
     }
     return str.length;
   }
+
+
+  //二次封装饿了么的消息插件
+
+  Vue.prototype.$warn = function (msg) {
+    this.$message({ type: "warning", message: msg });
+  }
+
+  Vue.prototype.$error = function (msg) {
+    this.$message({ type: "error", message: msg });
+  }
+
+  Vue.prototype.$info = function (msg) {
+    this.$message({ type: "info", message: msg });
+  }
+
+  Vue.prototype.$success = function (msg) {
+    this.$message({ type: "success", message: msg });
+  }
+
+
 
 
 }

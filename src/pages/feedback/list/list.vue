@@ -19,7 +19,6 @@
 
         <el-table-column type='selection' align="center"></el-table-column>
 
-        <el-table-column prop="feedback_id" label="id" resizable show-overflow-tooltip width="100"></el-table-column>
         <el-table-column prop="state" label="反馈类型" align="left" :filters="type" :filter-method="filterMethod" resizable width="140">
           <template slot-scope="scope">
 
@@ -42,12 +41,27 @@
         </el-table-column>
 
         <el-table-column prop="feedback_info" label="详情" resizable show-overflow-tooltip></el-table-column>
+        <el-table-column prop="user_name" label="用户" resizable show-overflow-tooltip></el-table-column>
+        <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip></el-table-column>
+        <el-table-column label="状态" resizable show-overflow-tooltip>
+
+          <template slot-scope="scope">
+            <span v-if="scope.row.is_ok == 0" class="text-warning">
+              <i class="el-icon-warning"></i>
+            </span>
+            <span v-if="scope.row.is_ok == 1" class="text-success">
+              <i class="el-icon-success"></i>
+            </span>
+          </template>
+
+        </el-table-column>
         <el-table-column prop="add_time" label="添加时间" width="150" resizable show-overflow-tooltip></el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="100" align="center">
+        <el-table-column fixed="right" label="操作" width="130" align="center">
           <template slot-scope="scope">
-            <el-button type="text" size="mini" @click="show(scope.row)">查看</el-button>
-            <el-button type="text" size="mini">删除</el-button>
+            <el-button type="text" size="mini" @click="setOk(scope.row)">处理</el-button>
+            <el-button type="text" icon="el-icon-search" size="mini" @click="show(scope.row)"></el-button>
+            <el-button type="text" icon="el-icon-delete" size="mini"></el-button>
           </template>
         </el-table-column>
 
@@ -88,28 +102,28 @@ export default {
       // 3 ：其他
       type: [
         {
-          icon: "fa fa-credit-card",
+          icon: "fa fa-bug",
           value: "bug 反馈",
           text: "bug 反馈",
-          type: "text-info"
+          type: "text-danger"
         },
         {
-          icon: "fa fa-cube",
+          icon: "el-icon-service",
           value: "意见反馈",
           text: "意见反馈",
           type: "text-warning"
         },
         {
-          icon: "fa fa-truck",
+          icon: "fa fa-window-maximize",
           value: "UI问题",
           text: "UI问题",
           type: "text-primary"
         },
         {
-          icon: "el-icon-success",
+          icon: "",
           value: "其他",
           text: "其他",
-          type: "text-success"
+          type: "text-info"
         }
       ]
     };
@@ -131,6 +145,24 @@ export default {
     },
     rowKey(item) {
       return item.feeback_id;
+    },
+    setOk(item) {
+      var is_ok = item.is_ok == 1 ? 0 : 1;
+      this.$post(
+        "feedback/save",
+        {
+          where: { feedback_id: item.feedback_id },
+          save: { is_ok: is_ok }
+        },
+        res => {
+          if (res.res >= 1) {
+            this.$success("操作成功！");
+            item.is_ok = is_ok;
+            return;
+          }
+          this.$error("操作失败！请重试");
+        }
+      );
     },
     update: function() {
       var setTim = setTimeout(() => {

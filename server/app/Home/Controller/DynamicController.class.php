@@ -22,12 +22,17 @@ class DynamicController extends CommonController{
     
     //添加
     public function add(){
-        //模型
-        $model=M('dynamic');
         //要添加的数据
         $add=[];
         //获得发来的要添加的数据
         $add=I('add','',false);
+        if(!$add){
+            $res['res']=-2;
+            echo json_encode($res);
+            die;
+        }
+        //模型
+        $model=M('dynamic');
         
         //设置用户id
         $add['user_id']=session('user_id');

@@ -10,7 +10,10 @@
 
         <el-card>
 
-          <div slot="header" class="text-size-default">基本信息</div>
+          <div slot="header" class="text-size-default">
+              <el-button type="text" icon="el-icon-back" @click="$router.go(-1)" size="mini"></el-button>
+            基本信息
+          </div>
 
           <el-form-item prop="goods_title" label="商品名称">
             <el-input v-model="goods.goods_title" :maxlength="255"></el-input>
@@ -129,9 +132,9 @@ export default {
         //物流模板
         logistics: "免邮",
         //库存计算方式
-        stock_model: 1,
+        stock_model: "1",
         //是否立刻上架
-        is_up: 0,
+        is_up: "0",
         //商品分类
         goods_class: [],
         //规格
@@ -139,7 +142,7 @@ export default {
         //图片
         img_list: [],
         //是否限购，0:不限购,1:限购
-        is_limit: 0,
+        is_limit: "0",
         //限购的数量
         limit_num: 0,
         //详情

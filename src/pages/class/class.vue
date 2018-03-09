@@ -41,7 +41,7 @@
             </span>
 
             <!-- 上传 -->
-            
+
             <el-upload :show-file-list="false" class="upload" @click.native="setItem(group.item)" :action="uploadAction" :data="uploadData(group.item)" :on-success="uploadSuccess">
               <img class="tree-img" v-if="group.item.img" v-img="group.item.img">
             </el-upload>
@@ -131,9 +131,8 @@ export default {
         if (res.count > 0) {
           this.list = res.msg;
           this.builderList(res.msg);
-         }else{
-      this.updateLoading = false;
-
+        } else {
+          this.updateLoading = false;
         }
       });
     },
@@ -264,7 +263,7 @@ export default {
       var delClass = data => {
         this.$post("class/del", data, res => {
           console.log(res);
-          
+
           if (res.res >= 1) {
             this.$message({
               type: "success",

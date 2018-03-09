@@ -25,7 +25,7 @@ class OrderController extends Controller{
         
         $model=M('order');
         $where=[];
-        $where['user_id']='12138';
+        $where['user_id']=session('user_id');
         $order=$model->where($where)->select();
         
         $order= toTime($order);
@@ -84,6 +84,58 @@ class OrderController extends Controller{
         
         
     }
+    public function get(){
+        
+        $model=M('order');
+        $order_id=I('order_id');
+        if(!$order_id){
+            $res['res']=-2;
+            echo json_encode($res);
+            die;
+        }
+        $where=[];
+        $where['t1.user_id']='12138';
+        $where['t1.order_id']=$order_id;
+        
+        $order=$model
+        ->table('c_order as t1,c_order_info as t2')
+        ->where($where)
+        ->where('t1.order_id = t2.order_id')
+        ->find();
+        
+        $order['order_info']=json_decode($order['order_info'],true);
+        $order['order_info']['goods']=[];
+        
+        $goods=M('goods');
+        //找到商品
+        foreach ($order['order_info']['goods_id_list'] as $key => $value) {
+            
+            $where=[];
+            $where['goods_id']=$value;
+            $re_goods=$goods->where($where)->find();
+            
+            $map=[];
+            $map['img_list']=false;
+            $map['goods_class']=false;
+            $map['spec']=false;
+            $re_goods=arrJsonD([$re_goods],$map);
+            
+            $order['order_info']['goods'][]=$re_goods[0];
+            
+        }
+        
+        
+        if($order){
+            $res['res']=1;
+            $res['msg']=$order;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$order;
+        }
+        
+        echo json_encode($res);
+        
+    }
     
     
     
@@ -95,8 +147,9 @@ class OrderController extends Controller{
     public function add(){
         
         $post=I('post.','',false);
-        $address=$post['address'];
+        $address_id=$post['address_id'];
         $payment_type=$post['payment_type'];
+        
         
         
         
@@ -208,18 +261,29 @@ class OrderController extends Controller{
         if($result){
             //添加成功
             //开始添加订单信息,订单信息模型
-            $model=M('order_info');
+            
             
             //订单信息数组
             $order_info=[];
             $order_info['goods_id_list']=$goods_id_list;//订单的商品的id数组
             $order_info['user_spec']=$user_spec;//订单的用户选择的规格
+            
+            // 获得收货地址
+            $Address=M('address');
+            $where=[];
+            $where['user_id']=session('user_id');
+            $where['address_id']=$address_id;
+            $address=$Address->where($where)->find();
             $order_info['address']=$address;//收货地址
+            
+            
             $add=[];//add数组
             $add['order_id']=$order_id;//订单号
             $add['order_info']=json_encode($order_info);//将订单信息转换为字符串
             
-            // $add['order_info']=$order_info;
+            
+            
+            $model=M('order_info');
             $result=$model->add($add);//添加到订单信息表中
             
             //如果订单信息添加成功

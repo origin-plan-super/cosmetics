@@ -1,0 +1,9 @@
+    .o-img {
+        display: inline-block;
+        &.loading {
+            $size: 100px;
+            width: $size;
+            height: $size;
+            display: block;
+        }
+    }

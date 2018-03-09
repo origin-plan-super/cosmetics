@@ -9,12 +9,17 @@
           <seller-list></seller-list>
 
         </el-tab-pane>
+
         <el-tab-pane label="分销商审核" name="分销商审核">
 
         </el-tab-pane>
-        <el-tab-pane label="星级管理" name="星级管理">
+
+        <el-tab-pane label="等级管理" name="等级管理">
+
           <seller-star></seller-star>
+
         </el-tab-pane>
+
       </el-tabs>
 
     </div>

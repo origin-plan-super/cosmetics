@@ -20,8 +20,8 @@ class UseController extends CommonController {
                 $path='';
                 if(empty(I('post.src'))){
                     //默认路径
-                    $cfg['rootPath']=WORKING_PATH . __UPLOAD__ADMIN__;
-                    set_mkdir(WORKING_PATH . __UPLOAD__ADMIN__);
+                    $cfg['rootPath']=WORKING_PATH . __UPLOAD__HOME__;
+                    set_mkdir(WORKING_PATH . __UPLOAD__HOME__);
                     
                 }else{
                     //传来的路径
@@ -58,7 +58,7 @@ class UseController extends CommonController {
                     //图片地址
                     if(empty(I('post.src'))){
                         //默认路径
-                        $img_url = __ROOT__ . __UPLOAD__ADMIN__. $info['savepath'] . $info['savename'];
+                        $img_url = __ROOT__ . __UPLOAD__HOME__. $info['savepath'] . $info['savename'];
                     }else{
                         //传来的路径
                         $img_url = 'Public/Upload/' . I('post.src') . $info['savepath'] . $info['savename'];
