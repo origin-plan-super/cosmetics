@@ -21,6 +21,7 @@ $allow_origin=[
 'http://120.78.162.200:12139',
 'http://120.78.162.200:12139',
 'http://10.0.139.88:8080',
+"http://cuelyine.cn",
 'http://cosmetics.com',
 'https://alny-ac.github.io'
 ];
