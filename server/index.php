@@ -10,30 +10,21 @@
 // +----------------------------------------------------------------------
 
 //跨域
-// header('Access-Control-Allow-Origin:http://192.168.1.254:8081');
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
-"http://10.0.139.188:8080",
-'http://192.168.1.5:8080',
-'http://192.168.1.104:8080',
-'http://192.168.1.106:8080',
 'http://192.168.1.251:8080',
 'http://120.78.162.200:12139',
-'http://120.78.162.200:12139',
-'http://10.0.139.88:8080',
 "http://cuelyine.cn",
 'http://cosmetics.com',
-'https://alny-ac.github.io'
 ];
-
+$is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){
     header('Access-Control-Allow-Origin:'.$origin);
+    header('Access-Control-Allow-Credentials:true');
+}else{
+    header('Access-Control-Allow-Origin:*');
 }
 
-
-// header('Access-Control-Allow-Origin:'.$ips);
-// header('Access-Control-Allow-Origin:*');
-header('Access-Control-Allow-Credentials:true');
 // 应用入口文件
 
 // 检测PHP环境

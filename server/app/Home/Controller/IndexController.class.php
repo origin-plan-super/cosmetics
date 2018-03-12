@@ -44,7 +44,8 @@ class IndexController extends Controller {
         
         $user_id=I('post.user_id');
         $user_code=I('post.user_code');
-        $verifyCode=session('verifyCode');
+        $verifyCode=F(md5($user_id.'_verifyCode'));
+        F(md5($user_id.'_verifyCode'),null);
         
         //检查参数
         if(!$verifyCode || !$user_id || !$user_code ){
@@ -134,7 +135,7 @@ class IndexController extends Controller {
         //加密验证码
         $verifyCode=md5($user_id.$code.__KEY__);
         //储存验证码
-        session('verifyCode',$verifyCode);
+        F(md5($user_id.'_verifyCode'),$verifyCode);
         
         $res['res']=1;
         $res['msg']=$code;

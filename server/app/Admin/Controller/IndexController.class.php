@@ -3,10 +3,18 @@ namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     
+    public function _initialize(){
+        
+        
+    }
+    
+    
     public function index(){
         
         echo '<h1>CTOS检测中心</h1>';
         dump(session());
+        
+        
     }
     
     public function get(){

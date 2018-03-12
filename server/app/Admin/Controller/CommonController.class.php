@@ -20,6 +20,8 @@ class CommonController extends Controller {
     //ThinkPHP提供的构造方法
     public function _initialize() {
         
+        
+        
         if(!empty(I('token'))){
             
             $token=I('token');
