@@ -1,5 +1,7 @@
 <template>
-    <img :class="['o-img',{'loading':isLoad}]" v-loading="isLoad" :src="$getUrl(url)">
+
+  <img :class="['o-img',{'loading':isLoad}]" v-img="url">
+
 </template>
 <script>
 import $ from "jquery";
@@ -14,7 +16,7 @@ export default {
   data() {
     return {
       isLoad: false,
-      loadUrl: "http://www.86y.org/images/loading.gif",
+      loadUrl: "./src/assets/loading.gif",
       errorUrl:
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489486509807&di=22213343ba71ad6436b561b5df999ff7&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F77%2F31%2F20300542906611142174319458811.jpg",
       url: "",
@@ -37,14 +39,14 @@ export default {
     update() {
       if (this.src.length <= 0) return;
 
+      this.url = this.loadUrl;
+
       //让图片状态为加载中
       this.isLoad = true;
-      //   this.url = this.loadUrl;
       //创建图片元素
       this.img = new Image();
       //设置图片元素地址为传来的地址
       this.img.src = this.$getUrl(this.src);
-      console.log(this.img);
 
       this.img.onerror = () => {
         // 图片加载错误时的替换图片

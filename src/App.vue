@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    <div v-wechat-title="'化妆品商城 - '+$route.meta.title"></div>
     <el-container style="height: 100vh">
       <el-aside style="width:auto">
         <el-menu class="left-menu" :collapse="isCollapse" router :default-active='defaultActive' :background-color="style.backgroundColor" :text-color="style.textColor" :active-text-color="style.activeTextColor">
@@ -9,7 +9,6 @@
             <i class="el-icon-arrow-left" v-if='!isCollapse'></i>
             <i class="el-icon-arrow-right" v-if='isCollapse'></i>
           </div>
-
           <el-menu-item-group>
 
             <el-menu-item index='/index'>
@@ -129,13 +128,14 @@
       </el-aside>
 
       <el-container>
+
         <el-main>
           <el-header style="font-size: 12px">
 
             <el-menu class="top-menu float-left" mode="horizontal" v-if="$route.meta!=null">
 
               <el-menu-item :index="$route.fullPath">
-                <span slot="title">{{$route.meta.name}}</span>
+                <span slot="title">{{$route.meta.title}}</span>
               </el-menu-item>
 
             </el-menu>
@@ -178,13 +178,15 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "app",
   data() {
     return {
       isCollapse: false,
       defaultActive: "",
-      admin_name: localStorage.admin_name,
+      admin_name: this.$getUserInfo().admin_name,
       style: {
         //导航条的颜色
         // backgroundColor: "#333",
@@ -213,9 +215,7 @@ export default {
     }
   },
   watch: {
-    $route() {
-      this.admin_name = localStorage.admin_name;
-    }
+    $route() {}
   },
   computed: {},
   mounted: function() {

@@ -50,11 +50,11 @@ module.exports = (options = {}) => ({
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src')
+      '~': resolve(__dirname, 'src'),
     }
   },
   devServer: {
-    host: '192.168.1.104',
+    host: '192.168.1.251',
     port: 8080,
     proxy: {
       '/api/': {

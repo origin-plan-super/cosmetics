@@ -8,10 +8,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome-webpack'
 import $ from 'jquery';
 
+
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+Vue.use(require('vue-wechat-title'))
 
 //自定义组件
 import load from "./component/load/load.vue";
@@ -29,15 +31,21 @@ Url.install = function (Vue, options) {
 
   var serverAdmin = server + 'Admin/';
   var serverHome = server + 'Home/';
+  var serverDefault = serverAdmin;
 
 
   //获得处理过的地址，主要用于获得图片的地址
   Vue.prototype.$getUrl = function (url) {
 
     if (!url) {
-      console.warn('【url为空】：' + url);
       return '';
     }
+    //判断是不是相对路径 ./，如果是就不需要添加
+    if (url.indexOf('./') >= 0) {
+      //是相对路径 ./，所以直接返回
+      return url;
+    }
+
     //开始判断是不是http开头，如果是就不再添加头了
     var _url;
     if (url.indexOf('http') == -1) {
@@ -48,6 +56,7 @@ Url.install = function (Vue, options) {
     } else {
       _url = url;
     }
+
     return _url;
 
   }
@@ -55,14 +64,21 @@ Url.install = function (Vue, options) {
   Vue.prototype.$server = server;
   Vue.prototype.$serverAdmin = serverAdmin;
   Vue.prototype.$serverHome = serverHome;
+  Vue.prototype.$serverDefault = serverDefault;
   //上传文件地址
-  Vue.prototype.$serverUpFile = serverAdmin + "Use/upFile";
+  Vue.prototype.$serverUpFile = serverDefault + "Use/upFile";
 
 
 }
 //起源插件
 var Origin = {};
 Origin.install = function (Vue, options) {
+
+  //取得用户数据
+  Vue.prototype.$getUserInfo = function () {
+    if (!localStorage['adminUserInfo']) return {};
+    return JSON.parse(localStorage.adminUserInfo);
+  }
 
   //是否登录
 
@@ -77,7 +93,7 @@ Origin.install = function (Vue, options) {
 
     if (url.indexOf("http") == -1) {
       //没有http
-      url = this.$serverAdmin + url;
+      url = this.$serverDefault + url;
     }
 
     $.ajax({
@@ -134,7 +150,7 @@ Origin.install = function (Vue, options) {
     }
     if (url.indexOf("http") == -1) {
       //没有http
-      url = this.$serverAdmin + url;
+      url = this.$serverDefault + url;
     }
     $.ajax({
       url: url,
@@ -192,7 +208,6 @@ Origin.install = function (Vue, options) {
 
 
   //二次封装饿了么的消息插件
-
   Vue.prototype.$warn = function (msg) {
     this.$message({ type: "warning", message: msg });
   }
@@ -242,6 +257,15 @@ Vue.directive('img', {
   componentUpdated: img,
 })
 
+Vue.filter('isNull', function (value) {
+
+
+  console.log('isNull');
+  console.log(value);
+
+
+
+})
 
 
 //自定义扩展Vue  ==end==
@@ -323,54 +347,53 @@ const router = new VueRouter({
   // base: __dirname,
   routes: [
     { path: '/', component: index },
-    { path: '/index', component: index, meta: { name: '首页' }, },
+    { path: '/index', component: index, meta: { title: '首页' }, },
     { path: '/login', component: login },
     {
       path: '/goods', component: goods, children: [
-        { path: 'edit', name: "/goods/edit", component: goods_edit, meta: { name: '编辑商品' }, },
-        { path: 'list', component: goods_list, meta: { name: '商品列表' }, },
+        { path: 'edit', name: "/goods/edit", component: goods_edit, meta: { title: '编辑商品' }, },
+        { path: 'list', component: goods_list, meta: { title: '商品列表' }, },
       ]
     },
     {
       path: '/order', component: order, children: [
-        { path: 'list', name: "/order/list", component: order_list, meta: { name: '订单列表' }, },
-        { path: 'info', name: "/order/info", component: order_info, meta: { name: '订单详情' }, },
+        { path: 'list', name: "/order/list", component: order_list, meta: { title: '订单列表' }, },
+        { path: 'info', name: "/order/info", component: order_info, meta: { title: '订单详情' }, },
       ]
     },
     {
       path: '/admin', component: admin, children: [
-        { path: 'list', name: "/admin/list", component: admin_list, meta: { name: '管理账户列表' }, },
-        { path: 'info', name: "/admin/info", component: admin_info, meta: { name: '账户详情' }, },
+        { path: 'list', name: "/admin/list", component: admin_list, meta: { title: '管理账户列表' }, },
+        { path: 'info', name: "/admin/info", component: admin_info, meta: { title: '账户详情' }, },
       ]
     },
     {
       path: '/renovation', component: renovation, children: [
-        { path: 'carousel', name: "/renovation/carousel", component: renovation_carousel, meta: { name: '首页轮播管理' }, },
+        { path: 'carousel', name: "/renovation/carousel", component: renovation_carousel, meta: { title: '首页轮播管理' }, },
       ]
     },
     {
       path: '/feedback', component: feedback, children: [
-        { path: 'list', name: "/feedback/list", component: feedback_list, meta: { name: '反馈管理' }, },
-        { path: 'info', name: "/feedback/info", component: feedback_info, meta: { name: '反馈详情' }, },
+        { path: 'list', name: "/feedback/list", component: feedback_list, meta: { title: '反馈管理' }, },
+        { path: 'info', name: "/feedback/info", component: feedback_info, meta: { title: '反馈详情' }, },
       ]
     },
     //分销管理
     {
       path: '/fork', component: fork, children: [
-        { path: 'customer', name: "/fork/customer", component: fork_customer, meta: { name: '客户管理' }, },
-        { path: 'seller', name: "/fork/seller", component: fork_seller, meta: { name: '分销商管理' }, },
-        { path: 'star_goods_list', name: "/fork/starGoodsList", component: fork_starGoodsList, meta: { name: '星级商品管理' }, },
+        { path: 'customer', name: "/fork/customer", component: fork_customer, meta: { title: '客户管理' }, },
+        { path: 'seller', name: "/fork/seller", component: fork_seller, meta: { title: '分销商管理' }, },
+        { path: 'star_goods_list', name: "/fork/starGoodsList", component: fork_starGoodsList, meta: { title: '星级商品管理' }, },
       ]
     },
     //用户管理
     {
       path: '/user', component: user, children: [
-        { path: 'list', name: "/user/list", component: user_list, meta: { name: '用户列表' }, },
-        // { path: 'info', name: "/user/info", component: user_info, meta: { name: '订单详情' }, },
+        { path: 'list', name: "/user/list", component: user_list, meta: { title: '用户列表' }, },
       ]
     },
     { path: '/ctos', component: ctos },
-    { path: '/class', component: _class, meta: { name: '分类列表' }, },
+    { path: '/class', component: _class, meta: { title: '分类列表' }, },
   ]
 });
 

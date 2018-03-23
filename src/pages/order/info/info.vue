@@ -7,7 +7,7 @@
     </template>
 
     <el-button type="text" icon="el-icon-back" @click="$router.go(-1)" size="mini"></el-button>
-      <el-button type="text" icon="el-icon-refresh" :loading="refreshBtnLoad" @click="update()" size="mini"></el-button>
+    <el-button type="text" icon="el-icon-refresh" :loading="refreshBtnLoad" @click="update()" size="mini"></el-button>
 
     <el-tabs type="border-card" v-if="order">
 
@@ -94,18 +94,18 @@
           </el-form-item>
 
           <el-form-item label="收货人">
-            <span>{{order.order_info.address.people}}</span>
+            <span v-if="order.order_info.address">{{order.order_info.address.people }}</span>
           </el-form-item>
 
           <el-form-item label="联系电话">
-            <span>{{order.order_info.address.phone}}</span>
+            <span v-if="order.order_info.address">{{order.order_info.address.phone }}</span>
           </el-form-item>
 
           <el-form-item label="收货地址">
-            
-            <span>{{order.order_info.address.region}}</span>
+
+            <span v-if="order.order_info.address">{{order.order_info.address.region }}</span>
             <br>
-            <span>{{order.order_info.address.info}}</span>
+            <span v-if="order.order_info.address">{{order.order_info.address.info }}</span>
 
           </el-form-item>
 
@@ -154,7 +154,6 @@ export default {
           if (res.res >= 1) {
             // this.order_id;
             this.order = res.msg[0];
-
           }
           if (res.res < 0) {
             //订单不存在

@@ -20,6 +20,7 @@ use Think\Controller;
 class UserController extends CommonController{
     
     public function save(){
+        
         $model=M('user');
         $save=I('save','',false);
         $where=[];
@@ -36,27 +37,34 @@ class UserController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
     }
     
     
     public function getUserInfo(){
+        
         $field=I('field');
+        
         if(!$field){
             $res['res']=-2;
             echo json_encode($res);
             exit;
         }
+        
         if(gettype($field)!='array'){
             //field不是数组。不能提交
             $res['res']=-4;
             echo json_encode($res);
             exit;
         }
+        
         //权限处理
         //这里是禁止访问的用户字段
+        
         $arr = array(
         'user_pwd',
         );
+        
         //循环检查
         foreach ($field as $key => $value) {
             if(in_array($value,$arr)){

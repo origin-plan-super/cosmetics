@@ -23,15 +23,15 @@ class ClassController extends CommonController{
     */
     public function add(){
         
-        
         $add=I('add');
         
         $add['add_time']=time();
         $add['edit_time']=time();
-        $add['class_id']=getMd5();
+        $add['class_id']=getMd5('class');
         
         $model=M('class');
         $result=$model->add($add);
+        
         if($result){
             $res['res']=1;
             $res['msg']=$add;
@@ -39,6 +39,7 @@ class ClassController extends CommonController{
             $res['res']=-1;
             $res['msg']=$result;
         }
+        
         echo json_encode($res);
         
     }
@@ -55,14 +56,15 @@ class ClassController extends CommonController{
         ->select();
         
         // =========判断=========
+        
         if($result){
+            
             //总条数
             $result=toTime($result);
             
             $res['count']=$model->count()+0;
             $res['res']=1;
             $res['msg']=$result;
-            
             
         }else{
             $res['res']=0;

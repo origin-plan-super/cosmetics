@@ -12,7 +12,7 @@
 //跨域
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
-'http://192.168.1.251:8080',
+'http://192.168.1.251:8081',
 'http://120.78.162.200:12139',
 "http://cuelyine.cn",
 'http://cosmetics.com',
@@ -36,6 +36,9 @@ define('APP_DEBUG',true);
 // 定义应用目录
 define('APP_PATH','./app/');
 
+//定义项目名
+define('APP_NAME','webpack 项目模板');
+
 //自定义常量
 // 全局key
 define('__KEY__', 'c12138..');
@@ -47,6 +50,7 @@ define('UPLOAD_ROOT_PATH', '/Public/Upload/');
 define('__UPLOAD__USER__', '/Public/Upload/user/');
 //定义上传的根目录——管理
 define('__UPLOAD__ADMIN__', '/Public/Upload/admin/');
+//定义上传的根目录—home
 define('__UPLOAD__HOME__', '/Public/Upload/home/');
 
 // 引入ThinkPHP入口文件

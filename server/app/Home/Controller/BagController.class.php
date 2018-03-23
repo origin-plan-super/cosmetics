@@ -26,7 +26,7 @@ class BagController extends CommonController{
         $page=I('page')?I('page'):0;
         $limit=I('limit')?I('limit'):10;
         $where=[];
-        $where['user_id']='12138';
+        $where['user_id']=session('user_id');
         
         $result=$model
         ->table('c_bag as t1,c_goods as t2')
@@ -67,7 +67,7 @@ class BagController extends CommonController{
         $save=I('save','',false);
         $model=M('bag');
         $where=I('where');
-        $where['user_id']='12138';
+        $where['user_id']=session('user_id');
         
         
         if($save['spec']){
@@ -97,7 +97,7 @@ class BagController extends CommonController{
         $add=I('add');
         $model=M('bag');
         $where=[];
-        $where['user_id']='12138';
+        $where['user_id']=session('user_id');
         $where['goods_id']=$add['goods_id'];
         
         $result=$model->where($where)->find();
@@ -126,13 +126,11 @@ class BagController extends CommonController{
             $res['bag_num']=getBagNum();
             echo json_encode($res);
             
-            die;
-            
         }else{
             //新增
             
             $add['bag_id']=getMd5('bag');
-            $add['user_id']='12138';
+            $add['user_id']=session('user_id');
             $add['add_time']=time();
             $add['edit_time']=time();
             $add['spec']=json_encode($add['spec']);
@@ -147,10 +145,8 @@ class BagController extends CommonController{
                 $res['data']=$add;
             }
             
-            
             $res['bag_num']=getBagNum();
             echo json_encode($res);
-            
         }
         
         
@@ -171,6 +167,8 @@ class BagController extends CommonController{
             $res['res']=-1;
             $res['msg']=$result;
         }
+        $res['I']=I();
+        
         echo json_encode($res);
         
         

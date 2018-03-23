@@ -141,5 +141,26 @@ class AdminController extends CommonController{
         echo json_encode($res);
         
     }
+    public function getUserInfo(){
+        
+        
+        //到这一步，初步权限检测通过。
+        $model=M('admin');
+        $where=[];
+        $where['admin_id']=session('admin_id');
+        $result=$model->where($where)->field($field)->find();
+        
+        $res['admin_id']=session('admin_id');
+        
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
     
 }

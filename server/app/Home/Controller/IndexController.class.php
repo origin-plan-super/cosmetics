@@ -4,40 +4,18 @@ use Think\Controller;
 class IndexController extends Controller {
     
     public function index(){
-        
-        echo '<h1>CTOS检测中心</h1>';
+        echo "<h1>CTOS检测中心 ，项目： ".APP_NAME." ，分组： home </h1>";
         dump(session());
-        dump(F());
         
     }
     
-    public function get(){
-        
+    
+    
+    public function test(){
         $res['res']=1;
         $res['get']=I('get.');
         $res['post']=I('post.');
-        //=========输出json=========
         echo json_encode($res);
-        //=========输出json=========
-        
-    }
-    
-    public function test(){
-        echo '<h1>CTOS控制中心</h1>';
-        die;
-        $model=M('feedback');
-        
-        $data=$model->select();
-        
-        for ($i=0; $i < count($data); $i++) {
-            $where=[];
-            $save['info']='lorem '.($i+1);
-            $where['feedback_id']=$data[$i]['feedback_id'];
-            $model->where($where)->save($save);
-            dump($model->_sql());
-        }
-        
-        
     }
     
     public function login(){
@@ -56,34 +34,21 @@ class IndexController extends Controller {
         }else{
             //有验证码
             //验证码加密算法：用户id+验证码+密匙
-            
             $isSuccess= $verifyCode==md5($user_id.$user_code.__KEY__);
             
             if($isSuccess){
                 //验证码正确
                 //生成 token
                 //换取token
-                $token=md5($user_id.time().rand().__KEY__);
-                $model=M('token');
                 
-                //先删除原本的 token
-                // $where=[];//条件
-                // $where['user_id']=$user_id;//条件
-                // $model->where($where)->delete();//删除
+                $token=createToken($user_id);
                 
-                //添加
-                $add=[];
-                $add['edit_time']=time();
-                $add['user_id']=$user_id;
-                $add['token']=$token;
-                $result=$model->add($add,null,true);
-                
-                if($result){
+                if($token){
                     $res['res']=1;
                     $res['token']=$token;
                 }else{
                     $res['res']=-1;
-                    $res['msg']=$result;
+                    $res['msg']=I();
                 }
                 
                 echo json_encode($res);
@@ -148,35 +113,36 @@ class IndexController extends Controller {
     */
     public function islogin(){
         
-        $is=isUserLogin();
+        $is=isUserLogin('user');
+        $res['res']= $is;
+        echo json_encode($res);
         
-        if($is==1){
-            //登录还未过期
-            $res['res']=$is;
-            $res['msg']='已登录';
-            //=========输出json=========
-            echo json_encode($res);
-            //=========输出json=========
+        
+    }
+    
+    public function sinOut(){
+        //获得传来的token
+        $token=I('token');
+        //获得传来的id
+        $user_id=I('user_id');
+        //创建token的控制器
+        $model=M('token');
+        //创建条件
+        $where['user_id']=$user_id;
+        //删除token
+        $result=$model->where($where)->delete();
+        //清空session
+        session(null);
+        
+        if($result){
+            //退出成功
+            $res['res']=1;
+        }else{
+            //退出失败
+            $res['res']=-1;
         }
         
-        if($is==-991){
-            //令牌过期了
-            $res['res']=$is;
-            $res['msg']='令牌过期了！';
-            //=========输出json=========
-            echo json_encode($res);
-            //=========输出json=========
-        }
-        if($is==-992){
-            //未登录
-            $res['res']=$is;
-            $res['msg']='未登录！';
-            //=========输出json=========
-            echo json_encode($res);
-            //=========输出json=========
-        }
-        
-        
+        echo json_encode($res);
     }
     
 }

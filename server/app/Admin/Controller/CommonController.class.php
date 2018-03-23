@@ -20,47 +20,19 @@ class CommonController extends Controller {
     //ThinkPHP提供的构造方法
     public function _initialize() {
         
+        $is=isUserLogin('admin');
         
-        
-        if(!empty(I('token'))){
-            
-            $token=I('token');
-            $admin_id=I('admin_id');
-            $model=M('admin');
-            $where['admin_id']=$admin_id;
-            $result=$model->where($where)->find();
-            
-            if($result['token']==$token){
-                //验证成功
-                //再验证时间是否过期
-                $toTome=time();
-                if(($result['edit_time']+3600)>$toTome ){
-                    
-                    // 未到期
-                    // 可以继续查操作
-                    
-                }else{
-                    //到期了，同样是token不正确
-                    $res['res']=-992;
-                    echo json_encode($res);
-                    exit;
-                }
-                
-                
-            }else{
-                //验证失败，因为token不正确
-                $res['res']=-992;
-                echo json_encode($res);
-                exit;
-            }
-            
-        }else{
-            
-            // 验证失败，因为没有token
-            $res['res']=-991;
-            echo json_encode($res);
-            exit;
+        if($is){
+            //登录成功，继续操作
+            //保存session
+            session('admin_id',$is['admin_id']);
+            return;
         }
+        
+        $res['res']=$is;
+        $res['msg']='令牌过期了';
+        echo json_encode($res);
+        exit;
         
         
     }

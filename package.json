@@ -17,6 +17,7 @@
     "vue": "^2.5.11",
     "vue-resource": "^1.4.0",
     "vue-router": "^3.0.1",
+    "vue-wechat-title": "^2.0.4",
     "vuedraggable": "^2.16.0"
   },
   "browserslist": [

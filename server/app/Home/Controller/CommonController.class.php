@@ -21,41 +21,30 @@ class CommonController extends Controller {
     //ThinkPHP提供的构造方法
     public function _initialize() {
         
-        
-        
-        
-        
-            
-        if(I('debug')){
-            session('user_id','12138');
-            session('is_debug',true);
+        $isDebug=I('debug',false);
+        if($isDebug){
             return;
         }
         
-        $is=isUserLogin();
+        $is=isUserLogin('user');
         
-        if($is==1){
+        if($is){
             //登录成功，继续操作
+            //保存session
+            session('user_id',$is['user_id']);
+            return;
         }
+        $res['res']=$is;
         if($is==-991){
             //令牌过期了
-            $res['res']=$is;
             $res['msg']='令牌过期了';
-            //=========输出json=========
-            echo json_encode($res);
-            //=========输出json=========
-            exit;
         }
         if($is==-992){
             //未登录
-            $res['res']=$is;
             $res['msg']='未登录';
-            //=========输出json=========
-            echo json_encode($res);
-            //=========输出json=========
-            exit;
         }
-        
+        echo json_encode($res);
+        exit;
         
         
     }

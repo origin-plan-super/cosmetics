@@ -96,17 +96,26 @@ export default {
           this.$post("index/login", this.login, res => {
             this.isLoginLoad = false;
             if (res.res == 1) {
-              //成功
-              this.alertType = "success";
-              this.alertTitle = "登录成功！正在为您跳转~";
-              this.isLoginSuccess = true;
-              this.btnTitle = "登录成功~";
-              localStorage.token = res.msg.token;
-              localStorage.admin_id = res.msg.admin_id;
-              localStorage.admin_name = res.msg.admin_name;
-              setTimeout(() => {
-                this.$router.push("/index");
-              }, 500);
+              localStorage.token = res.token;
+              localStorage.admin_id = this.login.admin_id;
+              this.isLoginLoad = true;
+              this.$get("admin/getUserInfo", {}, res => {
+                console.log(res);
+                this.isLoginLoad = false;
+                if (res.res >= 1) {
+                  //成功
+                  this.alertType = "success";
+                  this.alertTitle = "登录成功！正在为您跳转~";
+                  this.isLoginSuccess = true;
+                  this.btnTitle = "登录成功~";
+
+                  localStorage.adminUserInfo = JSON.stringify(res.msg);
+
+                  setTimeout(() => {
+                    this.$router.push("/index");
+                  }, 500);
+                }
+              });
 
               return;
             }

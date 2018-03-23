@@ -90,6 +90,44 @@ function login($form,$id,$pwd,$isMd5=true){
     }
     
 }
+
+
+/**
+* 创建 token
+* * @param String login_id 用于混入md5加密中的 用户的登录的id
+* * @param String table 要储存token的表格，默认为 token
+*/
+function createToken($login_id,$table="token"){
+    
+    if(!check($login_id)){
+        //如果 user_id 不存在，也就不能生成token
+        return false;
+    }
+    
+    //创建token
+    $token=md5($login_id.rand().time().__KEY__);
+    
+    //创建要保存的数据
+    $add['token']=$token;
+    $add['login_id']=$login_id;
+    $add['edit_time']=time();
+    
+    //创建模型
+    $model=M($table);
+    //添加数据，如果存在则覆盖
+    $result=$model->add($add,null,true);
+    
+    if($result){
+        //创建成功
+        return $token;
+    }else{
+        //创建失败
+        return false;
+    }
+    
+}
+
+
 /**
 * 查询数据
 */
@@ -394,45 +432,55 @@ function add($id=false,$idType=false,$addData){
 /**
 * 验证用户是否登录
 */
-function isUserLogin(){
+function isUserLogin($table='user'){
+    
     
     //接收登录参数
-    $user_id=I('user_id');
-    $token=I('token');
+    $login_id=I($table."_id",false);
+    $token=I('token',false);
     
-    if(!$user_id || !$token){
+    
+    if(!$login_id || !$token){
         //没有参数
         return -992;
     }
     
-    $where['user_id']=$user_id;
+    
+    
+    $where['login_id']=$login_id;
     $where['token']=$token;
-    $model=M('token');
-    $result=$model->where($where)->find();
+    $Token=M('token');
+    $result=$Token->where($where)->find();
+    
+    // dump($where);
+    // die;
+    
     if($result){
-        //账户正确
-        //token存在
-        
+        //账户正确 , token存在
         //验证token的时间过期没有
         $tokenTime=$result['edit_time'];
         $toTome=time();
-        
         $end_time=3600;
-        
-        
         if(($tokenTime+$end_time)>$toTome){
+            
             //未到期
-            //如果+10大于现在的时间，就是没过期
-            session('user_id',$user_id);
-            return 1;
+            //如果 + $end_time 大于现在的时间，就是没过期
+            
+            //没过期就取出用户的数据
+            $User=M($table);
+            $where=[];
+            $where[$table.'_id']=$login_id;
+            $userInfo=$User->where($where)->find();
+            return $userInfo;
+            
         }else{
             //如果 + $end_time 秒小于或者等于现在的时间，就是过期了
             //到期了
             //删除令牌操作
             $where=[];
-            $where['user_id']=$user_id;
+            $where['login_id']=$login_id;
             session(null);
-            $model->where($where)->delete();
+            $Token->where($where)->delete();
             return -991;
         }
     }else{
@@ -563,7 +611,7 @@ function json($arr){
     return serialize($arr);
 }
 //字符串转换为数组
-function stringToArr($arr,$map){
+function stringToArr($arr,$mz){
     
     for ($i=0; $i < count($arr); $i++) {
         
@@ -615,9 +663,6 @@ function arrJsonD($arr,$map){
         
     }
     
-    
-    
-    
     return $arr;
 }
 //获得md5加密后的id
@@ -629,10 +674,20 @@ function getBagNum(){
     $where['user_id']=session('user_id');
     $bag=M('bag')->where($where)->select();
     $bag_num=0;
-    for ($i=0; $i <count($bag) ; $i++) {
+    for ($i=0; $i <count($bag); $i++) {
         $bag_num+=$bag[$i]['goods_count'];
     }
     $res['bag_num']=$bag_num;
     
     return $bag_num;
+}
+
+
+/**
+* echo 的单行输出，调用一次输出一行，可自定义标签
+*/
+function ec($info,$tag='div'){
+    $style="font-size:14px;color:#333;line-height:1;padding:5px;text-align:left";
+    $log="<$tag style='$style'>$info</$tag>";
+    echo $log;
 }

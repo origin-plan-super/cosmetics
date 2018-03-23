@@ -11,28 +11,20 @@
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb，可拖动排序。</div>
       </el-upload>
 
+      <div class="line"></div>
       <div class="img-list">
+
         <draggable v-model="img_list" :options="{group:'img_list'}" @end="dragEnd(img_list)">
 
           <div class="img-item" v-for="(item,i) in img_list" :key="item.carousel_id">
-            <div class="del" @click="remove(item,i,img_list)">
+            <div class="del" @click="remove(item,i,img_list)" title="删除">
               <i class="el-icon-close"></i>
             </div>
-            <img :src="$getUrl(item.src)" alt="图片错误！">
+            <o-img :src="item.src"></o-img>
           </div>
+
         </draggable>
 
-      </div>
-
-      <hr>
-      <div class="img-list">
-
-        <div class="img-item" v-for="(item,i) in img_list" :key="item.carousel_id">
-          <div class="del" @click="remove(item,i,img_list)">
-            <i class="el-icon-close"></i>
-          </div>
-          <o-img :src="item.src"></o-img>
-        </div>
       </div>
 
     </div>
@@ -57,6 +49,7 @@ export default {
   },
   methods: {
     update() {
+      this.img_list = [];
       this.$get("carousel/getList", {}, res => {
         if (res.res >= 1) {
           this.img_list = res.msg;
