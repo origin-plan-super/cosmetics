@@ -16,6 +16,7 @@ $allow_origin=[
 'http://120.78.162.200:12139',
 "http://cuelyine.cn",
 'http://cosmetics.com',
+'http://admin.cuelyine.cn',
 ];
 $is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){

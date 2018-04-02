@@ -147,10 +147,7 @@ class GoodsController extends CommonController{
             $goods['sku']=$skus;
             $tree= $SkuTree->where($where)->select();
             
-            
             //找图片
-            
-            
             
             
             for ($j=0; $j <count( $tree) ; $j++) {
