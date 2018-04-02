@@ -19,7 +19,51 @@ namespace Home\Controller;
 use Think\Controller;
 class DynamicController extends CommonController{
     
-    
+    //获得发现页数据包
+    public function getPacket(){
+        $res=[];
+        
+        //轮播图
+        $model=M('carousel');
+        $carousel=$model
+        ->order('sort asc,add_time desc')
+        ->select();
+        
+        
+        $user_id=session('user_id');
+        $res=[];
+        $model=M('dynamic');
+        $res['count']=$model->count()+0;
+        
+        $page=I('page')?I('page'):1;
+        $limit=I('limit')?I('limit'):10;
+        
+        $where=[];
+        $where['t1.is_show']= 1;
+        
+        $dynamic=$model
+        ->table("c_dynamic as t1,c_goods as t2,c_user as t3")
+        ->field('t1.img_list as dynamic_img_list,t2.img_list as goods_img_list,t1.*,t2.*,t3.*')
+        ->where('t1.goods_id = t2.goods_id AND t1.user_id = t3.user_id')
+        ->where($where)
+        ->order('t1.add_time desc')
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
+        
+        //=========判断=========
+        if($dynamic){
+            //转换 img_list 和 goods_list
+            $map['dynamic_img_list']=false;
+            $map['goods_img_list']=false;
+            $dynamic=arrJsonD($dynamic,$map);
+        }
+        
+        
+        $res['carousel']=$carousel;
+        $res['dynamic']=$dynamic;
+        echo json_encode($res);
+        
+    }
     //添加
     public function add(){
         //要添加的数据

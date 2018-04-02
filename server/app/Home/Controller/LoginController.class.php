@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class LoginController extends Controller {
     
     public function index(){
         echo "<h1>CTOS检测中心 ，项目： ".APP_NAME." ，分组： home </h1>";
@@ -114,7 +114,11 @@ class IndexController extends Controller {
     public function islogin(){
         
         $is=isUserLogin('user');
-        $res['res']= $is;
+        if($is<0){
+            $res['res']= $is;
+        }else{
+            $res['res']= 1;
+        }
         echo json_encode($res);
         
         

@@ -26,14 +26,17 @@ class CommonController extends Controller {
             return;
         }
         
+        
         $is=isUserLogin('user');
         
-        if($is){
+        
+        if($is>0 ){
             //登录成功，继续操作
             //保存session
             session('user_id',$is['user_id']);
             return;
         }
+        
         $res['res']=$is;
         if($is==-991){
             //令牌过期了

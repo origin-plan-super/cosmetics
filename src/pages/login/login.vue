@@ -12,31 +12,45 @@
             </p>
           </div>
         </div>
-        <el-form :model="login" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+        <el-form :model="login"
+                 :rules="rules"
+                 ref="ruleForm"
+                 class="demo-ruleForm">
           <el-form-item prop="admin_id">
-            <el-input v-model="login.admin_id" placeholder='请输入账户'></el-input>
+            <el-input v-model="login.admin_id"
+                      placeholder='请输入账户'></el-input>
           </el-form-item>
           <el-form-item prop="admin_pwd">
-            <el-input v-model="login.admin_pwd" type="password" placeholder='请输入密码'></el-input>
+            <el-input v-model="login.admin_pwd"
+                      type="password"
+                      placeholder='请输入密码'></el-input>
           </el-form-item>
 
           <el-row :gutter='20'>
             <el-col :span='14'>
               <el-form-item prop="admin_code">
-                <el-input v-model="login.admin_code" placeholder='验证码'></el-input>
+                <el-input v-model="login.admin_code"
+                          placeholder='验证码'></el-input>
               </el-form-item>
             </el-col>
             <el-col :span='10'>
-              <img :src="code" @click='getCode()' class="code" alt="">
+              <img :src="code"
+                   @click='getCode()'
+                   class="code"
+                   alt="">
             </el-col>
           </el-row>
 
           <el-form-item>
-            <el-button :type="isLoginSuccess?'success':'primary'" :loading="isLoginLoad" @click='submitForm()'>{{btnTitle}}</el-button>
+            <el-button :type="isLoginSuccess?'success':'primary'"
+                       :loading="isLoginLoad"
+                       @click='submitForm()'>{{btnTitle}}</el-button>
           </el-form-item>
 
         </el-form>
-        <el-alert :title="alertTitle" :closable='false' :type="alertType">
+        <el-alert :title="alertTitle"
+                  :closable='false'
+                  :type="alertType">
         </el-alert>
       </div>
     </div>

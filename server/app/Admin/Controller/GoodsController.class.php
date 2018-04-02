@@ -26,27 +26,78 @@ class GoodsController extends CommonController{
         
         
         $add=I('add','',false);
+        $goods_id=getMd5('goods');
         
-        //json 转字符串
-        // $add=arrToString($add);
-        // $map=['img_list','goods_class','spec'];
-        // echo json_encode([$add,stringToArr([$add],$map)[0]['spec']['spec'][0]]);
-        // die;
+        //这里有很多逻辑
+        
+        //创建此商品的sku表
+        $Sku=M('sku');
+        $skus=$add['sku'];
+        for ($i=0; $i < count($skus); $i++) {
+            $skus[$i]['goods_id']=$goods_id;
+            $skus[$i]['sku_id']=md5($goods_id.$skus[$i]['id']);
+            $skus[$i]['add_time']=time();
+            $skus[$i]['edit_time']=time();
+        }
         
         
+        //创建此商品的sku tree 表
         
-        $map=[];
-        $map['img_list']=false;
-        $map['goods_class']=false;
-        $map['spec']=false;
+        $SkuTree=M('sku_tree');
+        $SkuTreeV=M('sku_tree_v');
+        
+        $trees=$add['tree'];
+        
+        $treeV=[];
+        
+        for ($i=0; $i < count($trees); $i++) {
+            
+            $tree=$trees[$i];
+            $sku_tree_id=md5($goods_id.$tree['k']);
+            $tree['sku_tree_id']=$sku_tree_id;
+            $tree['goods_id']=$goods_id;
+            $tree['add_time']=time();
+            $tree['edit_time']=time();
+            
+            $trees[$i]=$tree;
+            //添加 tree 的 v
+            
+            for ($j=0; $j <count($tree['v']) ; $j++) {
+                $v=$tree['v'][$j];
+                $v['v_id']=md5($goods_id.$sku_tree_id.$v['id']);
+                $v['goods_id']=$goods_id;
+                $v['sku_tree_id']=$sku_tree_id;
+                $v['img_url']='';
+                $v['add_time']=time();
+                $v['edit_time']=time();
+                $treeV[]=$v;
+            }
+            unset($tree['v']);
+        }
         
         
-        $add['add_time']=time();
-        $add['edit_time']=time();
-        $add['goods_id']=getMd5();
+        $Sku->addAll($skus);
+        $SkuTree->addAll($trees);
+        $SkuTreeV->addAll($treeV);
+        
+        
+        $Goods=M('goods');
+        
+        $goodsAdd=[];
+        $goodsAdd['goods_id']=$goods_id;
+        $goodsAdd['goods_title']=$add['goods_title'];
+        $goodsAdd['logistics']=$add['logistics'];
+        $goodsAdd['is_up']=$add['is_up'];
+        $goodsAdd['goods_class']=$add['goods_class'];
+        $goodsAdd['img_list']=json_encode($add['img_list']);
+        $goodsAdd['goods_content']=$add['goods_content'];
+        
+        $goodsAdd['add_time']=time();
+        $goodsAdd['edit_time']=time();
+        
         
         $model=M('goods');
-        $result=$model->add($add);
+        $result=$model->add($goodsAdd);
         if($result){
             $res['res']=1;
             $res['msg']=$result;
@@ -64,8 +115,6 @@ class GoodsController extends CommonController{
     }
     
     
-    
-    
     //获得商品列表
     public function getList(){
         
@@ -73,25 +122,58 @@ class GoodsController extends CommonController{
         $page=I('page')?I('page'):0;
         $limit=I('limit')?I('limit'):10;
         $where=I('where')?I('where'):[];
-        $field=I('field')?I('field'):'*';
         
-        $result=$model
+        $goodsList=$model
+        ->table('c_goods')
         ->where($where)
-        ->field($field)
         ->order('add_time desc')
         ->limit(($page-1)*$limit,$limit)
         ->select();
         
         
+        
+        //找 sku 和 tree
+        
+        $Sku=M('sku');
+        $SkuTree=M('sku_tree');
+        $SkuTreeV=M('sku_tree_v');
+        
+        for ($i=0; $i <count($goodsList) ; $i++) {
+            $goods=$goodsList[$i];
+            $goods_id=$goods['goods_id'];
+            $where=[];
+            $where['goods_id']=$goods_id;
+            $skus= $Sku->where($where)->select();
+            $goods['sku']=$skus;
+            $tree= $SkuTree->where($where)->select();
+            
+            
+            //找图片
+            
+            
+            
+            
+            for ($j=0; $j <count( $tree) ; $j++) {
+                //找 tree 的 v
+                $sku_tree_id=$tree[$j]['sku_tree_id'];
+                $where['sku_tree_id']=$sku_tree_id;
+                $v= $SkuTreeV->where($where)->select();
+                $tree[$j]['v']= $v;
+            }
+            
+            $goods['tree']=$tree;
+            $goodsList[$i]=$goods;
+        }
+        
+        
         // =========判断=========
-        if($result){
+        if($goodsList){
             //总条数
-            $result=toTime($result);
+            $goodsList=toTime($goodsList);
             
             $res['count']=$model->count()+0;
             $res['res']=1;
-            $res['msg']=$result;
-            
+            $res['msg']=$goodsList;
             
         }else{
             $res['res']=0;

@@ -46,13 +46,13 @@
 
           <el-table-column label="价格" width="80">
             <template slot-scope="scope">
-              <span>￥{{scope.row.spec.paramList[0].money}}</span>
+              <span>￥{{scope.row.sku[0].price}}</span>
             </template>
           </el-table-column>
 
           <el-table-column label="库存" width="80">
             <template slot-scope="scope">
-              <span>{{scope.row.spec.paramList[0].stock}}</span>
+              <span>{{scope.row.sku[0].stock_num}}</span>
             </template>
           </el-table-column>
 
@@ -132,11 +132,12 @@ export default {
         "goods/getList",
         { page: this.currentPage, limit: this.pageSize },
         res => {
+          
           clearTimeout(setTim);
           this.tableLoading = false;
-          var map = ["img_list", "goods_class", "spec"];
+          console.log(res);
           this.total = res.count;
-          if (res.count > 0) this.tableData = stringToArr(res.msg, map);
+          if (res.count > 0) this.tableData =res.msg;
         }
       );
     },

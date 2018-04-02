@@ -58,7 +58,7 @@
         </div>
         <div class="spec-prop-list">
 
-          <label class="spec-prop-item" v-for="(item,jndex) in group.node" v-if="!group.isEdit">
+          <label class="spec-prop-item" v-for="(item,jndex) in group.node" :key="jndex" v-if="!group.isEdit">
             <el-checkbox v-model="item.check" @change="changeSpecProp()"></el-checkbox>
             <span class="spec-prop-item-title">
               {{item.title}}
@@ -86,29 +86,21 @@
         <el-button type="danger" @click="test()">取得测试数据</el-button>
       </p>
 
-      <el-table :data="paramList" style="width: 100%" size='small' border>
+      <el-table :data="sku" style="width: 100%" size='small' border>
 
-        <el-table-column :label="item.title" :prop="'params.'+item.title" v-for="(item,index) in map" :key="item.title">
+        <el-table-column :label="item.k" :prop="'s'+(index+1)" v-for="(item,index) in tree" :key="item.k">
+
         </el-table-column>
 
         <el-table-column label="价格">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.money" placeholder="" :disabled="!scope.row.is_show"></el-input>
+            <el-input v-model="scope.row.price"></el-input>
           </template>
         </el-table-column>
 
         <el-table-column label="库存">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.stock" placeholder="" :disabled="!scope.row.is_show"></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-
-            <el-tooltip :content="'显示：' + (scope.row.is_show?'开':'关')" placement="right">
-              <el-switch v-model="scope.row.is_show" active-color="#13ce66"></el-switch>
-            </el-tooltip>
-
+            <el-input v-model="scope.row.stock_num"></el-input>
           </template>
         </el-table-column>
 
@@ -122,7 +114,14 @@
 export default {
   name: "spec",
   props: {
-    value: Object
+    tree: {
+      type: Array,
+      default: []
+    },
+    sku: {
+      type: Array,
+      default: []
+    }
   },
   data() {
     return {
@@ -226,30 +225,6 @@ export default {
       list.push(group);
 
       this.spec = list;
-
-      // for (let i = 0; i < 3; i++) {
-      //   let group = {
-      //     spec_id: Math.random(),
-      //     title: `规格${i + 1}`,
-      //     isEdit: false,
-      //     isAddModel: false,
-      //     node: [],
-      //     message: {
-      //       message: "",
-      //       type: "",
-      //       isShow: false
-      //     }
-      //   };
-      //   list.push(group);
-
-      //   for (let j = 0; j < 5; j++) {
-      //     let item = {
-      //       title: `密集补水（6片*3盒+好友共享装）${j + 1}`,
-      //       check: false
-      //     };
-      //     group.node.push(item);
-      //   }
-      // }
     },
     //移除规格组
     removeSpecGroup(group, index, spec) {
@@ -357,153 +332,120 @@ export default {
       this.isEditModel = false;
       group.isEdit = false;
     },
-    test() {
-      console.log(this.paramList);
-      console.log(this.spec);
-      
-    },
     //批量填充
     batchFilling() {
-      for (let i = 0; i < this.paramList.length; i++) {
-        this.paramList[i].money = this.filling.money;
-        this.paramList[i].stock = this.filling.stock;
+      for (let i = 0; i < this.sku.length; i++) {
+        this.sku[i].price = this.filling.money;
+        this.sku[i].stock_num = this.filling.stock;
       }
       this.filling.money = "";
       this.filling.stock = "";
     },
     // 选中一个规格下的属性触发的事件
     changeSpecProp() {
-      var rootNode = new Node({
-        name: "root"
-      });
       var spec = this.spec;
 
-      //组成树
-      for (let i = 0; i < spec.length; i++) {
-        let specGroup = spec[i];
-        let groupNode = new Node({
-          name: "group"
-        });
-        for (let j = 0; j < specGroup.node.length; j++) {
-          let specItem = specGroup.node[j];
+      var tree = [];
 
-          if (specItem.check) {
-            groupNode.add(
-              new Node({
-                name: specItem.title,
-                prop: specItem,
-                group: specGroup
-              })
-            );
+      for (let i = 0; i < spec.length; i++) {
+        let specItem = spec[i];
+        let isAdd = false;
+        let treeItem = {
+          k: specItem.title,
+          v: [],
+          k_s: "s" + (i + 1)
+        };
+
+        for (let j = 0; j < specItem.node.length; j++) {
+          let nodeItem = specItem.node[j];
+          if (nodeItem.check) {
+            isAdd = true;
+            treeItem.v.push({
+              id: nodeItem.title,
+              name: nodeItem.title
+            });
           }
         }
-        if (groupNode.size() > 0) {
-          rootNode.add(groupNode);
+        if (isAdd) {
+          if (tree.length + 1 <= 3) {
+            tree.push(treeItem);
+          } else {
+            this.$info("只能添加三组！");
+          }
         }
       }
-      let _node;
-      if (rootNode.size() > 0) {
-        _node = rootNode.get(0);
 
-        for (let i = rootNode.size() - 1; i >= 1; i--) {
-          let leftNode = rootNode.get(i - 1);
-          for (let j = 0; j < leftNode.size(); j++) {
-            let rightNode = rootNode.get(i);
-            for (let l = 0; l < rightNode.size(); l++) {
-              leftNode.get(j).add(rightNode.get(l));
-            }
-          }
-        }
-      } else {
+      if (tree.length <= 0) {
+        this.$emit("update:tree", []);
+        this.$emit("update:sku", []);
         return;
       }
 
-      var arr = dfs(_node);
-      var paramList = [];
-      var map = [];
-      for (let i = 0; i < arr.length; i++) {
-        var obj = {
-          params: {}
+      // console.log(tree);
+      var test = generateGroup(tree);
+      var skus = [];
+      for (let i = 0; i < test.length; i++) {
+        var item = test[i];
+        var sku = {
+          id: i,
+          price: 0,
+          stock_num: 0
         };
-
-        for (let j = 0; j < arr[i].length; j++) {
-          let group = arr[i][j].group;
-          obj.params[group.title] = arr[i][j].name;
-
-          if (map.indexOf(group) == -1) {
-            map.push(group);
-          }
+        for (let j = 0; j < item.length; j++) {
+          const s = item[j];
+          sku["s" + (j + 1)] = s;
         }
-        obj.money = 0;
-        obj.stock = 0;
-        obj.is_show = true;
-        paramList.push(obj);
+
+        skus.push(sku);
       }
 
-      this.paramList = paramList;
-      this.map = map;
-      this.$emit("input", {
-        paramList: paramList,
-        spec: spec,
-        map: map
-      });
+      console.log(tree);
+      this.$emit("update:tree", tree);
+      this.$emit("update:sku", skus);
     }
   },
   mounted() {
     this.$nextTick(() => {
-      this.paramList = this.value.paramList;
-      if (this.value.spec) {
-        this.spec = this.value.spec;
-      } else {
-        this.initSpec();
-      }
-      this.map = this.value.map;
+      this.initSpec();
     });
   }
 };
 
-function dfs(tree) {
-  var result = [];
-  _search(tree, []);
+function generateGroup(arr) {
+  //初始化结果为第一个数组
+  var result = new Array();
+  //字符串形式填充数组
+  for (var i = 0; i < arr[0].v.length; i++) {
+    result.push(JSON.stringify(arr[0].v[i].id));
+  }
+
+  //从下标1开始遍历二维数组
+
+  for (var i = 1; i < arr.length; i++) {
+    //使用临时遍历替代结果数组长度(这样做是为了避免下面的循环陷入死循环)
+    var size = result.length;
+    //根据结果数组的长度进行循环次数,这个数组有多少个成员就要和下一个数组进行组合多少次
+    for (var j = 0; j < size; j++) {
+      //遍历要进行组合的数组
+      for (var k = 0; k < arr[i].v.length; k++) {
+        //把组合的字符串放入到结果数组最后一个成员中
+        //这里使用下标0是因为当这个下标0组合完毕之后就没有用了，在下面我们要移除掉这个成员
+        //组合下一个json字符串
+        var temp = result[0] + "," + JSON.stringify(arr[i].v[k].id);
+        result.push(temp);
+      }
+      //当第一个成员组合完毕，删除这第一个成员
+      result.shift();
+    }
+  }
+
+  //转换字符串为json对象
+  for (var i = 0; i < result.length; i++) {
+    result[i] = JSON.parse("[" + result[i] + "]");
+  }
+  //打印结果
   return result;
-
-  function _search(nodes, path) {
-    if (!nodes || nodes.size() <= 0) {
-      return result.push(path.slice());
-    }
-
-    for (let i = 0; i < nodes.size(); i++) {
-      let node = nodes.get(i);
-      path.push(node);
-      _search(node, path);
-      path.pop();
-    }
-  }
 }
-
-var Node = function(conf) {
-  this.praentNode = null;
-  this.children = [];
-  this.name = "";
-  if (conf != null) {
-    for (var x in conf) {
-      this[x] = conf[x];
-    }
-  }
-  this.add = function(node) {
-    this.children.push(node);
-    node.praentNode = this;
-  };
-  this.size = function() {
-    return this.children.length;
-  };
-  this.get = function(index) {
-    if (index === undefined || index < 0) {
-      return this.children;
-    }
-    return this.children[index];
-  };
-};
 </script>
 
 <style lang="scss" scoped>

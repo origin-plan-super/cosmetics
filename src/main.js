@@ -68,7 +68,6 @@ Url.install = function (Vue, options) {
   //上传文件地址
   Vue.prototype.$serverUpFile = serverDefault + "Use/upFile";
 
-
 }
 //起源插件
 var Origin = {};
@@ -83,6 +82,7 @@ Origin.install = function (Vue, options) {
   //是否登录
 
   Vue.prototype.$get = function (url, data, success, error) {
+    if (!data) data = {};
 
     if (data.token == null) {
       data.token = localStorage.token ? localStorage.token : '';
@@ -122,25 +122,34 @@ Origin.install = function (Vue, options) {
           return false;
         }
 
-        //登录验证
-        if (res.res == -992 || res.res == -991) {
-          //登录失败跳转登录页
-          router.push("/login");
+
+        if (res['res']) {
+
+          //登录验证
+          if (res.res == -992 || res.res == -991) {
+            //登录失败跳转登录页
+            router.push("/login");
+          } else {
+            if (success) {
+              success(res);
+            }
+          }
+
         } else {
           if (success) {
             success(res);
           }
         }
+
       },
       error: () => {
         this.$message({ type: "error", message: '接口错误！' })
       }
-
     });
-
   }
 
   Vue.prototype.$post = function (url, data, success, error) {
+    if (!data) data = {};
 
     if (data.token == null) {
       data.token = localStorage.token ? localStorage.token : '';
@@ -177,18 +186,26 @@ Origin.install = function (Vue, options) {
             error(false, error);
           }
           return false;
-
         }
 
-        //登录验证
-        if (res.res == -992 || res.res == -991) {
-          //登录失败跳转登录页
-          router.push("/login");
+        if (res['res']) {
+
+          //登录验证
+          if (res.res == -992 || res.res == -991) {
+            //登录失败跳转登录页
+            router.push("/login");
+          } else {
+            if (success) {
+              success(res);
+            }
+          }
+
         } else {
           if (success) {
             success(res);
           }
         }
+
 
       },
       error: () => {
@@ -223,8 +240,6 @@ Origin.install = function (Vue, options) {
   Vue.prototype.$success = function (msg) {
     this.$message({ type: "success", message: msg });
   }
-
-
 
 
 }

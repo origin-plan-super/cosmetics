@@ -434,17 +434,14 @@ function add($id=false,$idType=false,$addData){
 */
 function isUserLogin($table='user'){
     
-    
     //接收登录参数
     $login_id=I($table."_id",false);
     $token=I('token',false);
-    
     
     if(!$login_id || !$token){
         //没有参数
         return -992;
     }
-    
     
     
     $where['login_id']=$login_id;

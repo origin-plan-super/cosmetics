@@ -18,6 +18,27 @@ namespace Home\Controller;
 use Think\Controller;
 class AddressController extends CommonController{
     
+    public function get(){
+        
+        $model=M('address');
+        $address_id=I('address_id');
+        $where=[];
+        $where['address_id']=$address_id;
+        $where['user_id']=session('user_id');
+        
+        $result=$model->where($where)->find();
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+        
+    }
+    
     public function add(){
         $model=M('address');
         $add=I('add','',false);
@@ -37,16 +58,17 @@ class AddressController extends CommonController{
             //是默认的
             $save['is_default']=0;
             $where=[];
-            $where['user_id']=session();
+            $where['user_id']=session('user_id');
             $model->where($where)->save($save);
-            
         }
         
-        
-        $result=$model->add($add);
-        if($result){
-            $res['res']=1;
-            $res['msg']=$result;
+        $add['is_default'] = $add['is_default']==true?1:0;
+            
+            
+            $result=$model->add($add);
+            if($result){
+                $res['res']=1;
+                $res['msg']=$result;
         }else{
             $res['res']=-1;
             $res['msg']=$result;
@@ -56,10 +78,37 @@ class AddressController extends CommonController{
     
     
     public function del(){
+        //如果要删除的是默认地址，需要重新设置默认地址
+        $address_id=I('address_id');
         $model=M('address');
+        
         $where=[];
-        $where['address_id']=I('address_id');
         $where['user_id']=session('user_id');
+        $where['address_id']=$address_id;
+        
+        
+        //先查找
+        $result=  $model->where($where)->find();
+        //判断是不是默认的
+        
+        
+        if($result['is_default']){
+            //是默认的，需要设置一个新的默认
+            $where=[];
+            $where['user_id']=session('user_id');
+            $result=$model->where($where)->find();
+            $where['address_id']=$result['address_id'];
+            $save=[];
+            $save['is_default']=1;
+            $save['edit_time']=time();
+            $model->where($where)->save($save);
+        }
+        
+        
+        $where=[];
+        $where['user_id']=session('user_id');
+        $where['address_id']=$address_id;
+        
         $result=$model->where($where)->delete();
         if($result){
             $res['res']=1;
@@ -77,6 +126,8 @@ class AddressController extends CommonController{
         $where=[];
         $where['user_id']=session('user_id');
         $result=$model->where($where)->select();
+        
+        
         if($result){
             $res['res']=count($result);
             $res['msg']=$result;
@@ -91,20 +142,39 @@ class AddressController extends CommonController{
     public function save(){
         $model=M('address');
         $save=I('save','',false);
+        $is_default=$save['is_default'];
+        if($is_default){
+            //是默认的
+            $save=[];
+            $save['is_default']=0;
+            $where=[];
+            $where['user_id']=session('user_id');
+            $model->where($where)->save($save);
+        }
+        $save=I('save','',false);
+        
+        unset($save['address_id']);
+        unset($save['add_time']);
+        unset($save['edit_time']);
+        
         $where=[];
         $where['user_id']=session('user_id');
         $where['address_id']=I('address_id');
-        unset($save['address_id']);
-        $result=$model->where($where)->save($save);
-        if($result){
-            $res['res']=$result;
-            $res['msg']=$result;
-            $save['edit_time']=time();
+        
+        $save['is_default'] = $save['is_default'] ==true? 1 : 0 ;
+            
             $result=$model->where($where)->save($save);
             
+            
+            if($result){
+                $res['res']=$result;
+                $res['msg']=$result;
+                $save['edit_time']=time();
+                $result=$model->where($where)->save($save);
+                
         }else{
             $res['res']=-1;
-            $res['msg']=$result;
+            $res['msg']=$model->_sql();
         }
         echo json_encode($res);
     }

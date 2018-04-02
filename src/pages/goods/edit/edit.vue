@@ -21,9 +21,9 @@
 
           <el-form-item label="商品分类" prop="goods_class">
 
-            <el-select v-model="goods.goods_class" multiple filterable allow-create default-first-option placeholder="请选择商品分类">
+            <el-select v-model="goods.goods_class"  filterable  default-first-option placeholder="请选择商品分类">
               <el-option-group v-for="group in goods_class" :key="group.class_title" :label="group.class_title">
-                <el-option v-for="item in group.children" :key="item.class_title" :label="item.class_title" :value="item.class_title">
+                <el-option v-for="item in group.children" :key="item.class_title" :label="item.class_title" :value="item.class_id">
                 </el-option>
               </el-option-group>
             </el-select>
@@ -33,7 +33,7 @@
           <el-form-item label='商品规格'>
             <el-button @click='show.spec=!show.spec'>展开/收起选择规格</el-button>
             <el-collapse-transition>
-              <spec v-show='show.spec' v-model="goods.spec"></spec>
+              <spec v-show='show.spec' :tree.sync="goods.tree" :sku.sync="goods.sku"></spec>
             </el-collapse-transition>
             <transition name='el-collapse-transition'>
             </transition>
@@ -70,19 +70,6 @@
         <el-card>
           <div slot="header" class="text-size-default">其他信息</div>
 
-          <!-- // 限购 -->
-          <el-form-item label='商品限购' prop='is_limit'>
-            <el-radio v-model="goods.is_limit" label="0">不限购</el-radio>
-            <el-radio v-model="goods.is_limit" label="1">限购</el-radio>
-            <el-input v-model="goods.limit_num" style="width:100px" size="small" v-if="goods.is_limit==1"></el-input>
-          </el-form-item>
-
-          <!-- // 库存 -->
-          <el-form-item label='库存计算方式' prop='stock_model'>
-            <el-radio v-model="goods.stock_model" label="1">下单减库存</el-radio>
-            <el-radio v-model="goods.stock_model" label="2">支付减库存</el-radio>
-          </el-form-item>
-          <!-- // 是否立刻上架 -->
           <el-form-item label='是否立刻上架' prop='is_up'>
             <div>
               <el-radio v-model="goods.is_up" label="1">立刻上架</el-radio>
@@ -127,24 +114,18 @@ export default {
       },
       goods_class: [],
       goods: {
+        tree:[],
+        sku:[],
         //标题
-        goods_title: "goods title",
+        goods_title: "",
         //物流模板
         logistics: "免邮",
-        //库存计算方式
-        stock_model: "1",
         //是否立刻上架
         is_up: "0",
         //商品分类
-        goods_class: [],
-        //规格
-        spec: {},
+        goods_class: '',
         //图片
         img_list: [],
-        //是否限购，0:不限购,1:限购
-        is_limit: "0",
-        //限购的数量
-        limit_num: 0,
         //详情
         goods_content: ""
       },
@@ -202,9 +183,10 @@ export default {
       // console.log(goods);
       // return;
       this.goods.goods_content = this.$refs["editor"].getContent();
+      var goods = this.goods;
 
-      var goods = arrToString(this.goods);
       this.$refs["goodsForm"].validate(valid => {
+        
         if (valid) {
           //验证成功
           this.$message({ message: "正在提交", type: "info" });
@@ -218,6 +200,7 @@ export default {
           if (this.model == "add") {
             this.$post("goods/add", { add: goods }, res => {
               loading.close();
+              console.log(res);
               if (res.res == 1) {
                 this.$message({ message: "提交成功", type: "success" });
               }
