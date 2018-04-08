@@ -78,14 +78,14 @@ class VIP{
     * 公式为：
     * 最终的订单价格=实际订单价格-实际订单价格*折扣的比率
     * */
-    private $discount = 0.1;
+    public $discount = 0.1;
     
     
     /**
     * @var Float $discountRebate 下级打折省下的钱，返给自己的比率，百分比
     * 下级省下来的钱，返给自己的比率
     * 【返利功能】
-    * 公式：
+    * 公式：a
     * 省下来的钱=实际订单价格*折扣的比率
     * 自己得到的钱=省下来的钱*省钱返利比率
     */
@@ -106,6 +106,11 @@ class VIP{
     */
     private $subSaleMoneyRebater = 0.2;
     
+    
+    /**
+    * @var Float 当此用户不是会员的时候，分享商品可以得到的回扣
+    */
+    public $shareMoney=0.5;
     
     //==============================================团队管理奖金相关数据==============================================
     
@@ -139,6 +144,7 @@ class VIP{
     
     function __construct ($conf=false,$sub){
         
+        
         $this->conf=$conf;
         if($conf){
             $this->userId=$conf['userId'];
@@ -149,10 +155,26 @@ class VIP{
         $this->getVipConf();
         //初始化此用户
         $this->init();
-        ec (" >== 用户：【 $this->userName : $this->userId 】被创建");
+        
+        
+        if(isset($conf['isDebug'])){
+            $this->setDebug($conf['isDebug']);
+        }
+        
+        if($this->isDebug){
+            ec (" >== 用户：【 $this->userName : $this->userId 】被创建");
+        }
         
         //初始化此用户的上级
         $this->initSuper();
+        
+    }
+    
+    
+    /**
+    * 获得此vip的数据
+    */
+    public function getInfo(){
         
     }
     
@@ -245,7 +267,7 @@ class VIP{
         if($this->isWriteDatabase){
             $result=$User->where($where)->save($save);
         }
-        
+        return $User->_sql();
         if($result!==false){
             return true;
         }else{
@@ -336,7 +358,10 @@ class VIP{
         ->where($where)
         ->select();
         $this->subList=$subList;
-        
+        if($this->isDebug){
+            ec("【 $this->userId 】：  下级$this->discount ");
+            dump($subList);
+        }
         
     }
     /**
@@ -374,11 +399,17 @@ class VIP{
     public  function getDiscount($money){
         //打掉的钱=实际订单价格*折扣的比率
         $finalPrice=$money*$this->discount;
-        if($this->isDebug){
-            ec("【 $this->userName 】：  该用户的省钱比率：$this->discount ");
-            ec("【 $this->userName 】：  该用户可以剩下的钱：$finalPrice ￥");
+        //判断类型
+        if($this->level>0){
+            if($this->isDebug){
+                ec("【 $this->userName 】：  该用户的省钱比率：$this->discount ");
+                ec("【 $this->userName 】：  该用户可以剩下的钱：$finalPrice ￥");
+            }
+            return  $finalPrice + 0.00;
+        }else{
+            return 0.00;
         }
-        return  $finalPrice + 0.00;
+        
     }
     
     /**
@@ -406,7 +437,7 @@ class VIP{
         
         
         $money=$this->getDiscount($orderMoney);//计算省下来的钱
-        $this->super->getSubDiscountRebate($money);//调用上级的函数进行省钱返利操作
+        return  $this->super->getSubDiscountRebate($money);//调用上级的函数进行省钱返利操作
         
     }
     
@@ -436,16 +467,8 @@ class VIP{
             ec("【 $this->userName 】：  上级得到了这些钱：$myMoney ￥");
         }
         
-        
         //然后保存到数据库中
-        $result=$this->saveMoney();
-        
-        
-        if($result){
-            return true;
-        }else{
-            return false;
-        }
+        return $result=$this->saveMoney();
         
     }
     
@@ -795,6 +818,11 @@ class VIP{
         
         
         
+    }
+    
+    public function getShareMoney(){
+        
+        return $this->shareMoney;
     }
     
     

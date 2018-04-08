@@ -2,76 +2,73 @@
   <div id="feedbackList">
     <div class="frame">
       <el-button-group>
-
         <el-tooltip class="item" effect="dark" content="刷新列表" placement="top-start">
           <el-button type="primary" size='mini' icon="el-icon-refresh" @click='update'></el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="删除选中" placement="top-start">
           <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
         </el-tooltip>
-
       </el-button-group>
-
     </div>
-    <div class="frame">
+      <div class="frame">
 
-      <el-table ref='table' @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border max-height='70vh' stripe size='mini'>
+        <el-table ref='table' @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border max-height='70vh' stripe size='mini'>
 
-        <el-table-column type='selection' align="center"></el-table-column>
+          <el-table-column type='selection' align="center"></el-table-column>
 
-        <el-table-column prop="state" label="反馈类型" align="left" :filters="type" :filter-method="filterMethod" resizable width="140">
-          <template slot-scope="scope">
+          <el-table-column prop="state" label="反馈类型" align="left" :filters="type" :filter-method="filterMethod" resizable width="140">
+            <template slot-scope="scope">
 
-            <template v-if="type[scope.row.feedback_type]">
+              <template v-if="type[scope.row.feedback_type]">
 
-              <span :class="type[scope.row.feedback_type].type">
-                <i style="width:20px;display: inline-block;" :class="type[scope.row.feedback_type].icon" v-if="type[scope.row.feedback_type].icon"></i>
-                {{type[scope.row.feedback_type].text}}
-              </span>
+                <span :class="type[scope.row.feedback_type].type">
+                  <i style="width:20px;display: inline-block;" :class="type[scope.row.feedback_type].icon" v-if="type[scope.row.feedback_type].icon"></i>
+                  {{type[scope.row.feedback_type].text}}
+                </span>
+
+              </template>
+              <template v-else>
+                <span class="text-error">
+                  <i style="width:20px;display: inline-block;" class="el-icon-error"></i>
+                  未知类型：{{scope.row.feedback_type}}
+                </span>
+              </template>
 
             </template>
-            <template v-else>
-              <span class="text-error">
-                <i style="width:20px;display: inline-block;" class="el-icon-error"></i>
-                未知类型：{{scope.row.feedback_type}}
+          </el-table-column>
+
+          <el-table-column prop="feedback_info" label="详情" resizable show-overflow-tooltip></el-table-column>
+          <el-table-column prop="user_name" label="用户" resizable show-overflow-tooltip></el-table-column>
+          <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip></el-table-column>
+          <el-table-column label="状态" resizable show-overflow-tooltip>
+
+            <template slot-scope="scope">
+              <span v-if="scope.row.is_ok == 0" class="text-warning">
+                <i class="el-icon-warning"></i>
+              </span>
+              <span v-if="scope.row.is_ok == 1" class="text-success">
+                <i class="el-icon-success"></i>
               </span>
             </template>
 
-          </template>
-        </el-table-column>
+          </el-table-column>
+          <el-table-column prop="add_time" label="添加时间" width="150" resizable show-overflow-tooltip></el-table-column>
 
-        <el-table-column prop="feedback_info" label="详情" resizable show-overflow-tooltip></el-table-column>
-        <el-table-column prop="user_name" label="用户" resizable show-overflow-tooltip></el-table-column>
-        <el-table-column prop="user_id" label="用户ID" resizable show-overflow-tooltip></el-table-column>
-        <el-table-column label="状态" resizable show-overflow-tooltip>
+          <el-table-column fixed="right" label="操作" width="130" align="center">
+            <template slot-scope="scope">
+              <el-button type="text" size="mini" @click="setOk(scope.row)">处理</el-button>
+              <el-button type="text" icon="el-icon-search" size="mini" @click="show(scope.row)"></el-button>
+              <el-button type="text" icon="el-icon-delete" size="mini"></el-button>
+            </template>
+          </el-table-column>
 
-          <template slot-scope="scope">
-            <span v-if="scope.row.is_ok == 0" class="text-warning">
-              <i class="el-icon-warning"></i>
-            </span>
-            <span v-if="scope.row.is_ok == 1" class="text-success">
-              <i class="el-icon-success"></i>
-            </span>
-          </template>
+        </el-table>
 
-        </el-table-column>
-        <el-table-column prop="add_time" label="添加时间" width="150" resizable show-overflow-tooltip></el-table-column>
-
-        <el-table-column fixed="right" label="操作" width="130" align="center">
-          <template slot-scope="scope">
-            <el-button type="text" size="mini" @click="setOk(scope.row)">处理</el-button>
-            <el-button type="text" icon="el-icon-search" size="mini" @click="show(scope.row)"></el-button>
-            <el-button type="text" icon="el-icon-delete" size="mini"></el-button>
-          </template>
-        </el-table-column>
-
-      </el-table>
-
-    </div>
-    <div class="frame">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
-    </div>
+      </div>
+      <div class="frame">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+        </el-pagination>
+      </div>
   </div>
 </template>
 <script>

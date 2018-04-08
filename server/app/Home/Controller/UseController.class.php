@@ -94,4 +94,41 @@ class UseController extends CommonController {
     }
     
     
+    public function saveFile(){
+        
+        //=========输出json=========
+        $image=I('file');
+        //=========输出json=========
+        
+        $imageName = "25220_".date("His",time())."_".rand(1111,9999).'.png';
+        if (strstr($image,",")){
+            $image = explode(',',$image);
+            $image = $image[1];
+        }
+        
+        
+        $path = "Public/Upload/home/dynamic/".date("Ymd",time());
+        
+        if (!is_dir($path)){ //判断目录是否存在 不存在就创建
+            mkdir($path,0777,true);
+        }
+        
+        $imageSrc=  $path."/". $imageName;
+        
+        $r = file_put_contents($imageSrc, base64_decode($image));
+        
+        $res=[];
+        
+        if (!$r) {
+            $res['res']=-1;
+        }else{
+            $res['res']=1;
+            $res['msg']=$imageSrc;
+            
+        }
+        echo json_encode($res);
+        
+    }
+    
+    
 }

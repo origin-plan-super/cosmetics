@@ -12,35 +12,24 @@ class HomeController extends CommonController {
         $carousel=$model
         ->order('sort asc,add_time desc')
         ->select();
-        
         //商品列表
-        $model=M('goods');
-        $page=I('page')?I('page'):1;
-        $limit=I('limit')?I('limit'):10;
-        $where=[];
-        $where['is_up']=1;
         
-        $goods=$model
-        ->where($where)
-        ->order('sort desc,add_time desc')
-        ->limit(($page-1)*$limit,$limit)
-        ->select();
+        $navList=['精选直供','美妆个护','家居生活','蔬果生鲜'];
         
-        // =========判断=========
-        if($goods){
-            $goods=toTime($goods);
-            $map=[];
-            $map['img_list']=false;
-            $map['goods_class']=false;
-            $map['spec']=false;
-            $goods=arrJsonD($goods,$map);
-        }
         
+        $Goods=D('Goods');
+        $goodsList  =  $Goods->getList(I());
         
         $res['carousel']=$carousel;
-        $res['goods']=$goods;
+        $res['goods']=$goodsList;
+        $res['navList']=$navList;
+        
         echo json_encode($res);
         
     }
+    
+    
+    
+    
     
 }

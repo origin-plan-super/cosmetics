@@ -125,22 +125,27 @@ class LoginController extends Controller {
     }
     
     public function sinOut(){
+        
+        
         //获得传来的token
         $token=I('token');
         //获得传来的id
         $user_id=I('user_id');
+        
         //创建token的控制器
         $model=M('token');
         //创建条件
-        $where['user_id']=$user_id;
+        $where=[];
+        $where['login_id']=$user_id;
         //删除token
         $result=$model->where($where)->delete();
+        
         //清空session
         session(null);
         
-        if($result){
+        if($result!==false){
             //退出成功
-            $res['res']=1;
+            $res['res']=-991;
         }else{
             //退出失败
             $res['res']=-1;

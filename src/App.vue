@@ -123,6 +123,44 @@
             </el-menu-item-group>
 
           </el-submenu>
+          <el-submenu index="/msg" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="el-icon-message"></i>
+              <span slot="title">消息管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/msg/list">
+                <span>消息列表</span>
+              </el-menu-item>
+              <el-menu-item index="/msg/add">
+                <span>发布消息</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
+          <el-submenu index="/paper" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="el-icon-message"></i>
+              <span slot="title">文章管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/paper/list">
+                <span>文章列表</span>
+              </el-menu-item>
+              <el-menu-item index="/paper/add">
+                <span>发布文章</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
 
         </el-menu>
       </el-aside>

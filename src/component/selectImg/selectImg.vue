@@ -105,10 +105,29 @@ export default {
   },
   watch: {
     img_list() {
+
       let count = 10 - this.img_list.length;
       this.fileMax = count > 0 ? count : -1;
-      this.$emit("input", this.img_list);
-    }
+
+      var list=[];
+
+      for (let i = 0; i < this.img_list.length; i++) {
+        list.push(this.img_list[i].src);
+      }
+
+      this.$emit("input", list);
+
+    },
+    value(val){
+      if(this.img_list.length<=0){
+          for (let i = 0; i < val.length; i++) {
+            this.img_list.push({
+              src:val[i].src,
+              key:val[i].img_id,
+            });
+          }
+      }
+    } 
   },
 
   mounted() {

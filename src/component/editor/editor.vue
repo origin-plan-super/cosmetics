@@ -28,13 +28,11 @@ export default {
       return this.editor.getContent();
     },
     test() {
-      console.log(this.getContent());
     }
 
     // testMsg() {
     //   const _this = this;
     //   this.defaultMsg = this.value;
-    //   console.log(this.defaultMsg);
     //   this.editor.setContent(this.defaultMsg); // 确保UE加载完成后，放入内容。
     // }
   },
@@ -56,7 +54,6 @@ export default {
 
     this.editor.addListener("contentChange", () => {
       var value = this.editor.getContent();
-      console.log(value);
       this.$emit("input", value);
     });
     this.$nextTick(() => {});

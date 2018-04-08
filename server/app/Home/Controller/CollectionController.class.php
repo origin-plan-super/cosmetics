@@ -56,25 +56,26 @@ class CollectionController extends CommonController{
     }
     
     public function getList(){
-        $model=M();
+        
+        $model=M('collection');
         $where=[];
         $where['user_id']=session('user_id');
         
         $result=$model
-        ->table('c_collection as t1,c_goods as t2')
         ->where($where)
-        ->where('t1.goods_id = t2.goods_id')
-        ->order('t1.add_time desc')
+        ->order('add_time desc')
         ->select();
         
+        
+        $Goods=D('goods');
+        // 找商品
+        for ($i=0; $i < count($result); $i++) {
+            $goods=    $Goods->get($result[$i]['goods_id']);
+            $result[$i]['goods_info']        =    $goods;
+        }
+        
+        
         if($result){
-            
-            $map=[];
-            $map['img_list']=false;
-            $map['goods_class']=false;
-            $map['spec']=false;
-            
-            $result=arrJsonD($result,$map);
             
             $res['res']=count($result);
             $res['msg']=$result;

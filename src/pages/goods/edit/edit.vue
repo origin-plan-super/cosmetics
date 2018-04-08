@@ -180,7 +180,6 @@ export default {
       this.$router.replace("/goods/list");
     },
     submitForm() {
-      // console.log(goods);
       // return;
       this.goods.goods_content = this.$refs["editor"].getContent();
       var goods = this.goods;
@@ -199,8 +198,8 @@ export default {
 
           if (this.model == "add") {
             this.$post("goods/add", { add: goods }, res => {
+              
               loading.close();
-              console.log(res);
               if (res.res == 1) {
                 this.$message({ message: "提交成功", type: "success" });
               }
@@ -213,8 +212,9 @@ export default {
           if (this.model == "edit") {
             this.$post(
               "goods/save",
-              { where: { goods_id: goods.goods_id }, save: goods },
+              { save: goods },
               res => {
+              console.log(res);
                 loading.close();
                 if (res.res == 1) {
                   this.$message({ message: "保存成功", type: "success" });
@@ -239,13 +239,22 @@ export default {
     // 如果路由传来了商品的id，就异步获取商品的信息，并且设置到goods上，
     // 如果路由没有传来任何商品的id，就代表是添加模式。
     // 默认是添加模式
-    if (this.$route.params["goods"]) {
-      this.model = "edit";
-      var goods = this.$route.params["goods"];
-      this.goods = goods;
-    }
-    //取得商品分类
 
+
+    if (this.$route.query["goods_id"]) {
+      this.model = "edit";
+      var goods_id = this.$route.query["goods_id"];
+
+      this.$get('goods/get',{
+        goods_id:goods_id,
+      },res=>{
+        console.log(res);
+        this.goods=res.msg;
+      });
+
+    }
+
+    //取得商品分类
     this.$get("Class/getList", {}, res => {
       if (res.count > 0) {
         this.goods_class = res.msg;

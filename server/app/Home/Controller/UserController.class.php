@@ -79,15 +79,36 @@ class UserController extends CommonController{
         $model=M('user');
         $where=[];
         $where['user_id']=session('user_id');
-        $result=$model->where($where)->field($field)->find();
+        $user=$model->where($where)->field($field)->find();
         
-        if($result){
+        //如果当前用户是会员，需要获取会员数据
+        
+        Vendor('VIP.VIP');
+        $conf=[];
+        $conf['userId']=session('user_id');
+        $vip=new \VIP($conf);
+        $vip->setWriteDatabase(false);
+        $vipInfo=null;
+        
+        if($user['user_vip_level']>0){
+            //是会员
+            //初始化vip对象
+            // $vip->setDebug(true);
+            $vipInfo['discount']=$vip->discount;//会员优惠价
+        }else{
+            //非会员可以分享商品得钱
+            $vipInfo['shareMoney']=$vip->shareMoney;//会员优惠价
+        }
+        $user['vipInfo']=$vipInfo;
+        
+        if($user){
             $res['res']=1;
-            $res['msg']=$result;
+            $res['msg']=$user;
         }else{
             $res['res']=-1;
-            $res['msg']=$result;
+            $res['msg']=$user;
         }
+        
         echo json_encode($res);
         
     }

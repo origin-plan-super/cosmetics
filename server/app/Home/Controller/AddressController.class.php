@@ -68,7 +68,7 @@ class AddressController extends CommonController{
             $result=$model->add($add);
             if($result){
                 $res['res']=1;
-                $res['msg']=$result;
+                $res['msg']=$add;
         }else{
             $res['res']=-1;
             $res['msg']=$result;

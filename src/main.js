@@ -26,8 +26,8 @@ Vue.component('OImg', OImg)
 var Url = {};
 Url.install = function (Vue, options) {
 
-  // var server = 'http://cosmetics.com/index.php/';
-  var server = 'http://120.78.162.200:12138/index.php/';
+  var server = 'http://cosmetics.com/index.php/';
+  // var server = 'http://120.78.162.200:12138/index.php/';
 
   var serverAdmin = server + 'Admin/';
   var serverHome = server + 'Home/';
@@ -353,6 +353,18 @@ import fork_seller from './pages/fork/seller/seller.vue';
 import user from './pages/user/user.vue';
 import user_list from './pages/user/list/list.vue';
 
+
+//消息列表
+import msg from './pages/msg/msg.vue';
+import msg_list from './pages/msg/list/list.vue';
+import msg_add from './pages/msg/add/add.vue';
+
+//文章
+import paper from './pages/paper/paper.vue';
+import paper_list from './pages/paper/list/list.vue';
+import paper_add from './pages/paper/add/add.vue';
+
+
 // =============
 
 import { EINPROGRESS } from 'constants';
@@ -405,6 +417,18 @@ const router = new VueRouter({
     {
       path: '/user', component: user, children: [
         { path: 'list', name: "/user/list", component: user_list, meta: { title: '用户列表' }, },
+      ]
+    },
+    {
+      path: '/msg', component: msg, children: [
+        { path: 'list', name: "/msg/list", component: msg_list, meta: { title: '消息列表' }, },
+        { path: 'add', name: "/msg/add", component: msg_add, meta: { title: '发布消息' }, },
+      ]
+    },
+    {
+      path: '/paper', component: paper, children: [
+        { path: 'list', name: "/paper/list", component: paper_list, meta: { title: '文章列表' }, },
+        { path: 'add', name: "/paper/add", component: paper_add, meta: { title: '发布文章' }, },
       ]
     },
     { path: '/ctos', component: ctos },

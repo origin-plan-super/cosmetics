@@ -18,50 +18,34 @@ namespace Home\Controller;
 use Think\Controller;
 class GoodsController extends CommonController{
     
+    //取得详情页数据包
+    public function getPacket(){
+        
+    }
+    
     
     //获得商品列表
     public function getList(){
         
-        $model=M('goods');
-        $page=I('page')?I('page'):0;
-        $limit=I('limit')?I('limit'):10;
-        $where=[];
-        $where['is_up']=1;
-        
-        $result=$model
-        ->where($where)
-        ->order('sort desc,add_time desc')
-        // ->limit(($page-1)*$limit,$limit)
-        ->select();
-        
+        $Goods=D('Goods');
+        $data=I();
+        $goodsList  =  $Goods->getList($data);
         // =========判断=========
-        if($result){
+        if($goodsList){
             //总条数
-            $result=toTime($result);
-            
-            $map=[];
-            $map['img_list']=false;
-            $map['goods_class']=false;
-            $map['spec']=false;
-            
-            $result=arrJsonD($result,$map);
-            
-            $res['count']=$model->count()+0;
-            $res['res']=1;
-            $res['msg']=$result;
-            
+            $goodsList      =   toTime($goodsList);
+            $res['res']     =   count($goodsList);
+            $res['msg']     =   $goodsList;
+            $res['count']   =   $Goods->count()+0;
             
         }else{
-            $res['res']=0;
+            $res['res']     =   0;
         }
-        
         echo json_encode($res);
-        
         
     }
     
     public function get(){
-        
         
         // 5de29730ce2d36ab744fcf9e70bc6a9f
         $goods_id=I('goods_id');
@@ -71,44 +55,16 @@ class GoodsController extends CommonController{
             echo json_encode($res);
             die;
         }
-        $where=[];
-        $where['goods_id']=$goods_id;
         
-        $model=M('goods');
+        $Goods=D('Goods');
+        $goods=$Goods->get($goods_id);
         
-        $result=$model
-        ->where($where)
-        ->find();
-        if($result){
-            
-            $result=toTime([$result])[0];
-            $map=[];
-            $map['img_list']=false;
-            $map['goods_class']=false;
-            $map['spec']=false;
-            $result=arrJsonD([$result],$map)[0];
-            
-            //找是否收藏
-            $model=M('collection');
-            $where['user_id']=session('user_id');
-            $collection=$model->where($where)->find();
-            
-            
-            if($collection){
-                $result['is_collection']=true;
-            }else{
-                $result['is_collection']=false;
-            }
-            
-            $res['bag_num']=getBagNum();
-            
+        if($goods){
             $res['res']=1;
-            $res['msg']=$result;
-            
-            
+            $res['msg']=$goods;
         }else{
             $res['res']=-1;
-            $res['msg']=$result;
+            $res['msg']=$goods;
         }
         echo json_encode($res);
         

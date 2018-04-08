@@ -16,6 +16,34 @@ function toTime($arr,$code='Y-m-d H:i:s'){
     return $arr;
     
 }
+function to_format_date($arr,$field){
+    foreach ($arr as $key => $value) {
+        if(!empty($value[$field])){
+            $arr[$key][$field]=format_date($value[$field]);
+        }
+    }
+    return $arr;
+}
+
+function format_date($time){
+    $t=time()-$time;
+    $f=array(
+    '31536000'=>'年',
+    '2592000'=>'个月',
+    '604800'=>'星期',
+    '86400'=>'天',
+    '3600'=>'小时',
+    '60'=>'分钟',
+    '1'=>'秒'
+    );
+    foreach ($f as $k=>$v)    {
+        if (0 !=$c=floor($t/(int)$k)) {
+            return $c.$v.'前';
+        }
+    }
+    return "0秒前";
+}
+
 function toHtml($arr,$field){
     
     
@@ -687,4 +715,132 @@ function ec($info,$tag='div'){
     $style="font-size:14px;color:#333;line-height:1;padding:5px;text-align:left";
     $log="<$tag style='$style'>$info</$tag>";
     echo $log;
+}
+
+
+
+
+function getGoodsSku($goods,$map=['img_list','sku','tree']){
+    
+    
+    $goods_id=$goods['goods_id'];
+    
+    $where=[];
+    $where['goods_id']=$goods_id;
+    
+    
+    
+    if(in_array('img_list',$map)){
+        
+        //找图片
+        $GoodsImg=M('goods_img');
+        $goods['img_list']=$GoodsImg->where($where)->order('slot asc')->select();
+    }
+    
+    if(in_array('sku',$map)){
+        $Sku=M('sku');
+        $skus= $Sku->where($where)->select();
+        $goods['sku']=$skus;
+    }
+    
+    
+    if(in_array('tree',$map)){
+        
+        $SkuTree=M('sku_tree');
+        $SkuTreeV=M('sku_tree_v');
+        
+        $tree= $SkuTree->where($where)->select();
+        for ($j=0; $j <count($tree) ; $j++) {
+            //找 tree 的 v
+            $sku_tree_id=$tree[$j]['sku_tree_id'];
+            $where['sku_tree_id']=$sku_tree_id;
+            $v= $SkuTreeV->where($where)->select();
+            $tree[$j]['v']= $v;
+        }
+        $goods['tree']=$tree;
+        
+    }
+    
+    
+    
+    
+    
+    return $goods;
+    
+}
+
+//添加sku
+function addGoodsSku($goods_id,$data){
+    $GoodsImg=M('goods_img');//商品图片
+    $Sku=M('sku');//sku
+    $SkuTree=M('sku_tree');//sku树
+    $SkuTreeV=M('sku_tree_v');//sky树的v
+    
+    $where=[];
+    $where['goods_id']=$goods_id;
+    
+    $GoodsImg->where($where)->delete();
+    $Sku->where($where)->delete();
+    $SkuTree->where($where)->delete();
+    $SkuTreeV->where($where)->delete();
+    
+    //重新添加商品图片
+    $imgs=[];
+    $imgList=$data['img_list'];
+    for ($i=0; $i < count($imgList); $i++) {
+        $url=$imgList[$i];
+        $item=[];
+        $item['goods_id']=$goods_id;
+        $item['img_id']=getMd5($goods_id.'goodsImg');
+        $item['src']=$url;
+        $item['add_time']=time();
+        $item['edit_time']=time();
+        $item['slot']=$i;
+        $imgs[]=$item;
+    }
+    $GoodsImg->addAll($imgs);
+    
+    //重新添加sku
+    $skus=$data['sku'];
+    for ($i=0; $i < count($skus); $i++) {
+        $item=$skus[$i];
+        $skus[$i]['goods_id']=$goods_id;
+        $sku_id=$goods_id.$item['price'].$item['s1'].$item['s2'].$item['s3'];
+        $sku_id=md5($sku_id);
+        $skus[$i]['sku_id']=$sku_id;
+        $skus[$i]['add_time']=time();
+        $skus[$i]['edit_time']=time();
+    }
+    
+    //重新添加 sku tree
+    $trees=$data['tree'];
+    $treeV=[];
+    for ($i=0; $i < count($trees); $i++) {
+        
+        $tree=$trees[$i];
+        $sku_tree_id=md5($goods_id.$tree['k']);
+        $tree['sku_tree_id']=$sku_tree_id;
+        $tree['goods_id']=$goods_id;
+        $tree['add_time']=time();
+        $tree['edit_time']=time();
+        
+        $trees[$i]=$tree;
+        //添加 tree 的 v
+        for ($j=0; $j <count($tree['v']) ; $j++) {
+            $v=$tree['v'][$j];
+            $v['v_id']=md5($goods_id.$sku_tree_id.$v['id']);
+            $v['goods_id']=$goods_id;
+            $v['sku_tree_id']=$sku_tree_id;
+            $v['img_url']='';
+            $v['add_time']=time();
+            $v['edit_time']=time();
+            $treeV[]=$v;
+        }
+        unset($tree['v']);
+    }
+    
+    $Sku->addAll($skus);
+    $SkuTree->addAll($trees);
+    $SkuTreeV->addAll($treeV);
+    
 }

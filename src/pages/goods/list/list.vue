@@ -31,13 +31,9 @@
           <el-table-column type='selection' align="center"></el-table-column>
 
           <el-table-column width="70" align="center" label="图片">
-
             <template slot-scope="scope">
-
               <img :src="$getUrl(scope.row.img_list[0].src)" v-if="scope.row.img_list.length>0" class="table-goods-img" alt="图片错误！">
-
             </template>
-
           </el-table-column>
 
           <el-table-column prop="goods_id" label="商品ID" resizable show-overflow-tooltip width="100"></el-table-column>
@@ -66,7 +62,7 @@
 
           <el-table-column label="上架" fixed="right" width="80" align="center">
             <template slot-scope="scope">
-              <el-switch title="设置上架" :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="save(scope.row,'is_up')"></el-switch>
+              <el-switch title="设置上架" :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="up(scope.row)"></el-switch>
             </template>
           </el-table-column>
 
@@ -132,12 +128,10 @@ export default {
         "goods/getList",
         { page: this.currentPage, limit: this.pageSize },
         res => {
-          
           clearTimeout(setTim);
           this.tableLoading = false;
-          console.log(res);
           this.total = res.count;
-          if (res.count > 0) this.tableData =res.msg;
+          if (res.count > 0) this.tableData = res.msg;
         }
       );
     },
@@ -160,7 +154,7 @@ export default {
       save[saveName] = item[saveName];
 
       this.$post(
-        "goods/save",
+        "goods/saveInfo",
         { where: { goods_id: item.goods_id }, save: save },
         res => {
           clearTimeout(tim);
@@ -177,8 +171,35 @@ export default {
         }
       );
     },
+    up(item) {
+      var tim = setTimeout(() => {
+        this.isPreservation = true;
+      }, 100);
+      var msg;
+
+      msg = this.$message({
+        message: "正在保存",
+        duration: 0,
+        iconClass: "el-icon-loading"
+      });
+      this.$post("goods/up", { save: item }, res => {
+        clearTimeout(tim);
+        msg.close();
+
+        this.isPreservation = false;
+
+        if (res.res >= 1) {
+        }
+        if (res.res < 0) {
+          this.$message({ message: "操作失败！请重试！", type: "error" });
+        }
+      });
+    },
     editGoods(item) {
-      this.$router.push({ name: "/goods/edit", params: { goods: item } });
+      this.$router.push({
+        name: "/goods/edit",
+        query: { goods_id: item.goods_id }
+      });
     },
     rowKey(item) {
       return item.goods_id;

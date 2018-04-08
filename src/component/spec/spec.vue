@@ -83,7 +83,6 @@
         <el-input v-model="filling.money" placeholder="价格" style="width:100px"></el-input>
         <el-input v-model="filling.stock" placeholder="库存" style="width:100px"></el-input>
         <el-button type="primary" @click="batchFilling()">确认</el-button>
-        <el-button type="danger" @click="test()">取得测试数据</el-button>
       </p>
 
       <el-table :data="sku" style="width: 100%" size='small' border>
@@ -223,8 +222,9 @@ export default {
       };
 
       list.push(group);
-
       this.spec = list;
+
+    
     },
     //移除规格组
     removeSpecGroup(group, index, spec) {
@@ -405,9 +405,43 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.initSpec();
-    });
+    this.initSpec();
+    this.$nextTick(() => {});
+  },
+  watch:{
+    tree(tree){
+
+
+      var spec= this.spec;
+      
+      for (let i = 0; i < tree.length; i++) {
+        let item = tree[i];
+        for (let j = 0; j < spec.length; j++) {
+          let group = spec[j];
+          if(item.k==group.title){
+
+            for (let x = 0; x < item.v.length; x++) {
+              let v = item.v[x];
+                      
+          for (let l = 0; l < group.node.length; l++) {
+            let node = group.node[l];
+if(v.name==node.title){
+
+if(!node.check){
+node.check=true;
+}
+}
+
+          }
+            }
+      
+          }
+        }
+      }
+
+      
+      
+    }
   }
 };
 
