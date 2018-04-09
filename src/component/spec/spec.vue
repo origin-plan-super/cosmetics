@@ -381,7 +381,6 @@ export default {
         return;
       }
 
-      // console.log(tree);
       var test = generateGroup(tree);
       var skus = [];
       for (let i = 0; i < test.length; i++) {
@@ -399,7 +398,6 @@ export default {
         skus.push(sku);
       }
 
-      console.log(tree);
       this.$emit("update:tree", tree);
       this.$emit("update:sku", skus);
     }

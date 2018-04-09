@@ -262,7 +262,6 @@ export default {
     del(item, list, index) {
       var delClass = data => {
         this.$post("class/del", data, res => {
-          console.log(res);
 
           if (res.res >= 1) {
             this.$message({

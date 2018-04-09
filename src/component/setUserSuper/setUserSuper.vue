@@ -20,13 +20,11 @@
 
           <el-select :loading="isLoad" v-loading="isLoad" v-model="data.super_id" placeholder="请选择一个上级">
 
-            <el-option-group v-for="group in forks" :key="group.star.star_id" :label="group.star.star_name">
+            <el-option-group v-for="group in forks" :key="group.vip.vip_id" :label="group.vip.vip_name">
 
               <el-option v-for="item in group.node" :key="item.user_id" :value="item.user_id" :label="item.user_name" :disabled="item.user_id==data.user_id">
-
-                <span style="float: left">{{ item.user_name }}</span>
-                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.star_name }}</span>
-
+                <span style="float: left">{{ item.user_id }} - {{item.user_name }}</span>
+                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.vip_name }}</span>
               </el-option>
 
             </el-option-group>
@@ -40,7 +38,6 @@
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="isShow = false">取 消</el-button>
         <el-button size="mini" type="primary" @click="submitForm('form')">保存</el-button>
-
       </span>
     </el-dialog>
 
@@ -69,23 +66,23 @@ export default {
   methods: {
     update() {
       this.isLoad = true;
-      this.$get("fork/getForkList", {}, res => {
+      this.$get("user/getVipList", {}, res => {
         // 分组处理
-
+        console.log(res);
         if (res.res >= 1) {
           var list = {};
           for (let i = 0; i < res.msg.length; i++) {
             var item = res.msg[i];
-            if (list[item.star_id] == null) {
-              list[item.star_id] = {
-                star: {
-                  star_name: item.star_name,
-                  star_id: item.star_id
+            if (list[item.user_vip_level] == null) {
+              list[item.user_vip_level] = {
+                vip: {
+                  vip_name: item.vip.vip_name,
+                  vip_level: item.vip.vip_level
                 },
                 node: []
               };
             }
-            list[item.star_id].node.push(item);
+            list[item.user_vip_level].node.push(item);
           }
           this.forks = list;
         } else {
@@ -111,7 +108,6 @@ export default {
           var add = this.data;
 
           this.$post("fork/setSuper", { add: add }, res => {
-            console.log(res);
             if (res.res >= 1) {
               this.isShow = false;
               this.$message({ type: "success", message: "操作成功！" });

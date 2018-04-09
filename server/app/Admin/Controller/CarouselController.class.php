@@ -47,6 +47,13 @@ class CarouselController extends CommonController{
         
     }
     
+    
+    public function getPacket(){
+        
+    }
+    
+    
+    
     public function getList(){
         
         $model=M('carousel');

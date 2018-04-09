@@ -30,13 +30,40 @@
               <span slot="title">页面</span>
 
               <el-menu-item index="/renovation/carousel">
-                <span>首页轮播</span>
+                <span>轮播管理</span>
+              </el-menu-item>
+
+              <el-menu-item index="/renovation/nav">
+                <span>导航管理</span>
+              </el-menu-item>
+
+              <el-menu-item index="/renovation/special">
+                <span>专题管理</span>
               </el-menu-item>
 
             </el-menu-item-group>
 
           </el-submenu>
 
+          <el-submenu index="/coupon" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="fa fa-shopping-bag"></i>
+              <span slot="title">优惠券</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/coupon/list">
+                <span>优惠券列表</span>
+              </el-menu-item>
+              <el-menu-item index="/coupon/add">
+                <span>新增优惠券</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
           <el-submenu index="/goods" :show-timeout='0' :hide-timeout='0'>
 
             <template slot="title">
@@ -116,8 +143,8 @@
               <el-menu-item index="/user/list">
                 <span>客户管理</span>
               </el-menu-item>
-              <el-menu-item index="/fork/seller">
-                <span>分销商管理</span>
+              <el-menu-item index="/vip">
+                <span>vip等级管理</span>
               </el-menu-item>
 
             </el-menu-item-group>
@@ -161,6 +188,42 @@
             </el-menu-item-group>
 
           </el-submenu>
+          <el-submenu index="/help" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="el-icon-message"></i>
+              <span slot="title">帮助管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/help/list">
+                <span>帮助列表</span>
+              </el-menu-item>
+              <el-menu-item index="/help/add">
+                <span>添加帮助</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
+
+          <el-submenu index="/timeLimits" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <i class="el-icon-message"></i>
+              <span slot="title">营销管理</span>
+            </template>
+
+            <el-menu-item-group>
+
+              <el-menu-item index="/timeLimit">
+                <span>限时购管理</span>
+              </el-menu-item>
+
+            </el-menu-item-group>
+
+          </el-submenu>
 
         </el-menu>
       </el-aside>
@@ -190,10 +253,11 @@
                   管理员列表
                 </el-menu-item>
 
+                <!-- // 
                 <el-menu-item index='/ctos'>
                   <span slot="title">CTOS</span>
                 </el-menu-item>
-
+ -->
               </el-submenu>
 
               <el-submenu index="2" :show-timeout='0' :hide-timeout='0'>

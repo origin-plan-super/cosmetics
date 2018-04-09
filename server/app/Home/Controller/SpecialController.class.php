@@ -20,18 +20,16 @@ class SpecialController extends CommonController{
     
     //获得专题页数据包
     public function getPacket(){
-        $res=[];
+        $Special=D('Special');
+        $special=$Special->get(I('special_id'));
         
-        $special=[];
-        $special['banner']='http://cosmetics.com/Public/Upload/carousel/2018-04-03/5ac39b514b5b4.jpg';
-        $special['info']='春季特卖春季特卖春季特卖春季特卖春季特卖春季特卖春季特卖春季特卖春季特卖春季特卖';
-        
-        $Goods=D('Goods');
-        $goodsList  =  $Goods->getList(I());
-        $special['goodsList']=$goodsList;
-        
-        $res['res']=1;
-        $res['special']=$special;
+        if($special){
+            $res['res']=1;
+            $res['msg']=$special;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$special;
+        }
         echo json_encode($res);
         
     }

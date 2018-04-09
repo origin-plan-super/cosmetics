@@ -1,0 +1,13 @@
+.nav-panel {
+    .special-del {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 0 5px;
+        background-color: rgba($color: #F56C6C, $alpha: 0.8);
+        line-height: 100px;
+        font-size: 20px;
+        z-index: 999;
+    }
+}

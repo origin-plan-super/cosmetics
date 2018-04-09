@@ -18,16 +18,21 @@ Vue.use(require('vue-wechat-title'))
 //自定义组件
 import load from "./component/load/load.vue";
 import OImg from "./component/OImg/OImg.vue";
+import ImgList from "./component/img-list/img-list.vue";
+
 Vue.component('load', load)
 Vue.component('OImg', OImg)
+Vue.component(ImgList.name, ImgList)
+
 
 //自定义扩展Vue
 
 var Url = {};
 Url.install = function (Vue, options) {
 
-  var server = 'http://cosmetics.com/index.php/';
+  // var server = 'http://cosmetics.com/index.php/';
   // var server = 'http://120.78.162.200:12138/index.php/';
+  var server = 'http://server.followenjoy.cn/index.php/';
 
   var serverAdmin = server + 'Admin/';
   var serverHome = server + 'Home/';
@@ -275,9 +280,6 @@ Vue.directive('img', {
 Vue.filter('isNull', function (value) {
 
 
-  console.log('isNull');
-  console.log(value);
-
 
 
 })
@@ -329,6 +331,10 @@ import admin_info from './pages/admin/info/info.vue';
 
 import renovation from './pages/renovation/renovation.vue';
 import renovation_carousel from './pages/renovation/carousel/carousel.vue';
+import renovation_nav from './pages/renovation/nav/nav.vue';//导航管理
+import renovation_special from './pages/renovation/special/special.vue';//专题管理
+import specialEdit from './pages/renovation/special/specialEdit.vue';//专题编辑管理
+
 
 //反馈管理
 
@@ -365,6 +371,25 @@ import paper_list from './pages/paper/list/list.vue';
 import paper_add from './pages/paper/add/add.vue';
 
 
+//优惠券
+
+import coupon from './pages/coupon/coupon.vue';
+import coupon_list from './pages/coupon/list/list.vue';
+import coupon_add from './pages/coupon/add/add.vue';
+import coupon_edit from './pages/coupon/edit/edit.vue';
+
+// 帮助
+import help from './pages/help/help.vue';
+import help_list from './pages/help/list/list.vue';
+import help_add from './pages/help/add/add.vue';
+import help_edit from './pages/help/edit/edit.vue';
+
+import vip from './pages/vip/vip.vue';
+
+import timeLimit from './pages/timeLimit/timeLimit.vue';
+
+
+
 // =============
 
 import { EINPROGRESS } from 'constants';
@@ -375,7 +400,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: index },
     { path: '/index', component: index, meta: { title: '首页' }, },
-    { path: '/login', component: login },
+    { path: '/login', component: login, meta: { title: '登录' }, },
     {
       path: '/goods', component: goods, children: [
         { path: 'edit', name: "/goods/edit", component: goods_edit, meta: { title: '编辑商品' }, },
@@ -397,7 +422,11 @@ const router = new VueRouter({
     {
       path: '/renovation', component: renovation, children: [
         { path: 'carousel', name: "/renovation/carousel", component: renovation_carousel, meta: { title: '首页轮播管理' }, },
+        { path: 'nav', name: "/renovation/nav", component: renovation_nav, meta: { title: '首页导航管理' }, },
+        { path: 'special', name: "/renovation/special", component: renovation_special, meta: { title: '专题管理' }, },
+        { path: 'specialEdit', name: "/renovation/specialEdit", component: specialEdit, meta: { title: '专题编辑' }, },
       ]
+
     },
     {
       path: '/feedback', component: feedback, children: [
@@ -425,13 +454,30 @@ const router = new VueRouter({
         { path: 'add', name: "/msg/add", component: msg_add, meta: { title: '发布消息' }, },
       ]
     },
+
     {
       path: '/paper', component: paper, children: [
         { path: 'list', name: "/paper/list", component: paper_list, meta: { title: '文章列表' }, },
         { path: 'add', name: "/paper/add", component: paper_add, meta: { title: '发布文章' }, },
       ]
     },
+    {
+      path: '/coupon', component: coupon, children: [
+        { path: 'list', name: "/coupon/list", component: coupon_list, meta: { title: '优惠券列表' }, },
+        { path: 'add', name: "/coupon/add", component: coupon_add, meta: { title: '添加优惠券' }, },
+        { path: 'edit', name: "/coupon/edit", component: coupon_edit, meta: { title: '编辑优惠券' }, },
+      ]
+    },
+    {
+      path: '/help', component: help, children: [
+        { path: 'list', name: "/help/list", component: help_list, meta: { title: '帮助列表' }, },
+        { path: 'add', name: "/help/add", component: help_add, meta: { title: '添加帮助' }, },
+        { path: 'edit', name: "/help/edit", component: help_edit, meta: { title: '编辑帮助' }, },
+      ]
+    },
     { path: '/ctos', component: ctos },
+    { path: '/vip', component: vip, meta: { title: 'vip管理' }, },
+    { path: '/timeLimit', component: timeLimit, meta: { title: '限时购' }, },
     { path: '/class', component: _class, meta: { title: '分类列表' }, },
   ]
 });

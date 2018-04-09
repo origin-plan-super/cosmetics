@@ -68,7 +68,6 @@ class VIP{
     private $levelName='';
     
     
-    
     //==============================================购买商品相关的数据==============================================
     
     /**
@@ -108,33 +107,32 @@ class VIP{
     
     
     /**
-    * @var Float 当此用户不是会员的时候，分享商品可以得到的回扣
+    * @var Float 当此用户不是会员的时候，分享商品可以得到的回扣，百分比
     */
     public $shareMoney=0.5;
     
     //==============================================团队管理奖金相关数据==============================================
     
     /**
-    * @var Float $邀人奖 邀请一个B，并且B购买了499礼包后，得到的奖金，【邀人得钱奖】
+    * @var Float $invitePeople 邀请一个B，并且B购买了499礼包后，得到的奖金，【邀人得钱奖】
     * 成功邀请一位自己直属的会员可以得到的奖金
-    * 【团队奖励功能】
+    * 【团队奖励功能】 invitePeople
     */
-    private $邀人奖 = 250.00;
+    private $invitePeople  = 250.00;
     
     
     //金牌的
-    private $下级所有银牌团队新增会员奖 = 60;
-    private $直属金牌团队新增会员奖 = 20;
+    private $subSilverInvitePeople = 60.00;//subSilverInvitePeople 下级所有银牌团队新增会员奖
+    private $直属金牌团队新增会员奖 = 20.00;//directlyGoldInvitePeople 直属金牌团队新增会员奖
     
     
     //银牌的
-    private $直属银牌团队新增会员奖 = 20;
-    
+    private $直属银牌团队新增会员奖 = 20.00;//directlySilverInvitePeople 直属银牌团队新增会员奖 InvitePeople
     
     //通用的
-    private $直属团队新增会员的管理奖=175.00;//金牌收益：7，银牌收益：7
-    private $直属团队新增会员的奖金=20;
-    private $可以得到下级管理奖金的比率 = 0.3;
+    private $directlyTeamInvitePeopleManage=175.00;//金牌收益：7，银牌收益：7   directlyTeamInvitePeopleManage 直属团队新增会员的管理奖
+    private $directlyTeamInvitePeople=20.00;//directlyTeamInvitePeople 直属团队新增会员的奖金
+    private $subManageRatio = 0.3;//subManageRatio 可以得到下级管理奖金的比率
     
     //==============================================属性区结束==============================================
     
@@ -175,7 +173,7 @@ class VIP{
     * 获得此vip的数据
     */
     public function getInfo(){
-        
+        return $this->vipConf;
     }
     
     //==============================================下面是一些初始化数据==============================================
@@ -187,6 +185,22 @@ class VIP{
         $this->money=$this->userInfo['user_money']+0.00;
         $this->level=$this->userInfo['user_vip_level']+0;
         $this->userName=$this->userInfo['user_name'];
+        
+        //初始化返利数据
+        
+        $this->levelName=$this->vipConf['vip_name'];//
+        $this->discount=$this->vipConf['discount'];//打几折
+        $this->discountRebate=$this->vipConf['discountRebate'];//下级打折省下的钱，返给自己的比率，百分比
+        $this->saleMoneyRebate=$this->vipConf['saleMoneyRebate'];//当下级卖出去一个商品后，自己可以得到的回扣，百分比
+        $this->subSaleMoneyRebater=$this->vipConf['subSaleMoneyRebater'];//当下级的下级卖出去一个商品后，自己可以得到的回扣，百分比
+        $this->shareMoney=$this->vipConf['shareMoney'];//当此用户不是会员的时候，分享商品可以得到的回扣，百分比
+        $this->invitePeople=$this->vipConf['invitePeople'];//【邀人得钱奖】
+        $this->subSilverInvitePeople=$this->vipConf['subSilverInvitePeople'];//下级所有银牌团队新增会员奖
+        $this->directlyTeamInvitePeopleManage=$this->vipConf['directlyTeamInvitePeopleManage'];//直属团队新增会员的管理奖
+        $this->directlyTeamInvitePeople=$this->vipConf['directlyTeamInvitePeople'];//直属团队新增会员的奖金
+        $this->subManageRatio=$this->vipConf['subManageRatio'];//可以得到下级管理奖金的比率
+        
+        
     }
     
     /**
@@ -226,7 +240,6 @@ class VIP{
         $User=M('user');
         $where=[];
         $where['user_id']=$this->userId;
-        
         $this->userInfo=$User->where($where)->find();
     }
     
@@ -235,7 +248,10 @@ class VIP{
     */
     private function getVipConf(){
         //根据当前用户的级别，来获得对应的配置项
-        
+        $Vip=D('Vip');
+        $where=[];
+        $where['vip_level']=$this->userInfo['user_vip_level'];
+        $this->vipConf=$Vip->where($where)->find();
     }
     
     /**
@@ -594,17 +610,17 @@ class VIP{
     *
     */
     public function 邀请人得钱奖($sub){
-        // 邀人奖
+        // invitePeople
         if($this->isDebug){
             ec("【 $this->userName 】：  【 邀人得钱奖 】");
             ec("【 $this->userName 】：  该用户当前的等级：$this->level");
             ec("【 $this->userName 】：  当前用户为邀请人，当前用户邀请了：$sub->userName");
             ec("【 $this->userName 】：  该用户当前的余额：$this->money ￥");
-            ec("【 $this->userName 】：  该用户可以得到的【 邀人得钱奖 】：$this->邀人奖 ￥");
+            ec("【 $this->userName 】：  该用户可以得到的【 邀人得钱奖 】：$this->invitePeople ￥");
         }
         
         //先让自己得钱
-        $this->money+=$this->邀人奖;
+        $this->money+=$this->invitePeople;
         $this->saveMoney();
         
         //==============================================更多的流程==============================================
@@ -701,10 +717,10 @@ class VIP{
                 ec("【 $this->userName 】：  【 下级所有银牌团队新增会员奖 】");
                 ec("【 $this->userName 】：  该用户当前的余额：$this->money ￥");
                 ec("【 $this->userName 】：  该用户当前的等级：$this->level");
-                ec("【 $this->userName 】：  该用户可以得到的【 下级所有银牌团队新增会员奖 】：$this->下级所有银牌团队新增会员奖 ￥");
+                ec("【 $this->userName 】：  该用户可以得到的【 下级所有银牌团队新增会员奖 】：$this->subSilverInvitePeople ￥");
             }
             
-            $this->money+=$this->下级所有银牌团队新增会员奖;
+            $this->money+=$this->subSilverInvitePeople;
             $this->saveMoney();
             
         }else{
@@ -727,10 +743,10 @@ class VIP{
                 ec("【 $this->userName 】：  【 得到直属团队新增会员奖20 】");
                 ec("【 $this->userName 】：  该用户当前的余额：$this->money ￥");
                 ec("【 $this->userName 】：  该用户当前的等级：$this->level");
-                ec("【 $this->userName 】：  该用户可以得到的【 直属团队新增会员的奖金 】：$this->直属团队新增会员的奖金 ￥");
+                ec("【 $this->userName 】：  该用户可以得到的【 直属团队新增会员的奖金 】：$this->directlyTeamInvitePeople ￥");
             }
             
-            $this->money+=$this->直属团队新增会员的奖金;
+            $this->money+=$this->directlyTeamInvitePeople;
             $this->saveMoney();
             
         }else{
@@ -751,11 +767,11 @@ class VIP{
                 ec("【 $this->userName 】：  【 得到直属团队新增会员的管理奖 】");
                 ec("【 $this->userName 】：  该用户当前的余额：$this->money ￥");
                 ec("【 $this->userName 】：  该用户当前的等级：$this->level");
-                ec("【 $this->userName 】：  该用户可以得到的【 直属团队新增会员的管理奖 】：$this->直属团队新增会员的管理奖 ￥");
+                ec("【 $this->userName 】：  该用户可以得到的【 直属团队新增会员的管理奖 】：$this->directlyTeamInvitePeopleManage ￥");
             }
-            $this->money+=$this->直属团队新增会员的管理奖;
+            $this->money+=$this->directlyTeamInvitePeopleManage;
             $this->saveMoney();
-            $this->getSuper()->得到管理奖金的百分之30($this->直属团队新增会员的管理奖,$sub);
+            $this->getSuper()->得到管理奖金的百分之30($this->directlyTeamInvitePeopleManage,$sub);
         }
         
     }
@@ -772,14 +788,14 @@ class VIP{
     */
     public function 得到管理奖金的百分之30($subMoney,$sub){
         
-        $myMoney=$subMoney*$this->可以得到下级管理奖金的比率;
+        $myMoney=$subMoney*$this->subManageRatio;
         
         if($this->isDebug){
             ec("【 $this->userName 】：  【 得到管理奖金的百分之30 】");
             ec("【 $this->userName 】：  该用户当前的余额：$this->money ￥");
             ec("【 $this->userName 】：  该用户当前的等级：$this->level");
             ec("【 $this->userName 】：  下级得到的奖金：$subMoney ￥");
-            ec("【 $this->userName 】：  该用户可以得到的【 可以得到下级管理奖金的比率 】：$this->可以得到下级管理奖金的比率");
+            ec("【 $this->userName 】：  该用户可以得到的【 可以得到下级管理奖金的比率 】：$this->subManageRatio");
             ec("【 $this->userName 】：  该用户可以得到的奖金：$myMoney ￥");
         }
         
@@ -824,6 +840,7 @@ class VIP{
         
         return $this->shareMoney;
     }
+    
     
     
     

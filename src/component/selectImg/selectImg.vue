@@ -94,8 +94,6 @@ export default {
         message: `文件上传失败！`,
         type: "error"
       });
-      console.log("失败");
-      console.log(fileList);
     }
   },
   computed: {

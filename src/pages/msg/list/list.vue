@@ -5,7 +5,7 @@
       <el-button-group>
         <el-button type="primary" size='mini' icon="el-icon-plus" @click="add"></el-button>
         <el-button type="primary" size='mini' icon="el-icon-refresh" @click="update"></el-button>
-        <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
+        <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0" @click="dels"></el-button>
       </el-button-group>
     </div>
     <div class="frame">
@@ -15,6 +15,12 @@
         <el-table-column type='selection' align="center"></el-table-column>
         <el-table-column prop="msg" label="内容" resizable></el-table-column>
         <el-table-column prop="add_time" label="添加时间" width="150" resizable></el-table-column>
+
+        <el-table-column fixed="right" label="消息分类" width="100" align="center">
+          <template slot-scope="scope">
+            {{types[scope.row.type]}}
+          </template>
+        </el-table-column>
 
         <el-table-column fixed="right" label="操作" width="50" align="center">
           <template slot-scope="scope">
@@ -52,7 +58,8 @@ export default {
       //被选中项
       selectItem: [],
       //是否是保存数据状态
-      isPreservation: false
+      isPreservation: false,
+      types: ["", "随享季公告", "活动消息", "随享季助手", "交易物流"]
     };
   },
   methods: {
@@ -97,9 +104,7 @@ export default {
       this.$post(
         "msg/del",
         {
-          where: {
-            msg_id: item.msg_id
-          }
+          msg_id: [item.msg_id]
         },
         res => {
           if (res.res >= 1) {
@@ -108,6 +113,29 @@ export default {
             return;
           }
           this.$error("删除失败！请重试~");
+        }
+      );
+    },
+    dels() {
+      let ids = [];
+      this.selectItem.forEach(item => {
+        ids.push(item.msg_id);
+      });
+      this.$post(
+        "msg/del",
+        {
+          msg_id: ids
+        },
+        res => {
+          console.log(res);
+          if (res.res >= 1) {
+            this.$success("删除成功！");
+            this.tableData = this.tableData.filter(
+              item => ids.indexOf(item.msg_id) < 0
+            );
+            return;
+          }
+          this.$error("删除失败！");
         }
       );
     }

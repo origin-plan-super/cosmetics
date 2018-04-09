@@ -22,7 +22,7 @@ class MsgController extends CommonController{
     public function getList(){
         
         $Msg=D('Msg');
-        $msgs=$Msg->getList(I('where'));
+        $msgs=$Msg->getList(I());
         
         if($msgs){
             $res['res']=count($msgs);

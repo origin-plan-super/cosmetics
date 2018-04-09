@@ -31,10 +31,8 @@ export default {
     },
     //图片加载成功
     onSuccess() {
-      setTimeout(() => {
-        this.url = this.src;
-        this.isLoad = false;
-      }, 1000);
+      this.url = this.src;
+      this.isLoad = false;
     },
     update() {
       if (this.src.length <= 0) return;

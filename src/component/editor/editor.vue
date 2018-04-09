@@ -16,7 +16,10 @@ import "../../../static/UE/ueditor.parse.min.js";
 export default {
   name: "editor",
   props: {
-    value: String
+    value: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {
@@ -26,10 +29,7 @@ export default {
   methods: {
     getContent() {
       return this.editor.getContent();
-    },
-    test() {
     }
-
     // testMsg() {
     //   const _this = this;
     //   this.defaultMsg = this.value;
@@ -37,7 +37,13 @@ export default {
     // }
   },
   computed: {},
-  watch: {},
+  watch: {
+    value(val) {
+      if (this.editor) {
+        this.editor.setContent(val + "");
+      }
+    }
+  },
   mounted() {
     this.editor = UE.getEditor("editor", {
       BaseUrl: "",
@@ -45,16 +51,15 @@ export default {
       UEDITOR_HOME_URL: "../../../static/UE/",
       initialFrameWidth: "100%",
       initialFrameHeight: 500
-
       // toolbars:[]  //编辑器里需要用的功能
     }); // 初始化UE
+
     this.editor.addListener("ready", () => {
       this.editor.setContent(this.value); // 确保UE加载完成后，放入内容。
     });
-
     this.editor.addListener("contentChange", () => {
-      var value = this.editor.getContent();
-      this.$emit("input", value);
+      // var value = this.editor.getContent();
+      // this.$emit("input", value);
     });
     this.$nextTick(() => {});
   },

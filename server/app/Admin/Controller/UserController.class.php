@@ -20,7 +20,7 @@ class UserController extends CommonController{
     
     public function getList(){
         
-        $model=M('user');
+        $User=D('User');
         $page=I('page')?I('page'):1;
         $limit=I('limit')?I('limit'):10;
         $where=I('where')?I('where'):[];
@@ -36,60 +36,64 @@ class UserController extends CommonController{
             'like',
             '%'.$key."%",
             'OR');
-            
             $where['_logic'] = 'OR';
             
         }
         
-        $result=$model
+        
+        $users=$User
         ->where($where)
         ->order('add_time desc')
         ->limit(($page-1)*$limit,$limit)
         ->select();
         
-        $res['count']=$model
+        $res['count']=$User
         ->where($where)
         ->order('add_time desc')
         ->count()+0;
         
         
-        
-        
-        // =========判断=========
-        if($result){
+        if($User){
             
-            $model=M('user_super');
+            $UserSuper=D('UserSuper');
             
+            //==============================================
+            Vendor('VIP.VIP');
             
-            foreach ($result as $key => $value) {
+            //==============================================
+            
+            //遍历找上级
+            for ($i=0; $i < count($users); $i++) {
                 
-                $user_id=$value['user_id'];
-                $super_id=null;
+                $user=$users[$i];
+                $user_id=$user['user_id'];
+                
+                //==============================================
+                //初始化vip对象
+                $conf=[];
+                $conf['userId']=$user_id;
+                $conf['isDebug']=false;
+                $vip=new \VIP($conf);
+                $vip->setWriteDatabase(false);
+                //==============================================
                 $where=[];
-                $where['t1.user_id']=$user_id;
-                $user_super=$model
-                ->table('c_user_super as t1,c_user as t2,c_star as t3')
-                ->where($where)
-                ->where('t1.super_id = t2.user_id AND t2.star_id = t3.star_id')
-                ->find();
-                
-                if($user_super){
-                    
-                    $result[$key]['super_name']=$user_super['user_name'];
-                    $result[$key]['super_id']=$user_super['super_id'];
-                    $result[$key]['super_star_id']=$user_super['star_id'];
-                    $result[$key]['super_star_name']=$user_super['star_name'];
-                    // dump($result[$key]);
-                    
+                $where['user_id']=$user_id;
+                $userSuper=$UserSuper->where($where)->find();//找到上级
+                if($userSuper){
+                    $userSuper=$User->get($userSuper['super_id']);//找上级的信息
+                    $users[$i]['super']=$userSuper;//将上级信息插入到数组
+                }else{
+                    $users[$i]['super']=null;//将上s级信息插入到数组
                 }
                 
+                //==============================================
+                //如果上级存在， 需要初始化上级的vip对象
+                $users[$i]['vip']=$vip->getInfo();//获取vip的信息
             }
             
-            
-            $result=toTime($result);
-            
+            $users=toTime($users);
             $res['res']=1;
-            $res['msg']=$result;
+            $res['msg']=$users;
             
             
         }else{
@@ -100,6 +104,38 @@ class UserController extends CommonController{
         
     }
     
+    //获得vip列表
+    public function getVipList(){
+        Vendor('VIP.VIP');
+        
+        $User=D('User');
+        $where=[];
+        $where['user_vip_level']=array('gt',0);
+        $users=$User->where($where)->select();
+        
+        for ($i=0; $i < count($users); $i++) {
+            $user=$users[$i];
+            $user_id=$user['user_id'];
+            //==============================================
+            //初始化vip对象
+            $conf=[];
+            $conf['userId']=$user_id;
+            $conf['isDebug']=false;
+            $vip=new \VIP($conf);
+            $vip->setWriteDatabase(false);
+            $users[$i]['vip']=$vip->getInfo();//获取vip的信息
+        }
+        
+        if($users){
+            $res['res']=count($users);
+            $res['msg']=$users;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$users;
+        }
+        echo json_encode($res);
+        
+    }
     
     public function add(){
         $add=I('add');

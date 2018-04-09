@@ -23,8 +23,9 @@ class PaperController extends CommonController{
     public function getPacket(){
         
         $Carousel=D('Carousel');
-        $carousel=$Carousel->getList();
-        
+        $where=[];
+        $where['pages_id']=2;
+        $carousel=$Carousel->getList($where);
         
         $Paper=D('paper');
         $papers=$Paper->getList(I('where'));

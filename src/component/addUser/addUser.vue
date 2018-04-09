@@ -57,7 +57,6 @@ export default {
           var add = this.add;
 
           this.$post("user/add", { add: add }, res => {
-            console.log(res);
             if (res.res >= 1) {
               //添加成功
               this.$success("添加成功！");

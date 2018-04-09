@@ -1,0 +1,50 @@
+.goods-card {
+    position: relative;
+    box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.1);
+    width: 333px;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: #777;
+    border: solid 1px #ddd;
+    font-size: 14px;
+    border-radius: 5px;
+    &:hover {
+        box-shadow: 0 0 20px rgba($color: #000, $alpha: 0.2);
+    }
+    .goods-img {
+        $size: 100px;
+        width: $size;
+        height: $size;
+        display: block;
+        img {
+            border-radius: 5px 0 0 5px;
+            display: block;
+            width: $size;
+            height: $size;
+            margin: 0 auto;
+        }
+    }
+    .goods-title {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        left: 105px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .goods-info {
+        position: absolute;
+        bottom: 5px;
+        left: 105px;
+        right: 5px;
+    }
+    .footer {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+    }
+}

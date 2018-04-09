@@ -57,21 +57,14 @@
 
         </el-table-column>
 
-        <el-table-column prop="user_type" label="用户类型" align="left" :filters="user_types" :filter-method="filterMethod" width="100">
+        <el-table-column prop="user_type" label="用户类型" align="left" :filters="vips" :filter-method="filterMethod" width="100">
           <template slot-scope="scope">
 
-            <template v-if="user_types[scope.row.user_type]">
-
-              <span :class="user_types[scope.row.user_type].type">
-                {{user_types[scope.row.user_type].text}}
-              </span>
-
+            <template v-if="scope.row.vip">
+              {{scope.row.vip.vip_name}}
             </template>
             <template v-else>
-              <span class="text-error">
-                <i style="width:20px;display: inline-block;" class="el-icon-error"></i>
-                未知类型：{{scope.row.user_type}}
-              </span>
+              普通用户
             </template>
 
           </template>
@@ -80,11 +73,14 @@
         <el-table-column label="上级" resizable show-overflow-tooltip width="200">
 
           <template slot-scope="scope">
-            <span class="text-info">
-              <span> {{scope.row.super_star_name}} </span>
-              <span v-if="scope.row.super_star_name">:</span>
-              <span> {{scope.row.super_name}} </span>
-            </span>
+
+            <template v-if="scope.row.super">
+              {{scope.row.super.user_id}} - {{scope.row.super.user_name}}
+              <template v-if="scope.row.super.vip">
+                - {{scope.row.super.vip.vip_name}}
+              </template>
+            </template>
+
           </template>
 
         </el-table-column>
@@ -95,7 +91,7 @@
 
         <el-table-column fixed="right" label="操作" width="200" align="center">
           <template slot-scope="scope">
-            <el-button type="text" size="mini" icon="el-icon-search"></el-button>
+            <!-- <el-button type="text" size="mini" icon="el-icon-search"></el-button> -->
             <el-button type="text" size="mini" @click="showSetUserType(scope.row)">指定身份</el-button>
             <el-button type="text" size="mini" @click="showSetUserSuper(scope.row)">设置上级</el-button>
           </template>
@@ -141,20 +137,8 @@ export default {
       //被选中项
       selectItem: [],
       //用户类型
-      user_types: [
-        {
-          value: "普通用户",
-          text: "普通用户"
-        },
-        {
-          value: "分销商",
-          text: "分销商"
-        },
-        {
-          value: "推广员",
-          text: "推广员"
-        }
-      ],
+
+      vips: [],
       isAdd: false,
       identity: {
         isShow: false,
@@ -168,7 +152,6 @@ export default {
         isShow: false,
         activeUser: null
       },
-
       stars: [],
       queryKey: ""
     };
@@ -191,10 +174,24 @@ export default {
         this.tableLoading = true;
       }, 500);
 
+      //获得vip信息列表
+      this.$get("vip/getList", {}, res => {
+        res.msg.forEach(item => {
+          item.value = item.vip_name;
+          item.text = item.vip_name;
+        });
+        res.msg.unshift({
+          value: "普通用户",
+          text: "普通用户"
+        });
+        this.vips = res.msg;
+      });
       this.$get(
         "user/getList",
         { page: this.currentPage, limit: this.pageSize },
         res => {
+          console.log(res);
+
           if (showInfo) {
             this.$message({
               message: message ? message : "更新完成~",
@@ -205,8 +202,6 @@ export default {
           this.tableLoading = false;
           this.total = res.count;
           this.tableData = res.msg;
-          // var map = ["order_info"];
-          // if (res.count > 0) this.tableData = asdasd stringToArr(res.msg, map);
         }
       );
     },
@@ -235,7 +230,6 @@ export default {
     },
     // 当选择项发生变化时会触发该事件
     selectionChange(items) {
-      console.log(items);
       this.selectItem = items;
     },
     see(item) {
@@ -245,14 +239,17 @@ export default {
       });
     },
     filterMethod(value, row, column) {
-      if (!this.user_types[row.user_type]) return true;
-      return this.user_types[row.user_type].text === value;
-
-      // const property = column["property"];
-      // return row[property] ===asdasdasdas12312 value;
+      if (row.vip == null) {
+        if (value == "普通用户") {
+          return true;
+        }
+      }
+      if (!this.vips[row.vip.vip_level]) return true;
+      return this.vips[row.vip.vip_level].text === value;
     },
     //打开设置用户身份的窗口
     showSetUserType(item) {
+      console.log(item);
       this.$refs["set-user-type"].show(item);
     },
     //打开设置用户上级的窗口
@@ -283,7 +280,6 @@ export default {
           key: key
         },
         res => {
-          console.log(res);
           if (res.res >= 0) {
             var setTim = setTimeout(() => {
               this.tableLoading = true;

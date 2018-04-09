@@ -58,8 +58,11 @@ class MsgController extends CommonController{
     }
     
     public function del(){
-        $where=I('where');
+        
+        $msg_id=I('msg_id');
         $Msg=D('Msg');
+        $where=[];
+        $where['msg_id']=['in',$msg_id];
         $result=$Msg->where($where)->delete();
         if($result){
             $res['res']=1;

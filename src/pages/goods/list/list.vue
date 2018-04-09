@@ -218,7 +218,6 @@ export default {
     },
     // 当选择项发生变化时会触发该事件
     selectionChange(items) {
-      console.log(items);
       this.selectItem = items;
     }
   },

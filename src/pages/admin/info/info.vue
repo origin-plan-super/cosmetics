@@ -55,7 +55,6 @@ export default {
       this.refreshBtnLoad = true;
       this.$get("admin/get", { where: { admin_id: this.admin_id } }, res => {
         this.refreshBtnLoad = false;
-        console.log(res);
         if (res.res >= 1) {
           // this.admin_id;
           this.saveAdmin = res.msg;

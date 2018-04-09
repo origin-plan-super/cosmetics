@@ -41,7 +41,6 @@ export default {
   methods: {
     getAdmin: function() {
       this.$get(this.$serverAdmin + "Admin/getList", {}, res => {
-        console.log(res);
         this.adminList = res.msg;
       });
     },

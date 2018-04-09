@@ -17,6 +17,7 @@ $allow_origin=[
 "http://cuelyine.cn",
 'http://cosmetics.com',
 'http://admin.cuelyine.cn',
+'http://followenjoy.cn',
 ];
 $is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){
@@ -25,6 +26,7 @@ if(in_array($origin, $allow_origin)){
 }else{
     header('Access-Control-Allow-Origin:*');
 }
+header("Content-type: text/html; charset=utf-8");
 
 // 应用入口文件
 
@@ -33,7 +35,6 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG',true);
-
 // 定义应用目录
 define('APP_PATH','./app/');
 

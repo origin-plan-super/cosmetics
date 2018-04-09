@@ -1,40 +1,26 @@
 <template>
-    <div class="goods-select">
-        <el-button size="mini"
-            @click="update()"
-            icon="el-icon-refresh"></el-button>
+  <div class="goods-select">
 
-        <div class="goods-list clearfix">
-            <div :class="['goods-item',{'active':item.isActive}]"
-                @click="selectItem(item,i,list)"
-                v-for="(item,i) in list"
-                :key="item.goods_id">
-                <div class="active-icon">
-                    <i class="fa fa-check"></i>
-                </div>
-                <img :src="$getUrl(item.img_list[0].src)"
-                    class="goods-img"
-                    alt="">
-                <div class="goods-title">
-                    {{item.goods_title}}
-                </div>
-                <div class="goods-money">
-                    ￥ {{item.spec.paramList[0].money}}
-                </div>
-            </div>
+    <div class="goods-list clearfix">
+      <div :class="['goods-item',{'active':item.isActive}]" @click="selectItem(item,i,list)" v-for="(item,i) in list" :key="item.goods_id">
+        <div class="active-icon">
+          <i class="fa fa-check"></i>
         </div>
-
-        <div class="frame">
-            <el-pagination @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page.sync="currentPage"
-                :page-size.sync="pageSize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :page-sizes="[1,10, 20, 30, 40, 50, 100]"
-                :total="total">
-            </el-pagination>
+        <img :src="$getUrl(item.img_list[0].src)" class="goods-img" alt="">
+        <div class="goods-title">
+          {{item.goods_title}}
         </div>
+        <div class="goods-money">
+          ￥ {{item.sku[0].price}}
+        </div>
+      </div>
     </div>
+
+    <div class="frame">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :page-sizes="[1,10, 20, 30, 40, 50, 100]" :total="total">
+      </el-pagination>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -89,9 +75,8 @@ export default {
         res => {
           clearTimeout(setTim);
           this.isLoading = false;
-          var map = ["img_list", "spec"];
           this.total = res.count;
-          if (res.count > 0) this.buliderList(stringToArr(res.msg, map));
+          if (res.count > 0) this.buliderList(res.msg);
         }
       );
     },
@@ -152,14 +137,6 @@ export default {
     selectList() {}
   }
 };
-function stringToArr(arr, map) {
-  for (var i = 0; i < arr.length; i++) {
-    for (var j = 0; j < map.length; j++) {
-      arr[i][map[j]] = JSON.parse(arr[i][map[j]]);
-    }
-  }
-  return arr;
-}
 </script>
 <style lang="scss" scoped>
 @import "goodsSelect.scss";

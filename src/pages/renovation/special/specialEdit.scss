@@ -1,0 +1,19 @@
+#specialEdit {
+    padding: 20px;
+    padding-bottom: 200px;
+    .img {
+        max-width: 300px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.1);
+        margin-top: 5px;
+    }
+    .preview {
+        padding: 20px 0;
+        .title {
+            display: inline-block;
+            width: 100px;
+            vertical-align: top;
+            text-align: right;
+        }
+    }
+}

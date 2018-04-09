@@ -119,8 +119,8 @@ class LoginController extends Controller {
         }else{
             $res['res']= 1;
         }
+        $res['res']= 1;
         echo json_encode($res);
-        
         
     }
     

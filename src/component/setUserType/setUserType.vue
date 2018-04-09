@@ -10,28 +10,17 @@
       </template>
       <el-form ref="form" :rules="rules" size="mini" :model="data" label-width="80px">
 
-        <el-form-item label="原身份">
-          <span class="text-info">
-            {{customary}}
-          </span>
-        </el-form-item>
-
         <el-form-item label="指定身份" prop="user_type">
-
           <el-select v-model="data.user_type" placeholder="请选择">
             <el-option label="普通客户" :value="0"></el-option>
-            <el-option label="分销商" :value="1"></el-option>
-            <el-option label="推广员" :value="2"></el-option>
+            <el-option label="会员" :value="1"></el-option>
           </el-select>
-
         </el-form-item>
 
         <el-form-item label="指定等级" v-if="data.user_type==1" prop="star_id">
-
-          <el-select :loading="isLoad" v-loading="isLoad" v-model="data.star_id" placeholder="请选择一个级别">
-            <el-option :label="item.star_name" :value="item.star_id" v-for="item in stars" :key="item.star_id"></el-option>
+          <el-select :loading="isLoad" v-loading="isLoad" v-model="data.user_vip_level" placeholder="请选择一个级别">
+            <el-option :label="item.vip_name" :value="item.vip_level" v-for="item in vips" :key="item.vip_id"></el-option>
           </el-select>
-
         </el-form-item>
 
       </el-form>
@@ -54,15 +43,15 @@ export default {
       isLoad: false,
       data: {
         user_type: "",
-        star_id: ""
+        user_vip_level: ""
       },
       //原来的
       customary: "",
-      stars: [],
+      vips: [],
       user: null,
       rules: {
         user_type: [
-          { required: true, message: "请选择身份！", trigger: "blur" }
+          { required: true, message: "请选择一个等级！", trigger: "blur" }
         ]
       }
     };
@@ -71,8 +60,8 @@ export default {
     update() {
       this.isLoad = true;
       //先获得等级列表
-      this.$get("star/getList", {}, res => {
-        this.stars = res.msg;
+      this.$get("vip/getList", {}, res => {
+        this.vips = res.msg;
         this.isLoad = false;
       });
     },
@@ -93,23 +82,16 @@ export default {
 
           if (this.data.user_type == 0) {
             //普通客户
-            save.star_id = null;
+            save.user_vip_level = 0;
           }
 
           if (this.data.user_type == 1) {
-            //分销商
-            save.star_id = this.data.star_id;
-          }
-
-          if (this.data.user_type == 2) {
-            //推广员
-            save.star_id = null;
+            //会员
+            save.user_vip_level = this.data.user_vip_level;
           }
 
           //开始保存
-
           this.$post("user/save", { where: where, save: save }, res => {
-            console.log(res);
             if (res.res >= 1) {
               this.$message({ type: "success", message: "保存成功！" });
               this.$emit("on-success");

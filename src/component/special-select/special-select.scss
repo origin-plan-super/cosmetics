@@ -1,0 +1,27 @@
+.special-select {
+    border: solid 1px #ddd;
+    border-width: 1px 0;
+    padding: 20px 0;
+    margin-bottom: 50px;
+    .select-box {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 0 5px;
+        background-color: rgba($color: #67C23A, $alpha: 0.8);
+        line-height: 100px;
+        font-size: 20px;
+    }
+}
+
+.right-fade-in-enter-active,
+.right-fade-in-leave-active {
+    transition: all .3s;
+}
+
+.right-fade-in-enter,
+.right-fade-in-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+}

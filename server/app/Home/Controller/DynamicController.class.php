@@ -26,7 +26,9 @@ class DynamicController extends CommonController{
         $Carousel=D('Carousel');
         $Dynamic=D('Dynamic');
         
-        $carousel=$Carousel->getList();
+        $where=[];
+        $where['pages_id']=1;
+        $carousel=$Carousel->getList($where);
         
         $dynamic=$Dynamic->getList(I());
         $dynamicsFollow=$Dynamic->getFollowList(I());

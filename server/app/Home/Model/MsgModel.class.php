@@ -4,14 +4,11 @@ use Think\Model;
 class MsgModel extends Model {
     
     
-    public function getList($where=[]){
-        
+    public function getList($data){
+        $where=$data['where'];
         $msgs=$this->where($where)->select();
         $msgs=toTime($msgs);
         return $msgs;
-        
     }
-    
-    
     
 }

@@ -4,7 +4,7 @@
       <el-button-group>
         <el-button type="primary" size='mini' icon="el-icon-plus" @click="add"></el-button>
         <el-button type="primary" size='mini' icon="el-icon-refresh" @click="update"></el-button>
-        <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0"></el-button>
+        <el-button type="primary" size='mini' icon="el-icon-delete" :disabled="selectItem.length<=0" @click="dels()"></el-button>
       </el-button-group>
     </div>
     <div class="frame">
@@ -21,6 +21,12 @@
           </template>
         </el-table-column>
         <el-table-column prop="paper_title" label="文章标题" resizable></el-table-column>
+
+        <el-table-column label="文章分类" width="150" align="center">
+          <template slot-scope="scope">
+            {{classList[scope.row.class_id]}}
+          </template>
+        </el-table-column>
 
         <el-table-column prop="add_time" label="添加时间" width="150" resizable></el-table-column>
 
@@ -61,16 +67,19 @@ export default {
       //被选中项
       selectItem: [],
       //是否是保存数据状态
-      isPreservation: false
+      isPreservation: false,
+      classList: ["分类错误", "新手课堂", "每日精选", "每日涨知识", "客服&物流"]
     };
   },
   methods: {
     //页面切换事件
-    handleCurrentChange: function() {
+    handleCurrentChange: function(val) {
+      this.currentPage = val;
       this.update();
     },
     //大小改变事件
-    handleSizeChange: function() {
+    handleSizeChange: function(val) {
+      this.pageSize = val;
       this.update();
     },
     add(item) {
@@ -105,9 +114,7 @@ export default {
       this.$post(
         "paper/del",
         {
-          where: {
-            msg_id: item.msg_id
-          }
+          paper_id: [item.paper_id]
         },
         res => {
           if (res.res >= 1) {
@@ -116,6 +123,29 @@ export default {
             return;
           }
           this.$error("删除失败！请重试~");
+        }
+      );
+    },
+    dels() {
+      let ids = [];
+      this.selectItem.forEach(item => {
+        ids.push(item.paper_id);
+      });
+
+      this.$post(
+        "paper/del",
+        {
+          paper_id: ids
+        },
+        res => {
+          if (res.res >= 1) {
+            this.$success("删除成功！");
+            this.tableData = this.tableData.filter(
+              item => ids.indexOf(item.paper_id) < 0
+            );
+            return;
+          }
+          this.$error("删除失败！");
         }
       );
     },

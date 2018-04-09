@@ -214,7 +214,6 @@ export default {
               "goods/save",
               { save: goods },
               res => {
-              console.log(res);
                 loading.close();
                 if (res.res == 1) {
                   this.$message({ message: "保存成功", type: "success" });
@@ -248,7 +247,6 @@ export default {
       this.$get('goods/get',{
         goods_id:goods_id,
       },res=>{
-        console.log(res);
         this.goods=res.msg;
       });
 

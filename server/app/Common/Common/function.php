@@ -1,6 +1,6 @@
 <?php
 /**批量转换时间 */
-function toTime($arr,$code='Y-m-d H:i:s'){
+function toTime($arr,$code='Y-m-d H:i:s',$field=[]){
     
     
     foreach ($arr as $key => $value) {
@@ -11,11 +11,29 @@ function toTime($arr,$code='Y-m-d H:i:s'){
         if(!empty($value['edit_time'])){
             $arr[$key]['edit_time']=date($code,$value['edit_time']);
         }
+        
+        for ($i=0; $i <count($field) ; $i++) {
+            $arr[$key][$field[$i]]=date($code,$value[$field[$i]]);
+        }
+        
     }
     
     return $arr;
     
 }
+function toTime2($arr,$code='Y-m-d H:i:s',$field=[]){
+    
+    foreach ($arr as $key => $value) {
+        for ($i=0; $i <count($field) ; $i++) {
+            $arr[$key][$field[$i]]=date($code,$value[$field[$i]]);
+        }
+        
+    }
+    return $arr;
+    
+}
+
+
 function to_format_date($arr,$field){
     foreach ($arr as $key => $value) {
         if(!empty($value[$field])){
@@ -719,7 +737,6 @@ function ec($info,$tag='div'){
 
 
 
-
 function getGoodsSku($goods,$map=['img_list','sku','tree']){
     
     
@@ -728,13 +745,13 @@ function getGoodsSku($goods,$map=['img_list','sku','tree']){
     $where=[];
     $where['goods_id']=$goods_id;
     
-    
-    
     if(in_array('img_list',$map)){
         
         //找图片
         $GoodsImg=M('goods_img');
         $goods['img_list']=$GoodsImg->where($where)->order('slot asc')->select();
+        $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
+        
     }
     
     if(in_array('sku',$map)){

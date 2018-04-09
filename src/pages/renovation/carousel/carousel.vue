@@ -1,44 +1,63 @@
 <template>
   <div id="carousel" class="carousel">
     <div class="frame">
-    </div>
-
-    <div class="frame">
       <el-button @click="update" icon="el-icon-refresh" type="text"></el-button>
-
-      <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-success="upLoadSuccess">
-        <el-button @click="update" type="success" size="mini">上传图片</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb，可拖动排序。</div>
-      </el-upload>
-
-      <div class="line"></div>
-      <div class="img-list">
-
-        <draggable v-model="img_list" :options="{group:'img_list'}" @end="dragEnd(img_list)">
-
-          <div class="img-item" v-for="(item,i) in img_list" :key="item.carousel_id">
-            <div class="del" @click="remove(item,i,img_list)" title="删除">
-              <i class="el-icon-close"></i>
-            </div>
-            <o-img :src="item.src"></o-img>
-          </div>
-
-        </draggable>
-
-      </div>
+      <div class="text-size-xm text-info">只能上传jpg/png文件，且不超过500kb，可拖动排序。</div>
 
     </div>
+
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>首页轮播配置</span>
+        <div style="float: right;">
+          <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-success="homeSuccess">
+            <el-button type="text" size="mini">上传</el-button>
+          </el-upload>
+        </div>
+      </div>
+      <img-list v-model="home_img_list" @on-remove="remove" @drag-end="dragEnd"></img-list>
+    </el-card>
+
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>发现页轮播配置</span>
+        <div style="float: right;">
+          <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-success="fxSuccess">
+            <el-button type="text" size="mini">上传</el-button>
+          </el-upload>
+        </div>
+      </div>
+      <img-list v-model="fx_img_list" @on-remove="remove" @drag-end="dragEnd"></img-list>
+    </el-card>
+
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>课堂页轮播配置</span>
+        <div style="float: right;">
+          <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-success="ktSuccess">
+            <el-button type="text" size="mini">上传</el-button>
+          </el-upload>
+        </div>
+      </div>
+      <img-list v-model="kt_img_list" @on-remove="remove" @drag-end="dragEnd"></img-list>
+    </el-card>
 
   </div>
 </template>
 <script>
 import draggable from "vuedraggable";
-
+// pages_id
+// 轮播图发布到的页面
+// 0：首页
+// 1：发现（动态）
+// 2：课堂
 export default {
   name: "carousel",
   data() {
     return {
-      img_list: [],
+      home_img_list: [],
+      fx_img_list: [],
+      kt_img_list: [],
       parame: {
         token: localStorage.token,
         admin_id: localStorage.admin_id,
@@ -49,27 +68,71 @@ export default {
   },
   methods: {
     update() {
-      this.img_list = [];
+
       this.$get("carousel/getList", {}, res => {
         if (res.res >= 1) {
-          this.img_list = res.msg;
-          return;
+          this.buliderList(res.msg);
         }
       });
     },
-    add(src) {
-      this.$post("carousel/add", { add: { src: src } }, res => {
-        console.log(res);
-        if (res.res >= 1) {
-          this.img_list.push(res.msg);
-          return;
+    buliderList(list) {
+      this.home_img_list = [];
+      this.fx_img_list = [];
+      this.kt_img_list = [];
+
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].pages_id == 0) {
+          this.home_img_list.push(list[i]);
         }
-      });
+        if (list[i].pages_id == 1) {
+          this.fx_img_list.push(list[i]);
+        }
+        if (list[i].pages_id == 2) {
+          this.kt_img_list.push(list[i]);
+        }
+      }
     },
+    add(src, pages_id) {
+      this.$post(
+        "carousel/add",
+        {
+          add: {
+            src: src,
+            pages_id: pages_id
+          }
+        },
+        res => {
+          this.update();
+          return;
+          if (res.res >= 1) {
+            if (pages_id == 0) {
+              this.home_img_list.push(res.msg);
+            }
+            if (pages_id == 1) {
+              this.fx_img_list.push(res.msg);
+            }
+            if (pages_id == 2) {
+              this.kt_img_list.push(res.msg);
+            }
+            return;
+          }
+        }
+      );
+    },
+    homeSuccess(res) {
+      this.add(res.msg.src, 0);
+    },
+    fxSuccess(res) {
+      this.add(res.msg.src, 1);
+    },
+    ktSuccess(res) {
+      this.add(res.msg.src, 2);
+    },
+
     upLoadSuccess(res) {
       this.add(res.msg.src);
     },
-    remove(item, i, list) {
+    remove(item, i, list, fun) {
       //删除
       this.$post(
         "carousel/del",
@@ -78,6 +141,7 @@ export default {
           if (res.res >= 1) {
             this.$message({ type: "success", message: "删除成功！" });
             list.splice(i, 1);
+            fun();
             return;
           }
           this.$message({ type: "error", message: "删除失败！" });

@@ -3,8 +3,7 @@
 
     <el-form :model="add" :rules="rules" ref="form" label-width="100px" style="width:70%">
       <el-form-item label="内容" prop="msg">
-        <el-input type="textarea" :maxlength="255" placeholder="请输入内容" :autosize="{ minRows: 5}" v-model="add.msg">
-        </el-input>
+        <el-input type="textarea" :maxlength="255" placeholder="请输入内容" :autosize="{ minRows: 5}" v-model="add.msg"></el-input>
 
       </el-form-item>
       <el-form-item label="类型" prop="name">
@@ -62,7 +61,6 @@ export default {
             }
           );
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

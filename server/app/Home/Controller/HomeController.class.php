@@ -7,29 +7,35 @@ class HomeController extends CommonController {
     public function getPacket(){
         $res=[];
         
-        //轮播图
-        $model=M('carousel');
-        $carousel=$model
-        ->order('sort asc,add_time desc')
-        ->select();
-        //商品列表
+        //===================================================
+        $Time=D('Time');
+        $Carousel=D('Carousel');
+        $Nav=D('Nav');
+        //===================================================
+        $where=[];
+        $where['pages_id']=0;
+        $carousels=$Carousel->getList($where);
+        //===================================================
+        $times=$Time->getList();
+        $navList= $Nav->getList();
+        $homeData=$Nav->get('0');
         
-        $navList=['精选直供','美妆个护','家居生活','蔬果生鲜'];
+        
+        //组成导航数据
+        for ($i=0; $i < count($navList); $i++) {
+            $nav_id=$navList[$i]['nav_id'];
+            $navList[$i]['data']=$Nav->get($nav_id);
+        }
         
         
-        $Goods=D('Goods');
-        $goodsList  =  $Goods->getList(I());
         
-        $res['carousel']=$carousel;
-        $res['goods']=$goodsList;
+        $res['carousel']=$carousels;
+        $res['homeData']=$homeData;
         $res['navList']=$navList;
+        $res['times']=$times;
         
         echo json_encode($res);
         
     }
-    
-    
-    
-    
     
 }

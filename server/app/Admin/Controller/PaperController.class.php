@@ -69,8 +69,10 @@ class PaperController extends CommonController{
     
     public function del(){
         
-        $where=I('where');
+        $paper_id=I('paper_id');
         $Paper=D('Paper');
+        $where=[];
+        $where['paper_id']=['in',$paper_id];
         $result=$Paper->where($where)->delete();
         if($result){
             $res['res']=1;

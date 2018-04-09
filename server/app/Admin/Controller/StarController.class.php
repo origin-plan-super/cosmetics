@@ -24,9 +24,7 @@ class StarController extends CommonController{
     public function getList(){
         
         $star=M('star');
-        $star_goods=M('star_goods');
         $result=$star->select();
-        
         
         if($result){
             $res['res']=count($result);

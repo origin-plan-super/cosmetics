@@ -107,7 +107,6 @@ export default {
       });
     },
     next() {
-      console.log("下一步");
     }
   },
   computed: {},

@@ -47,7 +47,6 @@ class GoodsController extends CommonController{
     
     public function get(){
         
-        // 5de29730ce2d36ab744fcf9e70bc6a9f
         $goods_id=I('goods_id');
         if(!$goods_id){
             $res['res']=-2;
@@ -56,8 +55,30 @@ class GoodsController extends CommonController{
             die;
         }
         
+        
         $Goods=D('Goods');
         $goods=$Goods->get($goods_id);
+        
+        //判断是不是限时购商品
+        $Time=D('Time');
+        $where=[];
+        $where['goods_id'] = $goods_id;
+        $time=$Time
+        ->where($where)
+        ->order('start_time desc')
+        ->find();
+        
+        if($time){
+            //参加了限时购商品
+            //判断过期
+            
+            $time['end_time']=date('H:i', $time['start_time']+3600);
+            $time['start_time']=date('H:i', $time['start_time']);
+            
+            $goods['time']=$time;
+            
+        }
+        
         
         if($goods){
             $res['res']=1;

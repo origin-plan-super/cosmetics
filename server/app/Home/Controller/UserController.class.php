@@ -86,6 +86,7 @@ class UserController extends CommonController{
         Vendor('VIP.VIP');
         $conf=[];
         $conf['userId']=session('user_id');
+        $conf['isDebug']=false;
         $vip=new \VIP($conf);
         $vip->setWriteDatabase(false);
         $vipInfo=null;

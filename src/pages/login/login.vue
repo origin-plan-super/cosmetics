@@ -114,7 +114,6 @@ export default {
               localStorage.admin_id = this.login.admin_id;
               this.isLoginLoad = true;
               this.$get("admin/getUserInfo", {}, res => {
-                console.log(res);
                 this.isLoginLoad = false;
                 if (res.res >= 1) {
                   //成功
