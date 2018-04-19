@@ -578,6 +578,7 @@ function delFile($path, $delDir = false) {
         delFile($subPath, $delDir);
     }
     if (is_dir($path)) {
+        
         $handle = opendir($path);
         if ($handle) {
             while (false !== ( $item = readdir($handle) )) {
@@ -730,6 +731,7 @@ function getBagNum(){
 * echo 的单行输出，调用一次输出一行，可自定义标签
 */
 function ec($info,$tag='div'){
+    
     $style="font-size:14px;color:#333;line-height:1;padding:5px;text-align:left";
     $log="<$tag style='$style'>$info</$tag>";
     echo $log;
@@ -746,12 +748,10 @@ function getGoodsSku($goods,$map=['img_list','sku','tree']){
     $where['goods_id']=$goods_id;
     
     if(in_array('img_list',$map)){
-        
         //找图片
         $GoodsImg=M('goods_img');
         $goods['img_list']=$GoodsImg->where($where)->order('slot asc')->select();
         $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
-        
     }
     
     if(in_array('sku',$map)){
@@ -759,8 +759,6 @@ function getGoodsSku($goods,$map=['img_list','sku','tree']){
         $skus= $Sku->where($where)->select();
         $goods['sku']=$skus;
     }
-    
-    
     if(in_array('tree',$map)){
         
         $SkuTree=M('sku_tree');
@@ -778,12 +776,18 @@ function getGoodsSku($goods,$map=['img_list','sku','tree']){
         
     }
     
+    $label=[];
+    $label['type']=1;
+    $label['label']="特卖";
+    $goods['goodsLabel'][]=$label;
     
-    
+    $label=[];
+    $label['type']=2;
+    $label['label']="预售";
+    $goods['goodsLabel'][]=$label;
     
     
     return $goods;
-    
 }
 
 //添加sku

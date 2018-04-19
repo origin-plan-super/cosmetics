@@ -21,7 +21,6 @@ class TimeController extends CommonController{
     public function getList(){
         $Time=D('Time');
         $times=$Time->getList();
-        
         if($times){
             $res['res']=count($times);
             $res['msg']=$times;
@@ -30,7 +29,6 @@ class TimeController extends CommonController{
             $res['msg']=$times;
         }
         echo json_encode($res);
-        
     }
     
     

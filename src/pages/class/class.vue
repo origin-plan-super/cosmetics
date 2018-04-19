@@ -36,7 +36,7 @@
 
           <div class="tree-body" @click.self="group.isOpen=!group.isOpen">
             <span @click="group.isOpen=!group.isOpen" class="tree-open">
-              <i v-if="group.isOpen" class="el-icon-remove-outline"></i>
+                 <i v-if="group.isOpen" class="el-icon-remove-outline"></i>
               <i v-if="!group.isOpen" class="el-icon-circle-plus-outline"></i>
             </span>
 

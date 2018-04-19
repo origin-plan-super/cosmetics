@@ -1,0 +1,42 @@
+#list {
+    padding: 20px;
+}
+
+#list /deep/ {
+    .tool-panel {
+        background-color: #fff;
+        height: auto;
+        padding: 15px;
+        box-shadow: 0 1px 2px rgba($color: #000000, $alpha: 0.2);
+        margin-bottom: 20px;
+        border-radius: 2px;
+    }
+    .el-card {
+        border: none;
+        margin-bottom: 20px;
+        .el-card__header {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: 1px solid #ebeef5;
+            border-width: 1px 1px 1px 1px;
+            box-sizing: border-box;
+            background-color: #f6f6f6;
+        }
+        .el-card__body {
+            padding: 0;
+        }
+    }
+    .tool {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+        margin-left: 10px;
+        .tool-item {
+            display: block;
+            float: left;
+            padding: 0;
+            font-size: inherit;
+            color: #777;
+        }
+    }
+}

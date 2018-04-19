@@ -1,0 +1,31 @@
+.select-area {
+    font-size: 0;
+    * {
+        font-size: 14px;
+    }
+    .tree {
+        &-panel {
+            min-width: 200px;
+            font-size: 14px;
+            white-space: normal;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #e4e7ed;
+            box-sizing: border-box;
+            display: inline-block;
+            * {
+                box-sizing: border-box;
+            }
+        }
+        &-head {
+            padding: 5px 10px;
+            background-color: #f5f7fa;
+            border-radius: 5px 5px 0 0;
+        }
+        &-body {
+            padding: 5px 10px;
+            overflow: auto;
+            height: 300px;
+        }
+    }
+}

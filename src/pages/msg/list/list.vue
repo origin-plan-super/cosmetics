@@ -13,7 +13,7 @@
       <el-table ref='table' @selection-change="selectionChange" v-loading="tableLoading" :data="tableData" :row-key="rowKey" style="width: 100%" border max-height='70vh' stripe size='mini'>
 
         <el-table-column type='selection' align="center"></el-table-column>
-        <el-table-column prop="msg" label="内容" resizable></el-table-column>
+        <el-table-column prop="title" label="标题" resizable></el-table-column>
         <el-table-column prop="add_time" label="添加时间" width="150" resizable></el-table-column>
 
         <el-table-column fixed="right" label="消息分类" width="100" align="center">
@@ -22,8 +22,9 @@
           </template>
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="50" align="center">
+        <el-table-column fixed="right" label="操作" width="100" align="center">
           <template slot-scope="scope">
+            <el-button type="text" icon="el-icon-edit" size="mini" @click="edit(scope.row,scope.$index,tableData)"></el-button>
             <el-button type="text" icon="el-icon-delete" size="mini" @click="del(scope.row,scope.$index,tableData)"></el-button>
           </template>
         </el-table-column>
@@ -64,17 +65,24 @@ export default {
   },
   methods: {
     //页面切换事件
-    handleCurrentChange: function() {
+    handleCurrentChange: function(val) {
+      this.currentPage = val;
       this.update();
     },
     //大小改变事件
-    handleSizeChange: function() {
+    handleSizeChange: function(val) {
+      this.pageSize = val;
       this.update();
     },
     add(item) {
       this.$router.push({
-        name: "/msg/add",
-        params: { feedback_id: item.feedback_id }
+        name: "/msg/add"
+      });
+    },
+    edit(item) {
+      this.$router.push({
+        name: "/msg/edit",
+        query: { msg_id: item.msg_id }
       });
     },
     rowKey(item) {

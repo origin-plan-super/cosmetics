@@ -6,7 +6,7 @@
 
     </div>
 
-    <el-card class="box-card">
+    <el-card shadow="hover" class="box-card">
       <div slot="header" class="clearfix">
         <span>首页轮播配置</span>
         <div style="float: right;">
@@ -18,7 +18,7 @@
       <img-list v-model="home_img_list" @on-remove="remove" @drag-end="dragEnd"></img-list>
     </el-card>
 
-    <el-card class="box-card">
+    <el-card shadow="hover" class="box-card">
       <div slot="header" class="clearfix">
         <span>发现页轮播配置</span>
         <div style="float: right;">
@@ -30,7 +30,7 @@
       <img-list v-model="fx_img_list" @on-remove="remove" @drag-end="dragEnd"></img-list>
     </el-card>
 
-    <el-card class="box-card">
+    <el-card shadow="hover" class="box-card">
       <div slot="header" class="clearfix">
         <span>课堂页轮播配置</span>
         <div style="float: right;">
@@ -68,7 +68,6 @@ export default {
   },
   methods: {
     update() {
-
       this.$get("carousel/getList", {}, res => {
         if (res.res >= 1) {
           this.buliderList(res.msg);

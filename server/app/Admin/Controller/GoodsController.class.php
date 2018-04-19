@@ -28,18 +28,24 @@ class GoodsController extends CommonController{
         
         $imgList=$add['img_list'];
         
-        //添加图片
         addGoodsSku($goods_id,$add);
         
         $Goods=M('goods');
         
-        $goodsAdd=[];
+        $goodsAdd=$add;
         $goodsAdd['goods_id']=$goods_id;
-        $goodsAdd['goods_title']=$add['goods_title'];
-        $goodsAdd['logistics']=$add['logistics'];
-        $goodsAdd['is_up']=$add['is_up'];
-        $goodsAdd['goods_class']=$add['goods_class'];
-        $goodsAdd['goods_content']=$add['goods_content'];
+        // $goodsAdd['goods_title']=$add['goods_title'];
+        // $goodsAdd['logistics']=$add['logistics'];
+        // $goodsAdd['is_up']=$add['is_up'];
+        // $goodsAdd['goods_class']=$add['goods_class'];
+        // $goodsAdd['goods_content']=$add['goods_content'];
+        // $goodsAdd['is_unique']=$add['is_unique'];
+        // $goodsAdd['supplier_id']=$add['supplier_id'];
+        
+        unset($goodsSave['sku']);
+        unset($goodsSave['tree']);
+        unset($goodsSave['img_list']);
+        
         
         $goodsAdd['add_time']=time();
         $goodsAdd['edit_time']=time();
@@ -69,7 +75,6 @@ class GoodsController extends CommonController{
         
         $goods=$model->where($where)->find();
         
-        
         $goods=getGoodsSku($goods);
         
         if($goods){
@@ -82,7 +87,6 @@ class GoodsController extends CommonController{
         echo json_encode($res);
         
     }
-    
     
     //获得商品列表
     public function getList(){
@@ -160,19 +164,41 @@ class GoodsController extends CommonController{
         $save=I('save','',false);
         $goods_id=$save['goods_id'];
         
-        unset($save['goods_id']);
-        unset($save['add_time']);
         
         addGoodsSku($goods_id,$save);
         
         //保存商品
-        $goodsSave=[];
-        $goodsSave['goods_title']           =               $save['goods_title'];
-        $goodsSave['logistics']             =               $save['logistics'];
-        $goodsSave['is_up']                 =               $save['is_up'];
-        $goodsSave['goods_class']           =               $save['goods_class'];
-        $goodsSave['goods_content']         =               $save['goods_content'];
-        $goodsSave['edit_time']             =               time();
+        $goodsSave=$save;
+        // $goodsSave['goods_title']           =               $save['goods_title'];
+        // $goodsSave['logistics']             =               $save['logistics'];
+        // $goodsSave['is_up']                 =               $save['is_up'];
+        // $goodsSave['goods_class']           =               $save['goods_class'];
+        // $goodsSave['goods_content']         =               $save['goods_content'];
+        // $goodsSave['edit_time']             =               time();
+        // $goodsSave['is_unique']             =               $save['is_unique'];
+        // $goodsSave['supplier_id']             =               $save['supplier_id'];
+        
+        unset($goodsSave['goods_id']);
+        unset($goodsSave['add_time']);
+        unset($goodsSave['sku']);
+        unset($goodsSave['tree']);
+        unset($goodsSave['img_list']);
+        
+        $goodsSave['edit_time']=time();
+        // //标题
+        // goods_title: "",
+        // //物流模板
+        // logistics: "免邮",
+        // //是否立刻上架
+        // is_up: "0",
+        // //商品分类
+        // goods_class: "",
+        // //图片
+        // img_list: [],
+        // //详情
+        // goods_content: "",
+        // is_unique: "0",
+        // supplier_id: ''//供货商id
         
         $where=[];
         $where['goods_id']=$goods_id;
@@ -185,8 +211,22 @@ class GoodsController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
+    }
+    
+    public function del(){
         
+        $goods_id=I('goods_id');
+        $Goods=D('goods');
+        $result=$Goods->del($goods_id);
         
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
     }
     
 }

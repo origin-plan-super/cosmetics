@@ -7,8 +7,9 @@ pre {
     font-family: '微软雅黑';
     background-color: #f9f9f9;
     border-radius: 5px;
-    border: solid 4px #ddd;
-    margin: 20px;
+    border: solid 2px #ddd;
+    margin: 20px 0;
+    ;
     padding: 20px;
     font-size: 12px;
 }
@@ -59,6 +60,16 @@ p {
     .frame-xs {
         padding: 5px;
     }
+}
+
+/*排版类*/
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
 
 /*浮动类*/
@@ -180,4 +191,19 @@ p {
     &:after {
         clear: both;
     }
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+.text-pre {
+    min-width: 500px;
+    position: fixed;
+    right: 0;
+    top: 30%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    z-index: 999;
+    box-sizing: border-box;
 }

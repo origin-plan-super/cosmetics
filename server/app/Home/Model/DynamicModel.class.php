@@ -4,8 +4,7 @@ use Think\Model;
 class DynamicModel extends Model {
     
     
-    public function _initialize (){
-    }
+    public function _initialize (){}
     
     public function getList($data){
         

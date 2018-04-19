@@ -62,16 +62,16 @@ class OrderController extends CommonController{
         
         
         //==================自己发展团队功能展示============================
-        // ec("==================自己发展团队功能展示============================");
+        ec("==================自己发展团队功能展示============================");
         
         // //当 12132 这个用户成功支付后，创建这个用户的 vip 对象，然后取得当前用户的 super ，然后调用 super 的 邀请人得钱奖()
         
-        // $conf=[];
-        // $conf['userId']='12136';
-        // $vip=new \VIP($conf);
-        // $vip->setDebug(true);
-        // $vip->setWriteDatabase(false);
-        // $vip->getSuper()->邀请人得钱奖($vip);
+        $conf=[];
+        $conf['userId']='12136';
+        $vip=new \VIP($conf);
+        $vip->setDebug(true);
+        $vip->setWriteDatabase(false);
+        $vip->getSuper()->邀请人得钱奖($vip);
         
         for ($i=0; $i < 50; $i++) {
             ec ('');
@@ -83,22 +83,25 @@ class OrderController extends CommonController{
     //获得添加订单页的数据包
     public function getAddPacket(){
         
+        
         $Address=M('Address');
-        $bag_ids=I('bag_ids');
+        
+        $snapshot_id=I('snapshot_id');
         
         $where=[];
         $where['user_id']=session('user_id');
         $addressList=$Address->where($where)->select();
         
-        
-        $where=[];
-        $where['bag_id']=['in',$bag_ids];
-        $Bag=D('bag');
-        $bagList=$Bag->getList($where);
-        
-        $res['res']=1;
-        $res['addressList']=$addressList;
-        $res['bagList']=$bagList;
+        $Snapshot=D('Snapshot');
+        $snapshots=$Snapshot->getList($snapshot_id);
+        if($snapshots){
+            $res['res']=count($snapshots);
+            $res['snapshots']=$snapshots;
+            $res['addressList']=$addressList;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
         echo json_encode($res);
         
     }
@@ -122,6 +125,7 @@ class OrderController extends CommonController{
         
         
     }
+    
     public function get(){
         
         $Order=D('Order');
@@ -138,9 +142,9 @@ class OrderController extends CommonController{
     //保存字段
     public function save(){}
     
-    public function add(){
+    public function create(){
         
-        $post=I('post.','',false);
+        $post=I('','',false);
         //根据sku组成订单详情表
         $Order=D('order');
         $orderIds=$Order->create($post);

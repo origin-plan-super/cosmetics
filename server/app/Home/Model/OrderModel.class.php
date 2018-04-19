@@ -4,136 +4,196 @@ use Think\Model;
 class OrderModel extends Model {
     
     
-    public function _initialize (){
+    public function _initialize (){}
+    
+    //创建订单数据
+    public function createOrder($snapshot,$address_id,$pay_id){
+        $Goods=D('Goods');//商品模型
+        $Snapshot=M('Snapshot');//快照模型
+        $Logistics=M('Logistics');//物流信息表模型
+        $Activity=D('Activity');//活动模型
+        $Coupon=D('Coupon');//优惠券模型
+        
+        // ===================================================================================
+        // 基本数据
+        $user_id=session('user_id');
+        $data=[];
+        $data['orderData']=null;
+        $data['logisticsData']=null;
+        
+        // ===================================================================================
+        // 基本数据
+        $snapshot_id=$snapshot['snapshot_id'];//快照id
+        $goods_id=$snapshot['goods_id'];//商品id
+        $order_id=date('YmdHis',time()).rand(10000,99999);//创建订单号
+        $activity_id=$snapshot['activity_id'];//促销活动的id
+        $coupon_id=$snapshot['coupon_id'];//优惠券id
+        
+        // ===================================================================================
+        // 找商品信息
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $goods=$Goods->where($where)->find();
+        
+        // ===================================================================================
+        // 创建物流表
+        $logistics=[];
+        $logistics_id=getMd5('logistics');//物流信息id
+        $logistics['logistics_id']=$logistics_id;//物流信息id
+        $logistics['order_id']=$order_id;//订单号
+        $logistics['logistics_number']='';//物流号
+        $logistics['type']='';//物流类型，圆通、中通等
+        $logistics['add_time']=time();//添加时间
+        $logistics['edit_time']=time();//编辑时间
+        $data['logisticsData']=$logistics;
+        // ===================================================================================
+        // 这里进入计价环节
+        $discount=0;//优惠的价格
+        
+        // ===================================================================================
+        //找促销活动信息
+        $discount+=$Activity->getActivityPrice($activity_id,$snapshot_id,$order_id);
+        
+        // ===================================================================================
+        //找优惠券信息，如果优惠券可用，在本次使用后优惠券失效，此次订单只可以使用一次。
+        $discount+=$Coupon->getCouponPrice($coupon_id,$snapshot_id,$order_id);
+        
+        // ===================================================================================
+        // 计算价格
+        $price=$snapshot['price']*$snapshot['count']-$discount;
+        $total+=$price;
+        // ===================================================================================
+        // 组装订单数据
+        $orderData=[];//订单数据
+        $orderData['order_id']=$order_id;//订单号
+        $orderData['snapshot_id']=$snapshot_id;//快照id
+        $orderData['user_id']=$user_id;//买家id
+        $orderData['address_id']=$address_id;//地址库id
+        $orderData['price']=$price;//应付金额（计算商品总价且优惠后的价格）
+        $orderData['state']=1;//状态，默认是1
+        $orderData['pay_id']=$pay_id;//支付号
+        $orderData['supplier_id']=$goods['supplier_id'];//供货商id，取此时商品设置的数据，留空表示平台发货
+        $orderData['add_time']=time();//添加时间
+        $orderData['edit_time']=time();//编辑时间
+        $data['orderData']=$orderData;
+        // ===================================================================================
+        // 设置快照的 order_id
+        $where=[];
+        $where['snapshot_id']=$snapshot_id;
+        $save=[];
+        $save['order_id']=$order_id;
+        $Snapshot->where($where)->save($save);
+        
+        return $data;
     }
+    
+    
     
     
     public function create($data){
         
-        /**
-        * 创建单个商品的订单数据
-        * 记录每个订单的收货地址
-        */
-        //本次订单详情的id,多个订单对应一个订单详情，订单详情用于支付
-        $order_info_id=date('YmdHis',time()).rand(10000,99999);
+        // $order_info_id=date('YmdHis',time()).rand(10000,99999);
+        // ===================================================================================
+        // 创建支付号，全局使用
+        $pay_id=date('YmdHis',time()).rand(10000,99999);
         
-        $skus=$data['skus'];
-        $payment_type=$data['payment_type'];
-        $address_id=$data['address_id'];
-        $bags=$data['bags'];
+        // ===================================================================================
+        // 用户数据
+        $user_id=session('user_id');
         
-        //=============================================================
-        $Sku=M('Sku');
-        $Address=M('Address');
-        $Goods=D('Goods');
-        $Bag=D('Bag');
+        // ===================================================================================
+        // 实际需要支付的金额
+        $total=0;
+        // ===================================================================================
+        // 获得基本数据
+        $pay_typ=$data['pay_typ'];//支付方式
+        $address_id=$data['address_id'];//地址id
+        $snapshot_ids=$data['snapshot_id'];//快照id数组
         
-        $OrderInfo=M('OrderInfo');
-        $OrderAddress=M('OrderAddress');
-        $OrderSnapshot=M('OrderSnapshot');
-        $Order=M('Order');
+        // ===================================================================================
+        // 创建模型
+        $Sku=M('Sku');//sku模型
+        $Address=D('Address');//用户地址库模型
+        $Bag=D('Bag');//购物袋模型
+        $Activity=D('Activity');//活动模型
+        $Coupon=D('Coupon');//优惠券模型
+        $Pay=D('Pay');//支付单模型
+        $OrderAddress=M('OrderAddress');//地址库模型
+        $Snapshot=M('Snapshot');//快照模型
+        $Order=M('Order');//订单模型
+        $Logistics=M('Logistics');//物流信息表模型
         
-        //测试环境
-        // $OrderAddress->where('1=1')->delete();
-        // $OrderSnapshot->where('1=1')->delete();
-        // $Order->where('1=1')->delete();
-        // $OrderInfo->where('1=1')->delete();
+        // 测试环境
+        $OrderAddress->where('1=1')->delete();
+        $save=[];
+        $save['order_id']=null;
+        $Snapshot->where('1=1')->save($save);
+        $Order->where('1=1')->delete();
+        $Logistics->where('1=1')->delete();
+        $Pay->where('1=1')->delete();
         
-        //=============================================================
         
-        //取出收货地址数据
+        // ===================================================================================
+        // 找到所有的快照数据
         $where=[];
+        $where['snapshot_id']=['in',$snapshot_ids];
+        $snapshots=$Snapshot->where($where)->select();
+        
+        // ===================================================================================
+        // 找地址信息
+        $where=[];
+        $where['user_id']=$user_id;
         $where['address_id']=$address_id;
         $address=$Address->where($where)->find();
+        
+        //创建新数据
         $address_id=getMd5('address');
         $address['address_id']=$address_id;
         $address['add_time']=time();
         $address['edit_time']=time();
         
-        //=============================================================
-        //先找到所有商品
-        $where=[];
-        $where['bag_id']=['in',$bags];
-        $bags=$Bag->getList($where);
+        // ===================================================================================
+        // 循环遍历快照，然后创建订单
+        $orderDatas=[];
+        $logisticsDatas=[];
         
-        //=============================================================
-        //遍历生成订单
-        $snapshotList=[];
-        $orderList=[];
-        $orderIds=[];
-        $total=0;
-        for ($i=0; $i < count($bags); $i++) {
-            
-            $order_id=date('YmdHis',time()).rand(10000,99999);
-            $orderIds[]=$order_id;
-            $snapshot_id=getMd5('snapshot');
-            
-            //=============================================================
-            //生成快照
-            $goods=$Goods->get($bags[$i]['goods_id']);
-            $snapshot=[];
-            $snapshot['snapshot_id']=$snapshot_id;
-            $snapshot['order_id']=$order_id;
-            $snapshot['goods_id']=$goods['goods_id'];
-            
-            $snapshot['goods_title']=$goods['goods_title'];
-            $snapshot['img']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
-            
-            $snapshot['s1']=$bags[$i]['sku']['s1'];
-            $snapshot['s2']=$bags[$i]['sku']['s2'];
-            $snapshot['s3']=$bags[$i]['sku']['s3'];
-            $snapshot['price']=$bags[$i]['sku']['price'];
-            $snapshot['num']=$bags[$i]['goods_count'];
-            
-            $snapshot['add_time']=time();
-            $snapshot['edit_time']=time();
-            
-            $snapshotList[]=$snapshot;
-            
-            //=============================================================
-            //一个商品一个订单
-            $order=[];
-            
-            $order['order_id']=$order_id;//订单号
-            $order['snapshot_id']=$snapshot_id;//商品快照号
-            $order['order_info_id']=$order_info_id;//订单详情号，支付使用
-            $order['user_id']=session('user_id');//买家id
-            $order['address_id']=$address_id;//收货地址id
-            $order['pay_type']=$payment_type;//支付方式
-            $order['total']= $snapshot['price']* $snapshot['num'];//总价、单价*数量
-            $total+=$order['total'];//计算订单详情的总价
-            $order['logistics_type']=0;//发货方式
-            $order['express_number']='';//物流号
-            $order['is_postage']=0;//是否有邮费
-            $order['postage']=0;//邮费
-            $order['state']=1;//状态
-            $order['order_type']=1;//订单类型（499、限时购、分享）
-            
-            $order['add_time']=time();
-            $order['edit_time']=time();
-            //=============================================================
-            $orderList[]=$order;
-            
+        foreach ($snapshots as $key => $snapshot) {
+            $data=$this->createOrder($snapshot,$address_id,$pay_id);
+            $orderDatas[]=$data['orderData'];
+            $logisticsDatas[]=$data['logisticsData'];
         }
-        //=============================================================
         
-        //创建订单详情
-        $orderInfo=[];
-        $orderInfo['order_info_id']=$order_info_id;
-        $orderInfo['total']= $total;//订单总价
-        $orderInfo['state']= 1;//订单支付状态
-        $orderInfo['user_id']= session('user_id');
-        $orderInfo['add_time']=time();
-        $orderInfo['edit_time']=time();
+        // ===================================================================================
+        // 创建支付单
+        $payData=[];
+        $payData['pay_id']=$pay_id;// 支付号
+        $payData['user_id']=$user_id;// 买家id
+        $payData['price']=$total;// 需要支付的金额，已经优惠后的价格，实际需要支付的价格
+        $payData['state']=0;//支付状态,0：未支付，1：已支付
+        $payData['pay_type']=$pay_typ;//支付类型，1：支付宝支付，2：微信支付，3：余额支付
+        $payData['add_time']=time();
+        $payData['edit_time']=time();
         
-        //=============================================================
         
+        // ===================================================================================
+        // 写入到数据库中
+        $Order->addAll($orderDatas);//添加订单数据
         $OrderAddress->add($address);//添加收货地址信息
-        $OrderSnapshot->addAll($snapshotList);//添加交易快照信息
-        $Order->addAll($orderList);//添加订单
-        $OrderInfo->add($orderInfo);//添加订单详情
+        $Pay->add($payData);//添加支付单数据
+        $Logistics->addAll($logisticsDatas);//添加物流信息表
         
-        return $order_info_id;  // 返回 order_info_id
+        ec('订单数据');
+        dump($orderDatas);
+        ec('地址数据');
+        dump($address);
+        ec('支付数据');
+        dump($payData);
+        ec('物流数据');
+        dump($logisticsDatas);
+        die;
+        
+        
+        return $pay_id;  // 返回 pay_id
         
     }
     
@@ -143,6 +203,8 @@ class OrderModel extends Model {
         $OrderInfo=M('OrderInfo');
         $Order=M('Order');
         $Coupon=D('Coupon');
+        $Goods=D('Goods');
+        $User=D('User');
         
         //=============================================================
         
@@ -169,6 +231,45 @@ class OrderModel extends Model {
         $where['order_info_id']=$order_info_id;
         $orderInfo=$OrderInfo->where($where)->find();
         $total=$orderInfo['total'];
+        
+        //=============================================================
+        //找商品快照，如果商品是特殊商品，让此用户成为会员
+        $OrderSnapshot=M('OrderSnapshot');
+        $where=[];
+        $where['order_info_id']=$order_info_id;
+        $snapshots=$OrderSnapshot->where($where)->select();
+        
+        
+        
+        foreach ($snapshots as $key => $value) {
+            
+            $goods_id=$value['goods_id'];
+            $where=[];
+            $where['goods_id']=$goods_id;
+            $goods=$Goods->where()->find();
+            if($goods['is_unique']==1){
+                //是特殊商品
+                //让用户成为vip
+                $where=[];
+                $where['user_id']=session('user_id');
+                $save=[];
+                
+                $User->where($where)->save($save);
+                //=============================================================
+                //vip得钱
+                Vendor('VIP.VIP');
+                //初始化vip对象
+                $conf=[];
+                $conf['userId']=session('user_id');
+                $conf['isDebug']=false;
+                $vip=new \VIP($conf);
+                $vip->setWriteDatabase(true);
+                $vip->getSuper()->邀请人得钱奖($vip);
+                
+            }
+            
+        }
+        
         
         //=============================================================
         
@@ -258,16 +359,17 @@ class OrderModel extends Model {
     
     public function getList(){
         
+        
         $OrderAddress=M('OrderAddress');
         $OrderSnapshot=M('OrderSnapshot');
         $Order=M('Order');
-        $OrderInfo=M('OrderInfo');
+        return [];
         
         //==================================================
         
         $where=[];
         $where['user_id']=session('user_id');
-        $orderInfos=$OrderInfo->where($where)->select();
+        $orderInfos=$OrderInfo->order('add_time desc')->where($where)->select();
         
         $list=[];
         for ($i=0; $i < count($orderInfos); $i++) {
@@ -281,7 +383,7 @@ class OrderModel extends Model {
             $item['order_info_id']=$order_info_id;//订单总价
             $where=[];
             $where['order_info_id']=$order_info_id;
-            $orders=$Order->where($where)->select();//查找订单详情对应的所有订单
+            $orders=$Order->where($where)->order('add_time desc')->select();//查找订单详情对应的所有订单
             //组成每个单品
             $goods_list=[];
             //如果是待付款，就要集合到一起，如果是已付款，就单独分开

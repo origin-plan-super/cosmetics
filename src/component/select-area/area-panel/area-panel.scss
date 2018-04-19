@@ -1,0 +1,45 @@
+.area {
+    &-panel {
+        min-width: 200px;
+        margin-right: 5px;
+        font-size: 14px;
+        white-space: normal;
+        background-color: #ffffff;
+        border-radius: 5px;
+        border: 1px solid #e4e7ed;
+        box-sizing: border-box;
+        display: inline-block;
+        * {
+            box-sizing: border-box;
+        }
+    }
+    &-head {
+        padding: 5px 10px;
+        background-color: #f5f7fa;
+        border-radius: 5px 5px 0 0;
+    }
+    &-body {
+        padding: 5px 10px;
+        overflow: auto;
+        height: 300px;
+    }
+    &-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        &-item {
+            padding: 3px;
+            cursor: pointer;
+            margin: 3px 0;
+            line-height: 1;
+            border: 1px solid #fff;
+            user-select: none;
+            &:hover {
+                border: 1px solid #e4e7ed;
+            }
+            &.active {
+                background-color: #dddddd;
+            }
+        }
+    }
+}

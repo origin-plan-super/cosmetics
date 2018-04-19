@@ -41,6 +41,20 @@ class UserController extends CommonController{
     }
     
     
+    public function getUpList(){
+        $User=D('User');
+        $upUsers=$User->getUpList();
+        
+        if($upUsers){
+            $res['res']=count($upUsers);
+            $res['msg']=$upUsers;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$upUsers;
+        }
+        echo json_encode($res);
+    }
+    
     public function getUserInfo(){
         
         $field=I('field');
@@ -95,6 +109,7 @@ class UserController extends CommonController{
             //是会员
             //初始化vip对象
             // $vip->setDebug(true);
+            $vipInfo['levelName']=$vip->levelName;//会员优惠价
             $vipInfo['discount']=$vip->discount;//会员优惠价
         }else{
             //非会员可以分享商品得钱

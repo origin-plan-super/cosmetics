@@ -23,6 +23,22 @@ class GoodsController extends CommonController{
         
     }
     
+    //搜索
+    public function search(){
+        
+        $Goods=D('Goods');
+        $goodsList  =  $Goods->search($data);
+        
+        if($goodsList!==false){
+            $res['res']=count($goodsList);
+            $res['msg']=$goodsList;
+            $res['sql']=$Goods->_sql();
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goodsList;
+        }
+        echo json_encode($res);
+    }
     
     //获得商品列表
     public function getList(){
@@ -92,9 +108,6 @@ class GoodsController extends CommonController{
     }
     
     public function query(){
-        $model=M('goods');
-        $key = I('key');
-        echo json_encode($key);
         
     }
     

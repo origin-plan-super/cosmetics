@@ -87,7 +87,15 @@
 
         <el-table-column></el-table-column>
 
-        <el-table-column prop="add_time" label="创建时间" resizable show-overflow-tooltip width="155"></el-table-column>
+        <el-table-column label="推荐到发现" fixed="right" width="100" align="center">
+
+          <template slot-scope="scope">
+            <el-switch title="设置上架" :disabled="isPreservation" active-value="1" inactive-value="0" v-model="scope.row.is_up" active-color="#13ce66" @change="up(scope.row)"></el-switch>
+          </template>
+
+        </el-table-column>
+
+        <el-table-column prop="add_time" label="注册时间" resizable show-overflow-tooltip width="155"></el-table-column>
 
         <el-table-column fixed="right" label="操作" width="200" align="center">
           <template slot-scope="scope">
@@ -153,19 +161,57 @@ export default {
         activeUser: null
       },
       stars: [],
-      queryKey: ""
+      queryKey: "",
+      isPreservation: false
     };
   },
   methods: {
+    up(item) {
+      var tim = setTimeout(() => {
+        this.isPreservation = true;
+      }, 100);
+      var msg;
+
+      msg = this.$message({
+        message: "正在保存",
+        duration: 0,
+        iconClass: "el-icon-loading"
+      });
+      this.$post(
+        "user/save",
+        {
+          where: {
+            user_id: item.user_id
+          },
+          save: {
+            is_up: item.is_up
+          }
+        },
+        res => {
+          clearTimeout(tim);
+          msg.close();
+
+          this.isPreservation = false;
+
+          if (res.res >= 1) {
+          }
+          if (res.res < 0) {
+            this.$message({ message: "操作失败！请重试！", type: "error" });
+          }
+        }
+      );
+    },
     //页面切换事件
-    handleCurrentChange: function() {
+    handleCurrentChange(val) {
+      this.currentPage = val;
       this.update();
     },
     //大小改变事件
-    handleSizeChange: function() {
+    handleSizeChange(val) {
+      this.pageSize = val;
       this.update();
     },
-    update: function(showInfo, message) {
+    update(showInfo, message) {
       if (this.queryKey.length > 0) {
         this.search();
         return;

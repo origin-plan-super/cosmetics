@@ -40,35 +40,33 @@
         <!-- 商品列表 -->
 
         <div class="goods-list">
-          <div class="goods-item" v-for="item in order.order_info.goods" :key="item.order_id">
-            <img :src="$getUrl(item.img_list[0].src)" alt="图片错误！">
+          <div class="goods-item">
+            <img :src="$getUrl(order.snapshot.img)" alt="图片错误！">
 
             <div class="goods-info">
 
-              <span class="goods-title">
-                {{item.goods_title}}
-              </span>
+              <div class="goods-title">
+                {{order.snapshot.goods_title}}
+              </div>
 
-              <br>
-              <span class="goods-money text-muted">
+              <div class="goods-money text-muted">
                 <span>
-                  单价：￥{{order.order_info.user_spec[item.goods_id].money}}
+                  [ 单价：￥{{order.snapshot.price}} ]
                 </span>
-                -
+                <span>-</span>
                 <span>
-                  数量 {{order.order_info.user_spec[item.goods_id].goods_count}}
+                  [ 数量 {{order.snapshot.count}} ]
                 </span>
-                <!-- 规格 -->
-                <span class="spec-list">
-
-                  <span v-for="(spec,j) in order.order_info.user_spec[item.goods_id]" :key="spec.title">
-                    <span v-if="typeof(spec)=='object'" class="spec-item">
-                      -{{j}} : {{spec.title}}。
-                    </span>
-                  </span>
-
+                <span>-</span>
+                <span>
+                  [ 总价：￥{{order.price}} ]
                 </span>
-              </span>
+                <div class="spec-list">
+                  <template v-for="n in 3">
+                    <span v-if="order.snapshot['s'+n]" class="order-label" :key="n">{{order.snapshot['s'+n]}}</span>
+                  </template>
+                </div>
+              </div>
 
             </div>
 
@@ -94,18 +92,20 @@
           </el-form-item>
 
           <el-form-item label="收货人">
-            <span v-if="order.order_info.address">{{order.order_info.address.people }}</span>
+            <span v-if="order.address">{{order.address.name }}</span>
           </el-form-item>
 
           <el-form-item label="联系电话">
-            <span v-if="order.order_info.address">{{order.order_info.address.phone }}</span>
+            <span v-if="order.address">{{order.address.tel }}</span>
           </el-form-item>
 
           <el-form-item label="收货地址">
 
-            <span v-if="order.order_info.address">{{order.order_info.address.region }}</span>
-            <br>
-            <span v-if="order.order_info.address">{{order.order_info.address.info }}</span>
+            <span v-if="order.address">{{order.address.province }}</span>
+            <span v-if="order.address">{{order.address.city }}</span>
+            <span v-if="order.address">{{order.address.county }}</span>
+            <span>-</span>
+            <span v-if="order.address">{{order.address.address_detail }}</span>
 
           </el-form-item>
 
@@ -124,112 +124,7 @@
 
   </div>
 </template>
-<script>
-export default {
-  name: "info",
-  data() {
-    return {
-      order_id: "",
-      order: null,
-      refreshBtnLoad: false,
-      info: {
-        type: "",
-        text: "",
-        isShow: false,
-        close: false,
-        icon: false
-      },
-      testValue: ""
-    };
-  },
-  methods: {
-    update() {
-      this.refreshBtnLoad = true;
-      this.$get(
-        "order/getList",
-        { where: { order_id: this.order_id } },
-        res => {
-          this.refreshBtnLoad = false;
-
-          if (res.res >= 1) {
-            // this.order_id;
-            this.order = res.msg[0];
-          }
-          if (res.res < 0) {
-            //订单不存在
-
-            this.info.text = `订单获取失败，请重试！ 订单号：[ ${
-              this.order_id
-            } ]`;
-            this.info.isShow = true;
-            this.info.type = "error";
-
-            this.$message({
-              showClose: true,
-              type: "error",
-              message: `订单获取失败，请重试！`
-            });
-          }
-        }
-      );
-    },
-    saveExpressNumber() {
-      if (this.order.express_number == this.testValue) return;
-      var save = {
-        express_number: this.order.express_number
-      };
-
-      this.$post(
-        "order/save",
-        { where: { order_id: this.order_id }, save: save, table: "orderInfo" },
-        res => {
-          if (res.res >= 1) {
-            this.$message({ message: "保存成功！", type: "success" });
-          }
-          if (res.res < 0) {
-            this.$message({ message: "保存失败！请重试！", type: "error" });
-          }
-        }
-      );
-    },
-    // 保存
-    save(item, saveName, isInfo, isValidate) {
-      if (isValidate && item[saveName] == this.testValue) return;
-      var save = {};
-      save[saveName] = item[saveName];
-
-      this.$post(
-        "order/save",
-        { where: { order_id: item.order_id }, save: save },
-        res => {
-          if (res.res >= 1 && isInfo) {
-            this.$message({ message: "保存成功！", type: "success" });
-          }
-          if (res.res < 0) {
-            this.$message({ message: "保存失败！请重试！", type: "error" });
-          }
-        }
-      );
-    }
-  },
-  mounted() {
-    if (!this.$route.params["order_id"]) {
-      if (!localStorage.order_id) {
-        this.$router.go(-1);
-        return;
-      } else {
-        this.order_id = localStorage.order_id;
-      }
-    } else {
-      this.order_id = this.$route.params["order_id"];
-    }
-    localStorage.order_id = this.order_id;
-    this.update();
-  },
-  components: {},
-  watch: {}
-};
-</script>
+<script src="./info.js"></script>
 <style lang="scss" scoped>
 @import "info.scss";
 </style>

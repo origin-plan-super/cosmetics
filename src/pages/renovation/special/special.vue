@@ -1,8 +1,8 @@
 <template>
   <div id="special">
-    <div class="frame" style="width:50%">
+    <div class="frame" style="width:500px">
       <el-button @click="isShowAdd=!isShowAdd" size="small">新建专题</el-button>
-      <el-form ref="form" :model="add" label-width="80px" size="small" :rules="rules" v-if="isShowAdd">
+      <el-form ref="form" :model="add" label-width="100px" size="small" :rules="rules" v-if="isShowAdd">
         <el-form-item label="专题标题" prop="special_title">
           <el-input v-model="add.special_title"></el-input>
         </el-form-item>
@@ -18,9 +18,7 @@
 
     <div class="frame">
       <template v-for="item in specials">
-
         <special-card :key="item.special_id" :bg="item.special_head" :special-id="item.special_id" :title="item.special_title" :info="item.special_title_2"></special-card>
-
       </template>
 
     </div>

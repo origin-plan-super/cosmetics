@@ -8,15 +8,30 @@ class SpecialModel extends Model {
         
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['limit']?$data['limit']:10;
-        
+        $where['is_small']=0;
         $specials=$this
         ->order('add_time desc')
+        ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
         return $specials;
         
     }
     
+    public function getSmallList($data){
+        
+        $limit  =   $data['limit']?$data['limit']:6;
+        $where  =   $data['where']?$data['where']:[];
+        
+        $where['is_small']=1;
+        
+        $specials=$this
+        ->order('add_time desc')
+        ->where($where)
+        ->limit($limit)
+        ->select();
+        return $specials;
+    }
     
     //获得单个，包括商品等数据
     public function get($special_id){

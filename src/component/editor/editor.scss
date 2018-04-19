@@ -1,3 +1,5 @@
-#editor {
-    height: 500px;
+.editor /deep/ {
+    position: relative;
+    .editor-box {
+    }
 }

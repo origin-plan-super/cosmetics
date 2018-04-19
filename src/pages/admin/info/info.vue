@@ -6,7 +6,7 @@
       </el-alert>
     </template>
 
-    <el-card style="margin:20px 0">
+    <el-card shadow="hover" style="margin:20px 0">
       <el-button @click="update()" size="small" icon="el-icon-refresh" :loading="refreshBtnLoad">刷新</el-button>
       <el-form v-if="saveAdmin" label-width="80px" ref="saveForm" size="small" style="width:300px">
         <el-form-item label="登录账户">

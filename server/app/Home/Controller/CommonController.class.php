@@ -21,8 +21,6 @@ class CommonController extends Controller {
     //ThinkPHP提供的构造方法
     public function _initialize() {
         
-        session('user_id','13914896237');
-        return;
         $isDebug=I('debug',false);
         if($isDebug){
             return;

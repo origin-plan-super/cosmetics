@@ -18,6 +18,9 @@ $allow_origin=[
 'http://cosmetics.com',
 'http://admin.cuelyine.cn',
 'http://followenjoy.cn',
+'http://admin.followenjoy.cn',
+'http://srver.followenjoy.cn',
+'http://srver2.followenjoy.cn',
 ];
 $is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){

@@ -32,7 +32,7 @@ class TimeModel extends Model {
             $tree[$name]['goods'][]=$times[$i]['goods'];
             
             
-            if(time()>$time){
+            if(time()-3600>$time){
                 //判断是否过期 overdue
                 $tree[$name]['isOverdue']=true;
             }else{

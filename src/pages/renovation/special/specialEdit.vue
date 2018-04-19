@@ -1,7 +1,7 @@
 <template>
   <div id="specialEdit">
 
-    <el-card style="margin-bottom:20px">
+    <el-card shadow="hover"  style="margin-bottom:20px">
       <div slot="header">基本信息</div>
       <div class="frame" style="width:70%">
         <el-form ref="form" :model="save" label-width="100px" size="small" :rules="rules">
@@ -21,10 +21,31 @@
             <el-input type="textarea" :maxlength="255" placeholder="" :autosize="{ minRows: 5}" v-model="save.special_info"></el-input>
           </el-form-item>
 
-          <el-form-item label="专题配图">
-            <el-upload :action="$serverUpFile" ref="upload" :show-file-list="false" :data="parame" multiple :on-error="error" :on-success="success">
-              <el-button icon="el-icon-upload">上传专题配图</el-button>
-            </el-upload>
+          <el-form-item label="卡片配图">
+
+            <o-upload src="special/" v-model="save.special_head">
+              <el-button icon="el-icon-upload">上传卡片配图</el-button>
+            </o-upload>
+
+          </el-form-item>
+
+          <el-form-item label="详情页配图">
+            <!-- special_logo -->
+
+            <o-upload src="special/" v-model="save.special_logo">
+              <el-button icon="el-icon-upload">上传详情页配图</el-button>
+            </o-upload>
+
+            <img :src="$getUrl(save.special_logo)" class="img">
+
+          </el-form-item>
+
+          <el-form-item label="小专题">
+            <el-switch v-model="save.is_small" active-value="1" inactive-value="0" active-color="#13ce66"></el-switch>
+            <el-tooltip class="item" effect="dark" :content="whatIsSmall" placement="right">
+              <el-button type="text" icon="el-icon-question" class="text-info"></el-button>
+            </el-tooltip>
+
           </el-form-item>
 
           <el-form-item>
@@ -35,7 +56,7 @@
       </div>
     </el-card>
 
-    <el-card style="margin-bottom:20px">
+    <el-card shadow="hover"  style="margin-bottom:20px">
       <div slot="header">商品列表</div>
       <el-button size="small" @click="isShowSelectGoodsPanel=!isShowSelectGoodsPanel" style="margin:10px 0">选择商品</el-button>
       <el-button size="small" type="success" @click="saveGoods()" v-if="isShowSelectGoodsPanel">保存商品列表</el-button>
@@ -69,19 +90,14 @@ export default {
       goods_list: [], //用于保存之前的
       goodsList: [], //用于保存最后的
       isShowSelectGoodsPanel: false,
-      parame: {
-        token: localStorage.token,
-        admin_id: localStorage.admin_id,
-        src: "special/",
-        del_src: ""
-      },
       special_id: "",
       save: {
-        special_head: "",
-        special_logo: "",
+        special_head: "", //外面的
+        special_logo: "", //里面的
         special_title: "",
         special_title_2: "",
-        special_info: ""
+        special_info: "",
+        is_small: "0"
       },
       rules: {
         special_title: [
@@ -93,7 +109,8 @@ export default {
             trigger: "blur"
           }
         ]
-      }
+      },
+      whatIsSmall: `首页通知下的圆形专题`
     };
   },
   methods: {
@@ -135,13 +152,6 @@ export default {
           return false;
         }
       });
-    },
-    success(res) {
-      this.save.special_head = res.msg.src;
-    },
-    //失败
-    error(response, file, fileList) {
-      this.$error("文件上传失败！");
     },
     saveGoods() {
       this.isShowSelectGoodsPanel = false;

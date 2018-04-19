@@ -34,98 +34,38 @@ class OrderController extends CommonController{
     public function getList(){
         
         
-        $model=M('order');
+        $Order=D('Order');
         
-        $page=I('page')?I('page'):1;
-        $limit=I('limit')?I('limit'):10;
-        $where=I('where')?I('where'):[];
+        $result=$Order->getList(I());
         
+        $res['count']=$Order->count()+1;
         
-        
-        // 总数
-        $count=$model
-        ->table('c_order as t1,c_user as t2')
-        ->field('t1.*,t2.user_name,t2.user_id')
-        ->order('t1.add_time desc')
-        ->where($where)
-        ->where('t1.user_id = t2.user_id')
-        ->count();
-        $res['count']=$count+0;
-        
-        
-        // 查找
-        $order=$model
-        ->table('c_order as t1,c_user as t2')
-        ->field('t1.*,t2.user_name,t2.user_id')
-        ->order('t1.add_time desc')
-        ->limit(($page-1)*$limit,$limit)
-        ->where($where)
-        ->where('t1.user_id = t2.user_id')
-        ->select();
-        
-        
-        //转换时间
-        $order= toTime($order);
-        
-        // 找信息
-        $orderList=[];
-        $model=M('order_info');
-        $goods=M('goods');
-        
-        for ($i=0; $i <count($order) ; $i++) {
-            
-            $order_id=$order[$i]['order_id'];
-            $where=[];
-            $where['order_id']=$order_id;
-            $order_info=$model->where($where)->find();
-            
-            
-            $item=[];
-            $item=$order[$i];
-            $item['order_info']=json_decode($order_info['order_info'],true);
-            $item['express_number']=$order_info['express_number'];
-            $item['order_info']['goods']=[];
-            
-            
-            //找到商品
-            foreach ($item['order_info']['goods_id_list'] as $key => $value) {
-                
-                $where=[];
-                $where['goods_id']=$value;
-                $re_goods=$goods->where($where)->find();
-                
-                $map=[];
-                $map['img_list']=false;
-                $map['goods_class']=false;
-                $map['spec']=false;
-                $re_goods=arrJsonD([$re_goods],$map);
-                
-                $item['order_info']['goods'][]=$re_goods[0];
-                
-            }
-            
-            $orderList[]=$item;
-        }
-        
-        //=========判断=========
-        if($orderList){
-            $res['res']=$count+0;
-            $res['msg']=$orderList;
+        if($result){
+            $res['res']=count($result);
+            $res['msg']=$result;
         }else{
             $res['res']=-1;
-            $res['msg']=$orderList;
+            $res['msg']=$result;
         }
-        //=========判断end=========
-        
-        //=========输出json=========
         echo json_encode($res);
-        //=========输出json=========
-        
         
         
     }
     
-    
+    public function get(){
+        $Order=D('Order');
+        
+        $result=$Order->get(I('order_id'));
+        
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
     
     //保存字段
     public function save(){

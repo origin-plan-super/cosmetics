@@ -26,7 +26,11 @@ class MsgController extends CommonController{
         $where=I('where')?I('where'):[];
         
         $res['count']=$Msg->where($where)->count()+0;
-        $msgs=$Msg->where($where)->limit(($page-1)*$limit,$limit)->select();
+        $msgs=$Msg
+        ->order('add_time desc')
+        ->where($where)
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
         $msgs=toTime($msgs);
         
         if($msgs){
@@ -35,6 +39,23 @@ class MsgController extends CommonController{
         }else{
             $res['res']=-1;
             $res['msg']=$msgs;
+        }
+        echo json_encode($res);
+        
+    }
+    
+    
+    public function get(){
+        
+        $where=I('where');
+        $Msg=D('Msg');
+        $result=$Msg->where($where)->find();
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
         }
         echo json_encode($res);
         
@@ -54,6 +75,25 @@ class MsgController extends CommonController{
             $res['res']=-1;
             $res['msg']=$result;
         }
+        echo json_encode($res);
+    }
+    
+    public function save(){
+        $save=I('save');
+        $where=I('where');
+        $Msg=D('Msg');
+        
+        unset($save['msg_id']);
+        unset($save['add_time']);
+        $result=$Msg->where($where)->save($save);
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
         echo json_encode($res);
     }
     

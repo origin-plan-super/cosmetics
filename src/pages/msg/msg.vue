@@ -1,10 +1,10 @@
 <template>
-    <div id="msg">
+  <div id="msg">
 
-        <template>
-            <router-view></router-view>
-        </template>
-    </div>
+    <template>
+      <router-view></router-view>
+    </template>
+  </div>
 
 </template>
 

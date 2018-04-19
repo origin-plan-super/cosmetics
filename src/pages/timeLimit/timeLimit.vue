@@ -1,12 +1,12 @@
 <template>
   <div id="timeLimit">
 
-    <el-card style="margin-bottom:25px">
+    <el-card shadow="hover" style="margin-bottom:25px">
 
       <el-form label-width="100px" size="mini" ref="ruleForm" :rules="rules" :model="add">
 
         <el-form-item label="时间" prop="time">
-          <el-time-select v-model="add.time" :picker-options="{start: '00:00',step: '01:00',end: '23:00'}" placeholder="选择时间">
+          <el-time-select v-model="add.time" :picker-options="{start: '00:00',step: '01:00',end: '24:00'}" placeholder="选择时间">
           </el-time-select>
         </el-form-item>
 
@@ -22,7 +22,7 @@
 
     <el-button type="primary" @click="update()" size="mini">刷新</el-button>
 
-    <el-card style="margin-bottom:25px" v-for="(time,x) in times" :key="x">
+    <el-card shadow="hover" style="margin-bottom:25px" v-for="(time,x) in times" :key="x">
       <div class="time-panel">
 
         <div slot="header" class="clearfix">
@@ -44,7 +44,7 @@
           <template v-if="time.isShow">
 
             <div class="time-body">
-              <goods-card :key="item.goods_id" v-for="item in time.goods" :title="item.goods_title" :info="'￥'+item.sku[0].price" :img="item.goods_head"></goods-card>
+              <goods-card :key="item.goods_id" v-for="item in time.goods" :title="item.goods_title" :info="'￥'+item.sku.length>0?item.sku[0].price:''" :img="item.goods_head"></goods-card>
             </div>
 
           </template>
@@ -79,7 +79,7 @@ export default {
   methods: {
     update() {
       this.$get("time/getList", {}, res => {
-        if (res.res >= 1) {
+        if (res.res >= 0) {
           for (let x in res.msg) {
             res.msg[x].isShow = false;
           }
@@ -88,6 +88,7 @@ export default {
       });
     },
     buliderList(list) {
+      this.times = [];
       return list;
     },
     submitForm() {

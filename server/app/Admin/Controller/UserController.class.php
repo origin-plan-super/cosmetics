@@ -177,47 +177,6 @@ class UserController extends CommonController{
     }
     
     
-    public function test(){
-        echo "<h3>CTOS用户生成器</h3>";
-        
-        $model=M('user');
-        $start=$model->count()+1;
-        $max=$start+10;
-        $adds=[];
-        
-        for ($i=$start; $i < $max; $i++) {
-            
-            $add=[];
-            $add['user_id']="1213$i";
-            $add['user_pwd']=md5('123'.__KEY__);
-            
-            $add['user_name']="用户$i";
-            $add['add_time']=time();
-            $add['edit_time']=time();
-            $add['user_head']='https://avatars1.githubusercontent.com/u/20777182';
-            
-            $add['user_type']=0;
-            $add['star_id']=null;
-            
-            if($i%3==0){
-                //分销商
-                $add['user_type']=1;
-                $add['star_id']="96e64f4cf57c3b88899cc63ad6d7cdb4";
-                
-            }
-            if($i%2==0){
-                //推广员
-                $add['star_id']=null;
-                $add['user_type']=2;
-            }
-            
-            $adds[]=$add;
-        }
-        
-        // $model->addAll($adds);
-        dump($adds);
-    }
-    
     public function save(){
         
         $model=M('user');

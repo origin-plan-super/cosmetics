@@ -1,103 +1,55 @@
 <template>
-  <div id="spec">
+  <div id="spec" v-loading="isLoading">
+
     <div class="text-size-default">
       <p>选择规格</p>
     </div>
     <div class="spec-list">
 
-      <div class="spec-item" v-for="(group,index) in spec" :key="group.spec_id">
-        <div class="spec-title">
-
-          <span class="title">{{group.title}}</span>
-          <el-button type="text" @click="selectSpecGroup(group.node,group)" :disabled="isEditModel">全选</el-button>
-          <el-button type="text" @click="editSpecGroup(group,index)" :disabled="isEditModel">编辑</el-button>
-          <el-button type="text" @click="removeSpecGroup(group,index,spec)" :disabled="isEditModel">删除</el-button>
-
-        </div>
-
-        <div class="spec-list-edit" v-if="group.isEdit">
-          <div>
-            <el-form-item label="规格名称">
-              <el-input style="width:300px;" v-model="group.title" placeholder="请输入规格名称">
-                <i slot="suffix" style="padding-right:5px" :class="[{'text-danger':$getTextCount(group.title)>5}]">{{$getTextCount(group.title)}}/5</i>
-              </el-input>
-            </el-form-item>
-          </div>
-
-          <div>
-            <el-form-item label="属性值">
-
-              <el-input style="width:300px" placeholder="输入回车即可添加" @keyup.enter.native="addSpecProp(group.node,group)" v-model="addProp.title">
-                <i slot="suffix" style="padding-right:5px" :class="[{'text-danger':$getTextCount(addProp.title)>15}]">{{$getTextCount(addProp.title)}}/15</i>
-              </el-input>
-              <el-button size="small" @click="addSpecProp(group.node,group)">添加</el-button>
-
-              <div v-if="group.message.isShow">
-
-                <div :class="'text-'+group.message.type">
-                  {{group.message.message}}
-                </div>
-
-              </div>
-
-            </el-form-item>
-
-          </div>
-
-          <div class="spec-list-edit-prop">
-            <el-tag class="spec-list-edit-prop-item" :disable-transitions="true" v-for="(item,jndex) in group.node" :key="item.title" closable @close="delSpecProp(item,jndex,group.node,index)">{{item.title}}</el-tag>
-          </div>
-
-          <div style="padding-left:150px">
-
-            <el-button size="small" @click="okEditSpecGroup(group, index)">确定</el-button>
-            <el-button size="small" @click="removeSpecGroup(group,index,spec)" v-if="group.isAddModel">取消</el-button>
-
-          </div>
-
-        </div>
-        <div class="spec-prop-list">
-
-          <label class="spec-prop-item" v-for="(item,jndex) in group.node" :key="jndex" v-if="!group.isEdit">
-            <el-checkbox v-model="item.check" @change="changeSpecProp()"></el-checkbox>
-            <span class="spec-prop-item-title">
-              {{item.title}}
-            </span>
-          </label>
-        </div>
-
-      </div>
-      <!-- 规格选择结束    ==  end  == -->
-      <el-button type="text" @click="addSpecGroup()">添加规格</el-button>
+      <spce-group :tree="tree" @on-edit="onEditGroup" :disabled="isEditModel" @change="changeSkuGroupProp" v-for="(group,i) in skuGroup" :list="skuGroup" :index="i" :title="group.sku_group_name" :node="group.node" :group="group" :key="group.sku_group_id"></spce-group>
+      <el-button type="text" @click="addSkuGroup()">添加规格</el-button>
       <div class="text-size-default text-info">规格添加后请勿随意删除，删除后正在使用相应规格的商品在编辑时规格部分将受到影响</div>
     </div>
 
-    <!--  价格&库存 开始-->
     <div class="text-size-default">
       <p>价格&库存</p>
     </div>
 
     <div class="param-list">
+
       <p>
-        <span class="text-info">批量填充： </span>
-        <el-input v-model="filling.money" placeholder="价格" style="width:100px"></el-input>
+        <span class="text-info">批量填充：</span>
+        <el-input v-model="filling.money" placeholder="销售价￥" style="width:100px"></el-input>
+        <el-input v-model="filling.purchase_price" placeholder="采购价￥" style="width:100px"></el-input>
+        <el-input v-model="filling.earn_price" placeholder="佣金￥" style="width:100px"></el-input>
         <el-input v-model="filling.stock" placeholder="库存" style="width:100px"></el-input>
         <el-button type="primary" @click="batchFilling()">确认</el-button>
       </p>
 
       <el-table :data="sku" style="width: 100%" size='small' border>
 
-        <el-table-column :label="item.k" :prop="'s'+(index+1)" v-for="(item,index) in tree" :key="item.k">
+        <el-table-column :label="item.k" :prop="'s'+(index+1)" v-for="(item,index) in tree" :key="item.k" />
+        <el-table-column></el-table-column>
 
-        </el-table-column>
-
-        <el-table-column label="价格">
+        <el-table-column label="销售价￥" width="100">
           <template slot-scope="scope">
             <el-input v-model="scope.row.price"></el-input>
           </template>
         </el-table-column>
 
-        <el-table-column label="库存">
+        <el-table-column label="采购价￥" width="100">
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.purchase_price"></el-input>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="佣金￥" width="100">
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.earn_price"></el-input>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="库存" width="100">
           <template slot-scope="scope">
             <el-input v-model="scope.row.stock_num"></el-input>
           </template>
@@ -110,14 +62,15 @@
 </template>
 
 <script>
+import SpceGroup from "./spce-group/spce-group.vue";
 export default {
   name: "spec",
   props: {
-    tree: {
+    sku: {
       type: Array,
       default: []
     },
-    sku: {
+    tree: {
       type: Array,
       default: []
     }
@@ -131,249 +84,135 @@ export default {
         title: ""
       },
       //规格组
-      spec: [],
+      skuGroup: [],
       //价格&库存的列表
       paramList: [],
-      //表格map
-      map: [],
       //批量填充的变量记录
       filling: {
-        money: "",
-        stock: ""
-      }
+        money: "", //金额
+        stock: "", //库存
+        earn_price: "", //佣金
+        purchase_price: "" //采购价
+      },
+      isLoading: false
     };
   },
   methods: {
-    //初始化规格列表
-    initSpec() {
-      var list = [];
-      //模拟规格
-      //颜色：
-      let group = {
-        spec_id: Math.random(),
-        title: `颜色`,
-        //是否为编辑状态
-        isEdit: false,
-        //是否为添加状态
-        isAddModel: false,
-        //子节点，规格项
-        node: [
-          //子节点1，title是要显示的标题，并且暂时作为value使用
-          { title: `红色`, check: false },
-          { title: `白色`, check: false },
-          { title: `黑色`, check: false }
-        ],
-        //消息提示
-        message: {
-          message: "",
-          type: "",
-          isShow: false
+    update() {
+      this.isLoading = true;
+      //异步加载数据
+      this.$get(
+        "skuGroup/getList",
+        {},
+        res => {
+          this.isLoading = false;
+          if (res.res >= 1) {
+            this.skuGroup = this.initList(res.msg);
+            return;
+          }
+          if (res.res < 0) {
+            this.$error("加载规格数据失败！");
+          }
+        },
+        error => {
+          this.isLoading = false;
         }
-      };
-
-      list.push(group);
-
-      //再添加一个测试的
-
-      group = {
-        spec_id: Math.random(),
-        title: `大小`,
-        //是否为编辑状态
-        isEdit: false,
-        //是否为添加状态
-        isAddModel: false,
-        //子节点，规格项
-        node: [
-          //子节点1，title是要显示的标题，并且暂时作为value使用
-          { title: `10*10`, check: false },
-          { title: `20*20`, check: false },
-          { title: `30*30`, check: false }
-        ],
-        //消息提示
-        message: {
-          message: "",
-          type: "",
-          isShow: false
-        }
-      };
-
-      list.push(group);
-      //再添加一个测试的
-      group = {
-        spec_id: Math.random(),
-        title: `材质`,
-        //是否为编辑状态
-        isEdit: false,
-        //是否为添加状态
-        isAddModel: false,
-        //子节点，规格项
-        node: [
-          //子节点1，title是要显示的标题，并且暂时作为value使用
-          { title: `金子`, check: false },
-          { title: `铁`, check: false },
-          { title: `石头`, check: false }
-        ],
-        //消息提示
-        message: {
-          message: "",
-          type: "",
-          isShow: false
-        }
-      };
-
-      list.push(group);
-      this.spec = list;
-
-    
+      );
     },
-    //移除规格组
-    removeSpecGroup(group, index, spec) {
-      // 确定删除规格：125，及其所属的规格吗？
-      if (group.isAddModel) {
-        spec.splice(index, 1);
-        this.isEditModel = false;
-        return;
-      }
-      this.$confirm(
-        "提示：删除后，正在使用相应规格的其他商品被编辑时，商品的规格内容将受到影响， 是否继续?",
-        `确定删除规格：${group.title}，及其所属的规格吗？`,
-        { confirmButtonText: "确定", cancelButtonText: "取消", type: "warning" }
-      )
-        .then(() => {
-          this.$message({ type: "success", message: "删除成功!" });
-          spec.splice(index, 1);
-        })
-        .catch(() => {
-          this.$message({ type: "info", message: "已取消删除" });
+    //初始化规格列表
+    initList(list) {
+      list.forEach(item => {
+        item.node.forEach(node => {
+          node.check = false;
         });
-
-      this.isEditModel = false;
+      });
+      return list;
     },
     //新增规格组
-    addSpecGroup() {
-      var group = {
-        title: ``,
-        isEdit: false,
-        isAddModel: true,
-        node: [],
-        message: {
-          message: "",
-          type: "",
-          isShow: false
+    addSkuGroup() {
+      this.$prompt("请输入新的规格组名", "添加规格组", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
+      })
+        .then(({ value }) => {
+          if (value.length > 6) {
+            this.$warn("规格组名长度不能超过6位数~");
+          } else {
+            this.addAjax(value);
+          }
+        })
+        .catch(() => {});
+    },
+    //新增规格组提交
+    addAjax(name) {
+      this.isLoading = true;
+      this.$post(
+        "skuGroup/add",
+        {
+          add: { sku_group_name: name }
+        },
+        res => {
+          console.log(res);
+
+          this.isLoading = false;
+          if (res.res >= 1) {
+            this.skuGroup.push(res.msg);
+            this.onEditGroup(false);
+            return;
+          }
+          this.$error("添加失败！请重试~");
+        },
+        error => {
+          this.isLoading = false;
         }
-      };
-      this.spec.push(group);
-      this.editSpecGroup(group);
+      );
     },
-    //编辑规格组
-    editSpecGroup(group, index) {
-      this.isEditModel = true;
-      group.isEdit = true;
-    },
-    //全选规格组下的属性
-    selectSpecGroup(list, group) {
-      this.isSelectAllSpec = !this.isSelectAllSpec;
-      for (let i = 0; i < list.length; i++) {
-        list[i].check = this.isSelectAllSpec;
-      }
-      this.changeSpecProp();
-    },
-    //删除规格下属性
-    delSpecProp(item, jndex, group, index) {
-      group.splice(jndex, 1);
-    },
-    //添加规格下的属性
-    addSpecProp(groupList, group) {
-      var prop = {
-        title: this.addProp.title,
-        check: false
-      };
-      //先检查是否重名
-      var length = this.$getTextCount(prop.title);
-      if (length <= 0 || length > 15) {
-        group.message = {
-          type: "error",
-          message: `请输入规格值，长度不要超过15个字`,
-          isShow: true
-        };
-        return;
-      }
 
-      for (let i = 0; i < groupList.length; i++) {
-        var item = groupList[i];
-        if (item.title == prop.title) {
-          group.message = {
-            type: "error",
-            message: `输入的规格值已存在`,
-            isShow: true
-          };
-          return;
-        }
-      }
-
-      groupList.push(prop);
-      this.addProp = {
-        title: ""
-      };
-      group.message.isShow = false;
-    },
-    //确定编辑规格组
-    okEditSpecGroup(group, index) {
-      var length = this.$getTextCount(group.title);
-      if (length <= 0 || length > 5) {
-        group.message = {
-          type: "error",
-          message: `请输入规格名称，长度不要超过5个字`,
-          isShow: true
-        };
-        return;
-      }
-
-      this.isEditModel = false;
-      group.isEdit = false;
+    onEditGroup(isEdit) {
+      this.isEditModel = isEdit;
     },
     //批量填充
     batchFilling() {
-      for (let i = 0; i < this.sku.length; i++) {
-        this.sku[i].price = this.filling.money;
-        this.sku[i].stock_num = this.filling.stock;
-      }
+      this.sku.forEach(item => {
+        item.price = this.filling.money;
+        item.stock_num = this.filling.stock;
+        item.purchase_price = this.filling.purchase_price;
+        item.earn_price = this.filling.earn_price;
+      });
       this.filling.money = "";
       this.filling.stock = "";
+      this.filling.purchase_price = "";
+      this.filling.earn_price = "";
     },
-    // 选中一个规格下的属性触发的事件
-    changeSpecProp() {
-      var spec = this.spec;
-
+    //规格组发生变化
+    changeSkuGroupProp() {
+      var skuGroup = this.skuGroup;
       var tree = [];
-
-      for (let i = 0; i < spec.length; i++) {
-        let specItem = spec[i];
+      skuGroup.forEach((group, i) => {
         let isAdd = false;
         let treeItem = {
-          k: specItem.title,
+          k: group.sku_group_name,
           v: [],
           k_s: "s" + (i + 1)
         };
-
-        for (let j = 0; j < specItem.node.length; j++) {
-          let nodeItem = specItem.node[j];
-          if (nodeItem.check) {
+        group.node.forEach(node => {
+          if (node.check) {
             isAdd = true;
             treeItem.v.push({
-              id: nodeItem.title,
-              name: nodeItem.title
+              id: node.sku_group_prop_name,
+              name: node.sku_group_prop_name
             });
           }
-        }
+        });
+        //判断是否超出限制，没超出限制就添加，否则提示
         if (isAdd) {
           if (tree.length + 1 <= 3) {
             tree.push(treeItem);
           } else {
-            this.$info("只能添加三组！");
+            this.$info("最多添加三组~");
           }
         }
-      }
+      });
 
       if (tree.length <= 0) {
         this.$emit("update:tree", []);
@@ -381,65 +220,61 @@ export default {
         return;
       }
 
+      //将组转换为sku
       var test = generateGroup(tree);
+
       var skus = [];
-      for (let i = 0; i < test.length; i++) {
-        var item = test[i];
+      test.forEach((item, i) => {
         var sku = {
           id: i,
           price: 0,
-          stock_num: 0
+          stock_num: 0,
+          purchase_price: 0,
+          earn_price: 0
         };
-        for (let j = 0; j < item.length; j++) {
-          const s = item[j];
+        item.forEach((s, j) => {
           sku["s" + (j + 1)] = s;
-        }
-
+        });
         skus.push(sku);
-      }
+      });
 
       this.$emit("update:tree", tree);
+      //保持原有数据
+
+      //如果是之前有过的，就保留原有数据
+      skus.forEach(sku => {
+        this.sku.forEach(sku2 => {
+          var is = true;
+          for (let i = 1; i < 3; i++) {
+            let key = "s" + i;
+            if (sku[key] && sku2[key]) {
+              //如果存在
+              if (sku[key] != sku2[key]) {
+                //如果不等于就不做操作，全等于才做操作
+                is = false;
+              }
+            }
+          }
+          if (is) {
+            sku.stock_num = sku2.stock_num;
+            sku.price = sku2.price;
+            sku.purchase_price = sku2.purchase_price;
+            sku.earn_price = sku2.earn_price;
+          }
+        });
+      });
       this.$emit("update:sku", skus);
     }
   },
   mounted() {
-    this.initSpec();
+    this.update();
     this.$nextTick(() => {});
   },
-  watch:{
-    tree(tree){
-
-
-      var spec= this.spec;
-      
-      for (let i = 0; i < tree.length; i++) {
-        let item = tree[i];
-        for (let j = 0; j < spec.length; j++) {
-          let group = spec[j];
-          if(item.k==group.title){
-
-            for (let x = 0; x < item.v.length; x++) {
-              let v = item.v[x];
-                      
-          for (let l = 0; l < group.node.length; l++) {
-            let node = group.node[l];
-if(v.name==node.title){
-
-if(!node.check){
-node.check=true;
-}
-}
-
-          }
-            }
-      
-          }
-        }
-      }
-
-      
-      
-    }
+  watch: {
+    tree(tree) {}
+  },
+  components: {
+    SpceGroup
   }
 };
 
@@ -450,9 +285,7 @@ function generateGroup(arr) {
   for (var i = 0; i < arr[0].v.length; i++) {
     result.push(JSON.stringify(arr[0].v[i].id));
   }
-
   //从下标1开始遍历二维数组
-
   for (var i = 1; i < arr.length; i++) {
     //使用临时遍历替代结果数组长度(这样做是为了避免下面的循环陷入死循环)
     var size = result.length;

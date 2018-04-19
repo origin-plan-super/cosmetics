@@ -1,21 +1,21 @@
 <template>
-    <div class="goods-card">
-        <div class="goods-img">
-            <img :src="$getUrl(img)">
-        </div>
-
-        <div class="goods-title">
-            {{title}}
-        </div>
-        <div class="goods-info">
-            {{info}}
-        </div>
-
-        <div class="footer">
-            <slot></slot>
-        </div>
-
+  <div class="goods-card" @click="click">
+    <div class="goods-img">
+      <img :src="$getUrl(img)">
     </div>
+
+    <div class="goods-title">
+      {{title}}
+    </div>
+    <div class="goods-info">
+      {{info}}
+    </div>
+
+    <div class="footer">
+      <slot></slot>
+    </div>
+
+  </div>
 </template>
 <script>
 export default {
@@ -37,7 +37,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    click() {
+      this.$emit("click");
+    }
+  },
   computed: {},
   //过滤器
   filters: {},

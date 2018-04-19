@@ -25,6 +25,9 @@ class DynamicController extends CommonController{
         //轮播图
         $Carousel=D('Carousel');
         $Dynamic=D('Dynamic');
+        $User=D('User');
+        
+        $upUsers=$User->getUpList();
         
         $where=[];
         $where['pages_id']=1;
@@ -36,6 +39,7 @@ class DynamicController extends CommonController{
         $res['dynamic']=$dynamic;
         $res['dynamicsFollow']=$dynamicsFollow;
         $res['carousel']=$carousel;
+        $res['upUsers']=$upUsers;
         $res['rse']=1;
         echo json_encode($res);
         

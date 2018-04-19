@@ -30,6 +30,40 @@ class BagController extends CommonController{
         }else{
             $res['res']=0;
         }
+        
+        echo json_encode($res);
+        
+    }
+    
+    //更新数量
+    public function updateNum(){
+        
+        $snapshot_id=I('snapshot_id');
+        $count=I('count');
+        
+        $Bag=D('Bag');
+        $Snapshot=D('Snapshot');
+        
+        $where=[];
+        $where['snapshot_id']=$snapshot_id;
+        $where['user_id']=session('user_id');
+        
+        $save=[];
+        $save['edit_time']=time();
+        
+        $Bag->where($where)->save($save);
+        
+        $save['count']=$count;
+        $result=$Snapshot->where($where)->save($save);
+        
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+            $res['sql']=$Snapshot->_sql();
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
         echo json_encode($res);
         
     }
@@ -61,58 +95,22 @@ class BagController extends CommonController{
     
     public function add(){
         
-        //相同用户，相同商品，相同sku，组成一个购物车和购物车id
+        $Bag=D('Bag');
+        $Snapshot=D('Snapshot');
         
+        $goods_id=I('goods_id');
+        $sku_id=I('sku_id');
+        $count=I('count');
+        $snapshot_id=$Snapshot->create($goods_id,$sku_id,$count);
         
-        $Bag=M('bag');
+        $result=$Bag->create($snapshot_id);
         
-        $data=I('add');
-        
-        $goods_id=$data['goods_id'];
-        $goods_count=$data['goods_count'];
-        $sku_id=$data['sku_id'];
-        $user_id=session('user_id');
-        
-        $bag_id=md5($user_id.$goods_id.$sku_id);
-        
-        $where=[];
-        $where['bag_id']=$bag_id;
-        //看看有没有已经添加过
-        $isAdd=$Bag->where($where)->find();
-        if($isAdd){
-            //已经添加过
-            //追加数据
-            
-            $where=[];
-            $where['bag_id']=$bag_id;
-            
-            $result=$Bag->where($where)->setInc('goods_count',$goods_count);
-            if($result){
-                $res['res']=1;
-                $res['msg']=$result;
-            }else{
-                $res['res']=-1;
-                $res['msg']=$result;
-            }
-            
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
         }else{
-            //未添加过
-            //组成新数据
-            $add=I('add');
-            $add['user_id']=$user_id;
-            $add['bag_id']=$bag_id;
-            $add['add_time']=time();
-            $add['edit_time']=time();
-            
-            $result=$Bag->add($add);
-            if($result){
-                $res['res']=1;
-                $res['msg']=$result;
-            }else{
-                $res['res']=-1;
-                $res['msg']=$result;
-            }
-            
+            $res['res']=-1;
+            $res['msg']=$result;
         }
         
         echo json_encode($res);
@@ -121,11 +119,9 @@ class BagController extends CommonController{
     
     public function del(){
         
-        $Bag=M('bag');
-        $where=[];
-        $where['user_id']=session('user_id');
-        $where['bag_id']=I('bag_id');
-        $result=$Bag->where($where)->delete();
+        $Bag=D('Bag');
+        // ===================================================================================
+        $result=$Bag->del(I('bag_id'));
         
         if($result){
             $res['res']=1;
@@ -134,28 +130,11 @@ class BagController extends CommonController{
             $res['res']=-1;
             $res['msg']=$result;
         }
+        
         echo json_encode($res);
         
     }
     
-    public function dels(){
-        $Bag=M('bag');
-        $where=[];
-        $where['user_id']=session('user_id');
-        $where['bag_id']=['in',I('ids')];
-        $result=$Bag->where($where)->delete();
-        
-        if($result){
-            $res['res']=1;
-            $res['msg']=$result;
-        }else{
-            $res['res']=-1;
-            $res['msg']=$result;
-        }
-        
-        echo json_encode($res);
-        
-    }
     
     
 }

@@ -1,28 +1,32 @@
 <template>
   <div class="goods-select">
 
-    <div class="goods-list clearfix">
-      <div :class="['goods-item',{'active':item.isActive}]" @click="selectItem(item,i,list)" v-for="(item,i) in list" :key="item.goods_id">
-        <div class="active-icon">
-          <i class="fa fa-check"></i>
-        </div>
-        <img :src="$getUrl(item.img_list[0].src)" class="goods-img" alt="">
-        <div class="goods-title">
-          {{item.goods_title}}
-        </div>
-        <div class="goods-money">
-          ￥ {{item.sku[0].price}}
-        </div>
-      </div>
+    <div class="goods-list clearfix" v-if="list.length>0">
+
+      <template v-for="(item,i) in list">
+        <goods-card @click="selectItem(item,i,list)" :class="['goods-item',{'active':item.isActive}]" :title="item.goods_title" :info="'￥'+(item.sku.length>0?item.sku[0].price:'暂无价格')" :img="item.img_list.length>0?item.img_list[0].src:''" :key="item.goods_id+'412'">
+          <div class="active-icon" v-if="item.isActive">
+            <i class="fa fa-check"></i>
+          </div>
+        </goods-card>
+      </template>
+
+    </div>
+    <div v-else>
+      <p class="text-info">
+        暂无商品，请先将商品上线或
+        <span @click="$router.push('/goods/edit')">点击添加</span>
+      </p>
     </div>
 
-    <div class="frame">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :page-sizes="[1,10, 20, 30, 40, 50, 100]" :total="total">
-      </el-pagination>
-    </div>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size.sync="pageSize" layout="total, sizes, prev, pager, next, jumper" :page-sizes="[1,10, 20, 30, 40, 50, 100]" :total="total">
+    </el-pagination>
+
   </div>
 </template>
 <script>
+import goodsCard from "../goods-card/goods-card.vue";
+
 export default {
   name: "goods-select",
   props: {
@@ -40,10 +44,10 @@ export default {
       // 总条数
       total: 0,
       // 当前每页显示的数量
-      pageSize: 20,
+      pageSize: 10,
       //数据
       list: [],
-      //是否显示加载层
+      //是否显示加载层F
       isLoading: false,
       //记录用的值
       testValue: "",
@@ -53,11 +57,13 @@ export default {
   },
   methods: {
     //页面切换事件
-    handleCurrentChange: function() {
+    handleCurrentChange: function(val) {
+      this.currentPage = val;
       this.update();
     },
     //大小改变事件
-    handleSizeChange: function() {
+    handleSizeChange: function(val) {
+      this.pageSize = val;
       this.update();
     },
     update: function() {
@@ -70,7 +76,10 @@ export default {
         {
           page: this.currentPage,
           limit: this.pageSize,
-          field: "goods_id,goods_title,spec,img_list"
+          field: "goods_id,goods_title,spec,img_list",
+          where: {
+            is_up: 1
+          }
         },
         res => {
           clearTimeout(setTim);
@@ -132,7 +141,9 @@ export default {
     this.selectList = [];
     this.$emit("input", []);
   },
-  components: {},
+  components: {
+    goodsCard
+  },
   watch: {
     selectList() {}
   }

@@ -1,17 +1,20 @@
 <template>
   <div id="add">
 
-    <el-form :model="add" :rules="rules" ref="form" label-width="100px" style="width:70%">
+    <el-form :model="add" :rules="rules" size="small" ref="form" label-width="100px" style="width:70%">
+      <el-form-item label="标题" prop="title">
+        <el-input type="text" :maxlength="255" placeholder="请输入标题" v-model="add.title"></el-input>
+      </el-form-item>
+
       <el-form-item label="内容" prop="msg">
         <el-input type="textarea" :maxlength="255" placeholder="请输入内容" :autosize="{ minRows: 5}" v-model="add.msg"></el-input>
-
       </el-form-item>
       <el-form-item label="类型" prop="name">
 
         <el-select v-model="add.type" placeholder="请选择类型">
 
           <el-option label="随享季公告" value="1"></el-option>
-          <el-option label="活动消息" value="2"></el-option>
+             <el-option label="活动消息" value="2"></el-option>
           <el-option label="随享季助手" value="3"></el-option>
           <el-option label="交易物流" value="4"></el-option>
 
@@ -32,10 +35,12 @@ export default {
   data() {
     return {
       add: {
+        title: "",
         msg: "",
         type: "1"
       },
       rules: {
+        title: [{ required: true, message: "请输入标题", trigger: "blur" }],
         msg: [{ required: true, message: "请输入内容", trigger: "blur" }]
       }
     };

@@ -1,0 +1,27 @@
+#add {
+    padding: 20px;
+    .form {
+        .el-input {
+            width: 500px;
+        }
+        .el-card {
+            margin-bottom: 20px;
+        }
+        .el-card-v {
+            overflow: visible;
+        }
+    }
+}
+
+#add /deep/ {
+    .el-form-item__content {
+        .area-select-box {}
+        .area-select {
+            line-height: 1.2;
+        }
+        .area-select-wrap .area-select {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+    }
+}

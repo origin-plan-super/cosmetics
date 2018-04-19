@@ -81,7 +81,7 @@ class SpecialController extends CommonController{
         $where=I('where');
         $save=I('save');
         $result=$Special->where($where)->save($save);
-        if($result){
+        if($result!==false){
             $res['res']=1;
             $res['msg']=$result;
         }else{

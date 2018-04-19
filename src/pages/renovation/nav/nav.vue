@@ -7,6 +7,31 @@
     <el-tabs v-model="activeTab" type="border-card" closable @tab-remove="removeTab">
       <el-tab-pane label="首页" :closable="false">
 
+        <el-card shadow="hover">
+
+          <el-form label-width="150px" size="mini">
+
+            <el-form-item label="是否显示主会场">
+              <el-switch active-value="1" inactive-value="0" v-model="config.main_venue_show" active-color="#13ce66"></el-switch>
+            </el-form-item>
+
+            <el-form-item label="主会场配图" v-if="config.main_venue_show=='1'">
+
+              <o-upload src="main/" v-model="config.main_bg_url">
+                <el-button icon="el-icon-upload">{{config.main_bg_url.length>0?'重新上传':'上传配图'}}</el-button>
+              </o-upload>
+              <img :src="$getUrl(config.main_bg_url)" v-if="config.main_bg_url.length>0" class="main-img" alt="图片错误！">
+
+            </el-form-item>
+
+            <el-form-item>
+              <el-button type="success" @click="saveConfig()">保存</el-button>
+            </el-form-item>
+
+          </el-form>
+
+        </el-card>
+
         <nav-panel nav-id="0"></nav-panel>
 
       </el-tab-pane>
@@ -35,10 +60,29 @@ export default {
       goods_list: [],
       goodsList: [],
       isShowSelectGoodsPanel: false,
-      isShowSelectSpecialPanel: false
+      isShowSelectSpecialPanel: false,
+      config: {
+        main_venue_show: "1",
+        main_bg_url: ""
+      }
     };
   },
   methods: {
+    saveConfig() {
+      this.$post(
+        "config/saveData",
+        {
+          save: this.config
+        },
+        res => {
+          if (res.res >= 1) {
+            this.$success("保存成功！");
+            return;
+          }
+          this.$error("保存失败！请重试~");
+        }
+      );
+    },
     update() {
       this.$get("nav/getList", {}, res => {
         if (res.res >= 1) {
@@ -49,6 +93,17 @@ export default {
           return;
         }
         this.$error("数据加载失败！");
+      });
+
+      this.$get("Config/get", {}, res => {
+        if (res.res >= 1) {
+          if (res.msg.main_bg_url == null) {
+            res.msg.main_bg_url = "";
+          }
+          this.config = res.msg;
+          return;
+        }
+        this.$error("配置项获取失败！请刷新重试~");
       });
     },
     addTab(nav) {
@@ -86,6 +141,10 @@ export default {
     },
     removeTab(targetName) {
       let tabs = this.navTab;
+      if (targetName == undefined) {
+        this.$info("首页不能删除~");
+        return;
+      }
       this.$post(
         "nav/del",
         {
@@ -161,7 +220,6 @@ export default {
   watch: {
     activeTab(val) {
       localStorage.activeTab = val;
-      console.warn(this.activeTab);
     }
   },
   components: {

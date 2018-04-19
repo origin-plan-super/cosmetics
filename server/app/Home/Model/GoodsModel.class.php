@@ -13,16 +13,13 @@ class GoodsModel extends Model {
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['limit']?$data['limit']:10;
         
-        $where=$where;
         $where['is_up']=1;
         $goodsList  =  $this
         ->order('sort desc,add_time desc')
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
-        
         //找 sku 和 tree
-        
         for ($i=0; $i <count($goodsList) ; $i++) {
             $goods              =     $goodsList[$i];
             $goodsList[$i]      =     getGoodsSku($goods);
@@ -39,6 +36,9 @@ class GoodsModel extends Model {
         $where['goods_id']=$goods_id;
         
         $goods=$this->where($where)->find();
+        if(!$goods){
+            return null;
+        }
         
         $goods=getGoodsSku($goods,$map);
         $goods=toTime([$goods])[0];
@@ -56,5 +56,20 @@ class GoodsModel extends Model {
         
     }
     
+    
+    public function search(){
+        $keys=I('key');
+        //先根据空格分割为数组
+        
+        foreach ($keys as $key => $value) {
+            $keys[$key]='%'.$value.'%';
+        }
+        $where=[];
+        $where['goods_title']=['like',$keys,'AND'];
+        
+        $goodsList=  $this->getList(I(),$where);
+        return $goodsList===null ? []:$goodsList;
+        
+    }
     
 }

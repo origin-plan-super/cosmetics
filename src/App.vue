@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <div v-wechat-title="'化妆品商城 - '+$route.meta.title"></div>
-    <el-container style="height: 100vh">
-      <el-aside style="width:auto">
-        <el-menu class="left-menu" :collapse="isCollapse" router :default-active='defaultActive' :background-color="style.backgroundColor" :text-color="style.textColor" :active-text-color="style.activeTextColor">
+    <el-container style="height: 100vh;">
+      <el-aside style="width:auto;">
+        <div class="switch" @click="_switch" :style="{borderColor:style.switch.borderColor}">
+          <i class="el-icon-arrow-left" v-if='!isCollapse'></i>
+          <i class="el-icon-arrow-right" v-if='isCollapse'></i>
+        </div>
+        <el-menu unique-opened class="left-menu" :collapse="isCollapse" router :default-active='defaultActive' :background-color="style.backgroundColor" :text-color="style.textColor" :active-text-color="style.activeTextColor">
           <!-- -->
-          <div class="switch" @click="_switch" :style="{borderColor:style.switch.borderColor}">
-            <i class="el-icon-arrow-left" v-if='!isCollapse'></i>
-            <i class="el-icon-arrow-right" v-if='isCollapse'></i>
-          </div>
+
           <el-menu-item-group>
 
             <el-menu-item index='/index'>
@@ -224,6 +225,33 @@
             </el-menu-item-group>
 
           </el-submenu>
+          <el-submenu index="/supplier" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <span slot="title">供货商管理</span>
+            </template>
+
+            <el-menu-item-group>
+              <el-menu-item index="/supplier/list">
+                <span>供货商列表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+
+          </el-submenu>
+
+          <el-submenu index="/freight" :show-timeout='0' :hide-timeout='0'>
+
+            <template slot="title">
+              <span slot="title">运费模板</span>
+            </template>
+
+            <el-menu-item-group>
+              <el-menu-item index="/freight/list">
+                <span>运费模板列表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+
+          </el-submenu>
 
         </el-menu>
       </el-aside>
@@ -244,7 +272,6 @@
             <el-menu class="top-menu float-right" mode="horizontal" router>
 
               <el-submenu index="1" :show-timeout='0' :hide-timeout='0'>
-
                 <template slot="title">
                   系统
                 </template>

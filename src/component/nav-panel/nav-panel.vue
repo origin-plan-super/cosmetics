@@ -3,7 +3,7 @@
     <div class="frame">
       <!-- <el-button size="small" @click="update()">刷新面板</el-button> -->
     </div>
-    <el-card style="margin-bottom:50px" v-if="navId!='0'">
+    <el-card shadow="hover" style="margin-bottom:50px" v-if="navId!='0'">
       <div slot="header">导航配置</div>
 
       <el-form ref="form" label-width="100px" size="small" v-if="nav">
@@ -20,7 +20,7 @@
 
     </el-card>
 
-    <el-card style="margin-bottom:50px">
+    <el-card shadow="hover" style="margin-bottom:50px">
 
       <div slot="header">商品配置</div>
 
@@ -33,15 +33,16 @@
 
         <div class="text-info" style="margin:10px 0;font-size:13px">已选择的商品</div>
         <template v-for="(item,i) in nav.goodsList">
-          <goods-card :title="item.goods_title" :info="'￥'+item.sku[0].price" :img="item.img_list[0].src" :key="item.goods_id">
+          <goods-card :title="item.goods_title" :info="'￥'+item.sku.length>0?item.sku[0].price:'暂无价格'" :img="item.img_list.length>0?item.img_list[0].src:''" :key="item.goods_id">
             <i class="el-icon-delete" @click="delGoods(item,i,nav.goodsList)"></i>
           </goods-card>
         </template>
+
       </template>
 
     </el-card>
 
-    <el-card>
+    <el-card shadow="hover">
 
       <div slot="header">专题配置</div>
 
@@ -114,6 +115,7 @@ export default {
           nav_id: this.navId
         },
         res => {
+          console.log(res.msg);
           this.nav = res.msg;
         }
       );

@@ -1,0 +1,32 @@
+.spce-group {
+    padding: 10px 0;
+    border-bottom: dashed 1px #ddd;
+    .spec-group-head {
+        .group-title {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .el-button {}
+    }
+    .spec-prop-list {
+        display: block;
+        position: relative;
+        .spec-prop-item {
+            display: inline-block;
+            width: 150px;
+            cursor: pointer;
+            padding: 20px;
+            vertical-align: top;
+            .el-checkbox {
+                width: 20%;
+                display: block;
+                float: left;
+            }
+            .spec-prop-item-title {
+                float: left;
+                font-size: 14px;
+                width: 80%;
+            }
+        }
+    }
+}
